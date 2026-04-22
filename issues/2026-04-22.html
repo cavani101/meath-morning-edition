@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meath Morning Edition — 2026-04-22</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --green: #1A4731;
+  --gold:  #B8860B;
+  --cream: #FAF7F0;
+  --ink:   #1A1A1A;
+  --mid:   #555;
+  --light: #888;
+  --sans:  'Inter', system-ui, sans-serif;
+  --serif: 'Fraunces', Georgia, serif;
+}
+body { font-family: var(--sans); background: var(--cream); color: var(--ink); -webkit-font-smoothing: antialiased; }
+
+/* ── Masthead ── */
+.masthead {
+  background: var(--green);
+  color: #fff;
+  padding: 2.5rem 2rem 2rem;
+  text-align: center;
+  border-bottom: 4px solid var(--gold);
+}
+.masthead-kicker {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.75rem;
+}
+.masthead-title {
+  font-family: var(--serif);
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-weight: 900;
+  line-height: 1;
+  color: #fff;
+  margin-bottom: 0.3em;
+}
+.masthead-title em {
+  font-style: italic;
+  color: var(--gold);
+}
+.masthead-date {
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 1rem;
+}
+.urgent-count {
+  display: inline-block;
+  background: #C0392B;
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.3em 0.9em;
+  border-radius: 2px;
+  margin-bottom: 0.5rem;
+}
+
+/* ── Weather bar ── */
+.weather-bar {
+  background: #fff;
+  border-bottom: 1px solid #e0dbd0;
+  padding: 0.6rem 2rem;
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+  font-size: 0.82rem;
+}
+.weather-place { font-weight: 600; color: var(--green); }
+.weather-desc  { color: var(--mid); }
+.weather-temps { font-weight: 500; }
+.weather-rain  { color: #2980b9; }
+
+/* ── Story cards ── */
+.stories {
+  max-width: 860px;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+}
+.story-card {
+  display: flex;
+  gap: 1.5rem;
+  padding: 1.75rem 0;
+  border-bottom: 1px solid #e0dbd0;
+  align-items: flex-start;
+}
+.card-alt { background: transparent; }
+.card-rank {
+  font-family: var(--serif);
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: rgba(26,71,49,0.12);
+  min-width: 3rem;
+  text-align: right;
+  line-height: 1;
+  padding-top: 0.15em;
+  flex-shrink: 0;
+}
+.card-body { flex: 1; }
+.card-meta {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
+}
+.card-category {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  background: var(--green);
+  color: #fff;
+  padding: 0.25em 0.7em;
+  border-radius: 2px;
+}
+.card-source {
+  font-size: 0.72rem;
+  color: var(--light);
+  font-weight: 500;
+}
+.card-title {
+  font-family: var(--serif);
+  font-size: clamp(1.2rem, 3vw, 1.6rem);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 0.6rem;
+}
+.card-title a {
+  color: var(--ink);
+  text-decoration: none;
+}
+.card-title a:hover { color: var(--green); }
+.urgent-badge {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  border-left: 3px solid #C0392B;
+  padding: 0.4rem 0.8rem;
+  margin-bottom: 0.75rem;
+  background: #fdf0ee;
+}
+.urgent-label {
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #C0392B;
+}
+.urgent-reason {
+  font-size: 0.8rem;
+  color: #C0392B;
+  line-height: 1.4;
+}
+.card-teaser {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--mid);
+  margin-bottom: 0.75rem;
+}
+.card-link {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--green);
+  text-decoration: none;
+  border-bottom: 1px solid var(--green);
+  padding-bottom: 0.05em;
+}
+.card-link:hover { opacity: 0.7; }
+
+/* ── Footer ── */
+.footer {
+  text-align: center;
+  padding: 2.5rem 1rem;
+  font-size: 0.75rem;
+  color: var(--light);
+  border-top: 1px solid #e0dbd0;
+  margin-top: 1rem;
+}
+
+@media (max-width: 560px) {
+  .card-rank { display: none; }
+  .story-card { padding: 1.25rem 0; }
+}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-kicker">County Meath &nbsp;·&nbsp; Local Intelligence</div>
+  <h1 class="masthead-title">Meath <em>Morning</em><br>Edition</h1>
+  <div class="masthead-date">Wednesday, April 22, 2026</div>
+  
+</header>
+
+
+    <div class="weather-bar">
+      <span class="weather-place">Navan, Co. Meath</span>
+      <span class="weather-desc">Overcast</span>
+      <span class="weather-temps">7–13°C</span>
+      
+    </div>
+
+<main class="stories">
+
+  <article class="story-card ">
+    <div class="card-rank">01</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Council & Politics</span>
+        <span class="card-source">Meath Chronicle</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://www.meathchronicle.ie/2026/04/22/cllrs-vent-frustration-over-need-for-action-on-bettystown-court-hotel-site-which-has-been-closed-for-over-16-years/" target="_blank" rel="noopener">Councillors Frustrated Over Derelict Bettystown Court Hotel Site Closed 16 Years</a>
+      </h2>
+      
+      <p class="card-teaser">Meath councillors have expressed frustration at the lack of progress on the long-derelict Bettystown Court Hotel site, which has been closed for more than 16 years. Members are calling for decisive action to address the eyesore, which has been a source of community concern in the growing East Meath coastal area.</p>
+      <a class="card-link" href="https://www.meathchronicle.ie/2026/04/22/cllrs-vent-frustration-over-need-for-action-on-bettystown-court-hotel-site-which-has-been-closed-for-over-16-years/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card card-alt">
+    <div class="card-rank">02</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Council & Politics</span>
+        <span class="card-source">Meath Chronicle</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://www.meathchronicle.ie/2026/04/22/social-housing-rents-creating-a-poverty-trap-in-meath/" target="_blank" rel="noopener">Social Housing Rents Creating a 'Poverty Trap' in Meath</a>
+      </h2>
+      
+      <p class="card-teaser">Concerns have been raised that social housing rent structures in Meath are creating a poverty trap for tenants. The issue highlights how differential rent schemes may penalise residents who increase their earnings, discouraging employment progression among social housing tenants in the county.</p>
+      <a class="card-link" href="https://www.meathchronicle.ie/2026/04/22/social-housing-rents-creating-a-poverty-trap-in-meath/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card ">
+    <div class="card-rank">03</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Planning & Development</span>
+        <span class="card-source">Meath Chronicle</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://www.meathchronicle.ie/2026/04/20/work-to-commence-on-e6m-extension-to-ocarolan-college-nobber/" target="_blank" rel="noopener">Work to Begin on €6m Extension to O'Carolan College in Nobber</a>
+      </h2>
+      
+      <p class="card-teaser">Construction is set to commence on a €6 million extension to O'Carolan College in Nobber, north Meath. The project will significantly expand the secondary school's capacity, addressing growing demand for school places in the area.</p>
+      <a class="card-link" href="https://www.meathchronicle.ie/2026/04/20/work-to-commence-on-e6m-extension-to-ocarolan-college-nobber/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card card-alt">
+    <div class="card-rank">04</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Council & Politics</span>
+        <span class="card-source">Meath Chronicle</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://www.meathchronicle.ie/2026/04/22/figures-show-meath-county-councils-income-hit-e250m-last-year-with-better-rate-collection-record-than-revenue/" target="_blank" rel="noopener">Meath County Council Income Hit €250m With Strong Rate Collection</a>
+      </h2>
+      
+      <p class="card-teaser">New figures reveal Meath County Council's total income reached €250 million last year, with a commercial rates collection record that outperformed Revenue's own collection rate. The data gives a snapshot of the council's growing financial base as the county's population and development continue to expand.</p>
+      <a class="card-link" href="https://www.meathchronicle.ie/2026/04/22/figures-show-meath-county-councils-income-hit-e250m-last-year-with-better-rate-collection-record-than-revenue/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card ">
+    <div class="card-rank">05</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Local News</span>
+        <span class="card-source">Meath Chronicle</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://www.meathchronicle.ie/2026/04/21/relief-as-homeless-drop-in-centre-opens-doors-of-new-premises-in-navan/" target="_blank" rel="noopener">Homeless Drop-In Centre Opens New Premises in Navan</a>
+      </h2>
+      
+      <p class="card-teaser">A homeless drop-in centre has opened the doors of its new premises in Navan, bringing relief to service users and support workers. The facility provides essential day services to people experiencing homelessness in the county town.</p>
+      <a class="card-link" href="https://www.meathchronicle.ie/2026/04/21/relief-as-homeless-drop-in-centre-opens-doors-of-new-premises-in-navan/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card card-alt">
+    <div class="card-rank">06</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Courts & Crime</span>
+        <span class="card-source">Meath Live</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://meathlive.net/2026/04/21/man-set-upon-at-river-walk-feared-for-my-life/" target="_blank" rel="noopener">Man 'Feared for My Life' During Balaclava Robbery on Ratoath River Walk</a>
+      </h2>
+      
+      <p class="card-teaser">A man was robbed by two balaclava-wearing attackers while walking along a scenic river walk in Ratoath, a court has heard. The victim told the court he feared for his life during the assault. One of the accused, named as Mikola, appeared before the court in connection with the incident.</p>
+      <a class="card-link" href="https://meathlive.net/2026/04/21/man-set-upon-at-river-walk-feared-for-my-life/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card ">
+    <div class="card-rank">07</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Council & Politics</span>
+        <span class="card-source">Meath Live</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://meathlive.net/2026/04/22/speed-up-affordable-and-social-housing-says-killian/" target="_blank" rel="noopener">Cllr Killian Calls for Faster Delivery of Affordable and Social Housing</a>
+      </h2>
+      
+      <p class="card-teaser">Independent Meath councillor Nick Killian has called on the council to speed up delivery of affordable and social housing, saying these projects tend to be left until the very end of development timelines. The call comes amid persistent pressure on Meath's housing supply and long social housing waiting lists.</p>
+      <a class="card-link" href="https://meathlive.net/2026/04/22/speed-up-affordable-and-social-housing-says-killian/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card card-alt">
+    <div class="card-rank">08</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Sport</span>
+        <span class="card-source">Meath Chronicle</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://www.meathchronicle.ie/2026/04/21/pats-claim-leinster-glory/" target="_blank" rel="noopener">St Pat's Crowned Leinster Colleges Junior Football Champions</a>
+      </h2>
+      
+      <p class="card-teaser">St Pat's were crowned Leinster Colleges Junior Football Championship A champions on Tuesday. The victory marks a significant achievement for the Meath school at provincial level in the GAA colleges competition.</p>
+      <a class="card-link" href="https://www.meathchronicle.ie/2026/04/21/pats-claim-leinster-glory/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+</main>
+
+<footer class="footer">
+  <p>Meath Morning Edition &nbsp;·&nbsp; 2026-04-22</p>
+  <p style="margin-top:0.4rem;">Sources: Meath Live &nbsp;·&nbsp; Meath Chronicle &nbsp;·&nbsp; Google Alert</p>
+</footer>
+
+</body>
+</html>
