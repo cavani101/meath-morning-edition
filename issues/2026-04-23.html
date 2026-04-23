@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meath Morning Edition — 2026-04-23</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --green: #1A4731;
+  --gold:  #B8860B;
+  --cream: #FAF7F0;
+  --ink:   #1A1A1A;
+  --mid:   #555;
+  --light: #888;
+  --sans:  'Inter', system-ui, sans-serif;
+  --serif: 'Fraunces', Georgia, serif;
+}
+body { font-family: var(--sans); background: var(--cream); color: var(--ink); -webkit-font-smoothing: antialiased; }
+
+/* ── Masthead ── */
+.masthead {
+  background: var(--green);
+  color: #fff;
+  padding: 2.5rem 2rem 2rem;
+  text-align: center;
+  border-bottom: 4px solid var(--gold);
+}
+.masthead-kicker {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.75rem;
+}
+.masthead-title {
+  font-family: var(--serif);
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-weight: 900;
+  line-height: 1;
+  color: #fff;
+  margin-bottom: 0.3em;
+}
+.masthead-title em {
+  font-style: italic;
+  color: var(--gold);
+}
+.masthead-date {
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 1rem;
+}
+.urgent-count {
+  display: inline-block;
+  background: #C0392B;
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.3em 0.9em;
+  border-radius: 2px;
+  margin-bottom: 0.5rem;
+}
+
+/* ── Weather bar ── */
+.weather-bar {
+  background: #fff;
+  border-bottom: 1px solid #e0dbd0;
+  padding: 0.6rem 2rem;
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+  font-size: 0.82rem;
+}
+.weather-place { font-weight: 600; color: var(--green); }
+.weather-desc  { color: var(--mid); }
+.weather-temps { font-weight: 500; }
+.weather-rain  { color: #2980b9; }
+
+/* ── Story cards ── */
+.stories {
+  max-width: 860px;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+}
+.story-card {
+  display: flex;
+  gap: 1.5rem;
+  padding: 1.75rem 0;
+  border-bottom: 1px solid #e0dbd0;
+  align-items: flex-start;
+}
+.card-alt { background: transparent; }
+.card-rank {
+  font-family: var(--serif);
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: rgba(26,71,49,0.12);
+  min-width: 3rem;
+  text-align: right;
+  line-height: 1;
+  padding-top: 0.15em;
+  flex-shrink: 0;
+}
+.card-body { flex: 1; }
+.card-meta {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
+}
+.card-category {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  background: var(--green);
+  color: #fff;
+  padding: 0.25em 0.7em;
+  border-radius: 2px;
+}
+.card-source {
+  font-size: 0.72rem;
+  color: var(--light);
+  font-weight: 500;
+}
+.card-title {
+  font-family: var(--serif);
+  font-size: clamp(1.2rem, 3vw, 1.6rem);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 0.6rem;
+}
+.card-title a {
+  color: var(--ink);
+  text-decoration: none;
+}
+.card-title a:hover { color: var(--green); }
+.urgent-badge {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  border-left: 3px solid #C0392B;
+  padding: 0.4rem 0.8rem;
+  margin-bottom: 0.75rem;
+  background: #fdf0ee;
+}
+.urgent-label {
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #C0392B;
+}
+.urgent-reason {
+  font-size: 0.8rem;
+  color: #C0392B;
+  line-height: 1.4;
+}
+.card-teaser {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--mid);
+  margin-bottom: 0.75rem;
+}
+.card-link {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--green);
+  text-decoration: none;
+  border-bottom: 1px solid var(--green);
+  padding-bottom: 0.05em;
+}
+.card-link:hover { opacity: 0.7; }
+
+/* ── Footer ── */
+.footer {
+  text-align: center;
+  padding: 2.5rem 1rem;
+  font-size: 0.75rem;
+  color: var(--light);
+  border-top: 1px solid #e0dbd0;
+  margin-top: 1rem;
+}
+
+@media (max-width: 560px) {
+  .card-rank { display: none; }
+  .story-card { padding: 1.25rem 0; }
+}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-kicker">County Meath &nbsp;·&nbsp; Local Intelligence</div>
+  <h1 class="masthead-title">Meath <em>Morning</em><br>Edition</h1>
+  <div class="masthead-date">Thursday, April 23, 2026</div>
+  <span class="urgent-count">&#9888; 1 urgent alert</span>
+</header>
+
+
+    <div class="weather-bar">
+      <span class="weather-place">Navan, Co. Meath</span>
+      <span class="weather-desc">Overcast</span>
+      <span class="weather-temps">8–15°C</span>
+      
+    </div>
+
+<main class="stories">
+
+  <article class="story-card ">
+    <div class="card-rank">01</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Business & Jobs</span>
+        <span class="card-source">Meath Chronicle</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://www.meathchronicle.ie/2026/04/22/new-openings-boost-for-navan-shopping-centre/" target="_blank" rel="noopener">New Store Openings Boost for Navan Shopping Centre</a>
+      </h2>
+      
+      <p class="card-teaser">Navan Shopping Centre is set to welcome new retail openings, providing a boost for the town centre's commercial activity. The new additions are expected to bring jobs and increased footfall to the area.</p>
+      <a class="card-link" href="https://www.meathchronicle.ie/2026/04/22/new-openings-boost-for-navan-shopping-centre/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card card-alt">
+    <div class="card-rank">02</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Council & Politics</span>
+        <span class="card-source">Meath Live</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://meathlive.net/2026/04/22/eight-councillors-table-questions-at-meath-council-meeting/" target="_blank" rel="noopener">Eight Councillors Table Questions at April Meath Council Meeting</a>
+      </h2>
+      
+      <p class="card-teaser">Eight councillors raised questions at the April meeting of Meath County Council. Topics included HAP applications for single-person room-only rentals and other housing issues affecting residents across the county.</p>
+      <a class="card-link" href="https://meathlive.net/2026/04/22/eight-councillors-table-questions-at-meath-council-meeting/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card ">
+    <div class="card-rank">03</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Planning & Development</span>
+        <span class="card-source">Irish Independent</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://www.independent.ie/regionals/meath/news/plans-for-11-homes-in-ashbourne-as-cottage-set-for-demolition/a244392878.html" target="_blank" rel="noopener">Plans Lodged for 11 Homes in Ashbourne as Cottage Set for Demolition</a>
+      </h2>
+      
+      <p class="card-teaser">Planning permission is being sought for 11 new homes in Ashbourne, with an existing cottage on the site earmarked for demolition. The application adds to a wave of residential development proposals in the growing south Meath town.</p>
+      <a class="card-link" href="https://www.independent.ie/regionals/meath/news/plans-for-11-homes-in-ashbourne-as-cottage-set-for-demolition/a244392878.html" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card card-alt">
+    <div class="card-rank">04</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Transport & Infrastructure</span>
+        <span class="card-source">Meath Chronicle</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://www.meathchronicle.ie/2026/04/21/calls-for-urgent-action-on-chronic-parking-shortages-along-meath-coastline/" target="_blank" rel="noopener">Calls for Urgent Action on Chronic Parking Shortages Along Meath Coast</a>
+      </h2>
+      
+    <div class="urgent-badge">
+      <span class="urgent-label">&#9888; URGENT</span>
+      <span class="urgent-reason">Ongoing parking congestion at Meath coastal amenities affects residents' access and road safety.</span>
+    </div>
+      <p class="card-teaser">Elected representatives are calling for immediate intervention to address persistent parking shortages at popular coastal locations in east Meath. The issue causes congestion and safety concerns, particularly during busy periods at beaches and amenity areas.</p>
+      <a class="card-link" href="https://www.meathchronicle.ie/2026/04/21/calls-for-urgent-action-on-chronic-parking-shortages-along-meath-coastline/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card ">
+    <div class="card-rank">05</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Community & Events</span>
+        <span class="card-source">Meath Live</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://meathlive.net/2026/04/22/county-council-delighted-to-partner-with-ablefest-again-as-2026/" target="_blank" rel="noopener">Meath County Council Partners with Ablefest 2026 at Fairyhouse Launch</a>
+      </h2>
+      
+      <p class="card-teaser">Meath County Council has confirmed its partnership with Ablefest 2026, launched at a special event at Fairyhouse Racecourse. The inclusive festival celebrates ability and accessibility and is a flagship community event in the county.</p>
+      <a class="card-link" href="https://meathlive.net/2026/04/22/county-council-delighted-to-partner-with-ablefest-again-as-2026/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card card-alt">
+    <div class="card-rank">06</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Community & Events</span>
+        <span class="card-source">Meath Chronicle</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://www.meathchronicle.ie/2026/04/22/e20k-funding-for-new-play-equipment-at-blackwater-park-playground/" target="_blank" rel="noopener">€20k Funding Secured for New Play Equipment at Blackwater Park</a>
+      </h2>
+      
+      <p class="card-teaser">Blackwater Park playground is to receive €20,000 in funding for new play equipment. The investment will upgrade facilities at the popular local amenity used by families across the Navan area.</p>
+      <a class="card-link" href="https://www.meathchronicle.ie/2026/04/22/e20k-funding-for-new-play-equipment-at-blackwater-park-playground/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card ">
+    <div class="card-rank">07</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Courts & Crime</span>
+        <span class="card-source">Meath Chronicle</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://www.meathchronicle.ie/2026/04/22/money-laundering-charge-for-navan-man/" target="_blank" rel="noopener">Navan Man Faces Money Laundering Charge at Circuit Court</a>
+      </h2>
+      
+      <p class="card-teaser">A Navan man has been brought before the Circuit Criminal Court on a money laundering charge. The case is proceeding through the courts with further details expected at upcoming hearings.</p>
+      <a class="card-link" href="https://www.meathchronicle.ie/2026/04/22/money-laundering-charge-for-navan-man/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card card-alt">
+    <div class="card-rank">08</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Council & Politics</span>
+        <span class="card-source">Meath Chronicle</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://www.meathchronicle.ie/2026/04/22/i-will-not-give-in-to-bullies-independent-td-toole-defiant-after-voting-confidence-in-governement/" target="_blank" rel="noopener">Meath TD Toole Defiant After Confidence Vote: 'I Won't Give In to Bullies'</a>
+      </h2>
+      
+      <p class="card-teaser">Independent Meath TD Peadar Toole has spoken out after voting confidence in the Government, saying he will not be intimidated. The Meath representative's stance comes amid ongoing political pressure from critics of the coalition.</p>
+      <a class="card-link" href="https://www.meathchronicle.ie/2026/04/22/i-will-not-give-in-to-bullies-independent-td-toole-defiant-after-voting-confidence-in-governement/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+</main>
+
+<footer class="footer">
+  <p>Meath Morning Edition &nbsp;·&nbsp; 2026-04-23</p>
+  <p style="margin-top:0.4rem;">Sources: Meath Live &nbsp;·&nbsp; Meath Chronicle &nbsp;·&nbsp; Google Alert</p>
+</footer>
+
+</body>
+</html>
