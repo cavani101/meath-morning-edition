@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meath Morning Edition — 2026-04-24</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --green: #1A4731;
+  --gold:  #B8860B;
+  --cream: #FAF7F0;
+  --ink:   #1A1A1A;
+  --mid:   #555;
+  --light: #888;
+  --sans:  'Inter', system-ui, sans-serif;
+  --serif: 'Fraunces', Georgia, serif;
+}
+body { font-family: var(--sans); background: var(--cream); color: var(--ink); -webkit-font-smoothing: antialiased; }
+
+/* ── Masthead ── */
+.masthead {
+  background: var(--green);
+  color: #fff;
+  padding: 2.5rem 2rem 2rem;
+  text-align: center;
+  border-bottom: 4px solid var(--gold);
+}
+.masthead-kicker {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.75rem;
+}
+.masthead-title {
+  font-family: var(--serif);
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-weight: 900;
+  line-height: 1;
+  color: #fff;
+  margin-bottom: 0.3em;
+}
+.masthead-title em {
+  font-style: italic;
+  color: var(--gold);
+}
+.masthead-date {
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 1rem;
+}
+.urgent-count {
+  display: inline-block;
+  background: #C0392B;
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.3em 0.9em;
+  border-radius: 2px;
+  margin-bottom: 0.5rem;
+}
+
+/* ── Weather bar ── */
+.weather-bar {
+  background: #fff;
+  border-bottom: 1px solid #e0dbd0;
+  padding: 0.6rem 2rem;
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+  font-size: 0.82rem;
+}
+.weather-place { font-weight: 600; color: var(--green); }
+.weather-desc  { color: var(--mid); }
+.weather-temps { font-weight: 500; }
+.weather-rain  { color: #2980b9; }
+
+/* ── Story cards ── */
+.stories {
+  max-width: 860px;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+}
+.story-card {
+  display: flex;
+  gap: 1.5rem;
+  padding: 1.75rem 0;
+  border-bottom: 1px solid #e0dbd0;
+  align-items: flex-start;
+}
+.card-alt { background: transparent; }
+.card-rank {
+  font-family: var(--serif);
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: rgba(26,71,49,0.12);
+  min-width: 3rem;
+  text-align: right;
+  line-height: 1;
+  padding-top: 0.15em;
+  flex-shrink: 0;
+}
+.card-body { flex: 1; }
+.card-meta {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
+}
+.card-category {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  background: var(--green);
+  color: #fff;
+  padding: 0.25em 0.7em;
+  border-radius: 2px;
+}
+.card-source {
+  font-size: 0.72rem;
+  color: var(--light);
+  font-weight: 500;
+}
+.card-title {
+  font-family: var(--serif);
+  font-size: clamp(1.2rem, 3vw, 1.6rem);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 0.6rem;
+}
+.card-title a {
+  color: var(--ink);
+  text-decoration: none;
+}
+.card-title a:hover { color: var(--green); }
+.urgent-badge {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  border-left: 3px solid #C0392B;
+  padding: 0.4rem 0.8rem;
+  margin-bottom: 0.75rem;
+  background: #fdf0ee;
+}
+.urgent-label {
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #C0392B;
+}
+.urgent-reason {
+  font-size: 0.8rem;
+  color: #C0392B;
+  line-height: 1.4;
+}
+.card-teaser {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--mid);
+  margin-bottom: 0.75rem;
+}
+.card-link {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--green);
+  text-decoration: none;
+  border-bottom: 1px solid var(--green);
+  padding-bottom: 0.05em;
+}
+.card-link:hover { opacity: 0.7; }
+
+/* ── Footer ── */
+.footer {
+  text-align: center;
+  padding: 2.5rem 1rem;
+  font-size: 0.75rem;
+  color: var(--light);
+  border-top: 1px solid #e0dbd0;
+  margin-top: 1rem;
+}
+
+@media (max-width: 560px) {
+  .card-rank { display: none; }
+  .story-card { padding: 1.25rem 0; }
+}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-kicker">County Meath &nbsp;·&nbsp; Local Intelligence</div>
+  <h1 class="masthead-title">Meath <em>Morning</em><br>Edition</h1>
+  <div class="masthead-date">Friday, April 24, 2026</div>
+  
+</header>
+
+
+    <div class="weather-bar">
+      <span class="weather-place">Navan, Co. Meath</span>
+      <span class="weather-desc">Overcast</span>
+      <span class="weather-temps">6–17°C</span>
+      
+    </div>
+
+<main class="stories">
+
+  <article class="story-card ">
+    <div class="card-rank">01</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Council & Politics</span>
+        <span class="card-source">Meath Live</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://meathlive.net/2026/04/21/government-sleepwalking-into-worst-ever-special-education-needs/" target="_blank" rel="noopener">Darren O'Rourke TD Warns of Special Education Needs Crisis Affecting Meath</a>
+      </h2>
+      
+      <p class="card-teaser">Meath TD Darren O'Rourke and Sinn Féin colleagues are bringing a Dáil motion calling for urgent action on what they describe as the worst-ever special education needs crisis. The motion highlights growing pressure on schools and families across the county struggling to access SEN supports and places.</p>
+      <a class="card-link" href="https://meathlive.net/2026/04/21/government-sleepwalking-into-worst-ever-special-education-needs/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card card-alt">
+    <div class="card-rank">02</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Courts & Crime</span>
+        <span class="card-source">Meath Live</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://meathlive.net/2026/04/20/leave-the-country-judge-tells-romanians/" target="_blank" rel="noopener">Judge Orders Four Romanian Men to Leave Ireland After Meath and Laois Thefts</a>
+      </h2>
+      
+      <p class="card-teaser">Four Romanian men who arrived from England just 12 days ago were brought before court after carrying out thefts in counties Meath and Laois. None of the men had a fixed address in Ireland, and the judge directed them to leave the country.</p>
+      <a class="card-link" href="https://meathlive.net/2026/04/20/leave-the-country-judge-tells-romanians/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card ">
+    <div class="card-rank">03</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Local News</span>
+        <span class="card-source">Meath Live</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://meathlive.net/2026/04/21/misadventure-verdict-on-woman-who-died-suddenly/" target="_blank" rel="noopener">Inquest Returns Misadventure Verdict on Meath Woman Who Died Suddenly</a>
+      </h2>
+      
+      <p class="card-teaser">An inquest into the death of a 70-year-old woman at her Co Meath home heard she had a high blood-alcohol level combined with a toxic level of a prescription drug. A verdict of misadventure was returned.</p>
+      <a class="card-link" href="https://meathlive.net/2026/04/21/misadventure-verdict-on-woman-who-died-suddenly/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card card-alt">
+    <div class="card-rank">04</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Community & Events</span>
+        <span class="card-source">Meath Chronicle</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://www.meathchronicle.ie/2026/04/23/mould-me-now-johnny-logan-bust-unveiled-in-ashbourne/" target="_blank" rel="noopener">Johnny Logan Bust Unveiled in Ashbourne in Eurovision Tribute</a>
+      </h2>
+      
+      <p class="card-teaser">Ashbourne has paid tribute to Eurovision legend Johnny Logan with the unveiling of a bronze bust in the town. The ceremony celebrates the singer's long-standing connection to the south Meath area.</p>
+      <a class="card-link" href="https://www.meathchronicle.ie/2026/04/23/mould-me-now-johnny-logan-bust-unveiled-in-ashbourne/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card ">
+    <div class="card-rank">05</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Sport</span>
+        <span class="card-source">Meath Chronicle</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://www.meathchronicle.ie/2026/04/23/community-games-swimming-finals-in-kells/" target="_blank" rel="noopener">Community Games Swimming Finals Take Place in Kells</a>
+      </h2>
+      
+      <p class="card-teaser">Kells hosted the Community Games swimming finals, bringing together young competitors from across Meath. The event is a key date in the county's Community Games calendar each year.</p>
+      <a class="card-link" href="https://www.meathchronicle.ie/2026/04/23/community-games-swimming-finals-in-kells/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card card-alt">
+    <div class="card-rank">06</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Courts & Crime</span>
+        <span class="card-source">Meath Live</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://meathlive.net/2026/04/20/nail-bar-employed-a-person-with-the-wrong-permit/" target="_blank" rel="noopener">Dunshaughlin Nail Bar Prosecuted Over Employee Work Permit Issue</a>
+      </h2>
+      
+      <p class="card-teaser">Lotus Hand and Foot Spa Ltd on Main Street, Dunshaughlin, appeared in court after employing a non-Irish national whose work permit did not cover that particular premises. The case highlights the strict conditions attached to employment permits for specific locations.</p>
+      <a class="card-link" href="https://meathlive.net/2026/04/20/nail-bar-employed-a-person-with-the-wrong-permit/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card ">
+    <div class="card-rank">07</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Local News</span>
+        <span class="card-source">Meath Chronicle</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://www.meathchronicle.ie/2026/04/22/bishop-criticises-negative-depictions-of-catholic-schools-in-visit-to-navan/" target="_blank" rel="noopener">Bishop Criticises Negative Portrayal of Catholic Schools During Navan Visit</a>
+      </h2>
+      
+      <p class="card-teaser">A Catholic bishop used a visit to Navan to push back against what he called negative depictions of Catholic-run schools. The remarks come amid ongoing national debate about school patronage and ethos, with implications for several Meath schools.</p>
+      <a class="card-link" href="https://www.meathchronicle.ie/2026/04/22/bishop-criticises-negative-depictions-of-catholic-schools-in-visit-to-navan/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card card-alt">
+    <div class="card-rank">08</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Community & Events</span>
+        <span class="card-source">Meath Chronicle</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://www.meathchronicle.ie/2026/04/23/athboy-man-takes-on-london-marathon-for-independent-age-charity/" target="_blank" rel="noopener">Athboy Man Runs London Marathon for Independent Age Charity</a>
+      </h2>
+      
+      <p class="card-teaser">An Athboy man took on the London Marathon to raise funds for Independent Age, a charity supporting older people. The local runner's fundraising effort has drawn support from the Meath community.</p>
+      <a class="card-link" href="https://www.meathchronicle.ie/2026/04/23/athboy-man-takes-on-london-marathon-for-independent-age-charity/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+</main>
+
+<footer class="footer">
+  <p>Meath Morning Edition &nbsp;·&nbsp; 2026-04-24</p>
+  <p style="margin-top:0.4rem;">Sources: Meath Live &nbsp;·&nbsp; Meath Chronicle &nbsp;·&nbsp; Google Alert</p>
+</footer>
+
+</body>
+</html>
