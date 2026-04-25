@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meath Morning Edition — 2026-04-25</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --green: #1A4731;
+  --gold:  #B8860B;
+  --cream: #FAF7F0;
+  --ink:   #1A1A1A;
+  --mid:   #555;
+  --light: #888;
+  --sans:  'Inter', system-ui, sans-serif;
+  --serif: 'Fraunces', Georgia, serif;
+}
+body { font-family: var(--sans); background: var(--cream); color: var(--ink); -webkit-font-smoothing: antialiased; }
+
+/* ── Masthead ── */
+.masthead {
+  background: var(--green);
+  color: #fff;
+  padding: 2.5rem 2rem 2rem;
+  text-align: center;
+  border-bottom: 4px solid var(--gold);
+}
+.masthead-kicker {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.75rem;
+}
+.masthead-title {
+  font-family: var(--serif);
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-weight: 900;
+  line-height: 1;
+  color: #fff;
+  margin-bottom: 0.3em;
+}
+.masthead-title em {
+  font-style: italic;
+  color: var(--gold);
+}
+.masthead-date {
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 1rem;
+}
+.urgent-count {
+  display: inline-block;
+  background: #C0392B;
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.3em 0.9em;
+  border-radius: 2px;
+  margin-bottom: 0.5rem;
+}
+
+/* ── Weather bar ── */
+.weather-bar {
+  background: #fff;
+  border-bottom: 1px solid #e0dbd0;
+  padding: 0.6rem 2rem;
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+  font-size: 0.82rem;
+}
+.weather-place { font-weight: 600; color: var(--green); }
+.weather-desc  { color: var(--mid); }
+.weather-temps { font-weight: 500; }
+.weather-rain  { color: #2980b9; }
+
+/* ── Story cards ── */
+.stories {
+  max-width: 860px;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+}
+.story-card {
+  display: flex;
+  gap: 1.5rem;
+  padding: 1.75rem 0;
+  border-bottom: 1px solid #e0dbd0;
+  align-items: flex-start;
+}
+.card-alt { background: transparent; }
+.card-rank {
+  font-family: var(--serif);
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: rgba(26,71,49,0.12);
+  min-width: 3rem;
+  text-align: right;
+  line-height: 1;
+  padding-top: 0.15em;
+  flex-shrink: 0;
+}
+.card-body { flex: 1; }
+.card-meta {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
+}
+.card-category {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  background: var(--green);
+  color: #fff;
+  padding: 0.25em 0.7em;
+  border-radius: 2px;
+}
+.card-source {
+  font-size: 0.72rem;
+  color: var(--light);
+  font-weight: 500;
+}
+.card-title {
+  font-family: var(--serif);
+  font-size: clamp(1.2rem, 3vw, 1.6rem);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 0.6rem;
+}
+.card-title a {
+  color: var(--ink);
+  text-decoration: none;
+}
+.card-title a:hover { color: var(--green); }
+.urgent-badge {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  border-left: 3px solid #C0392B;
+  padding: 0.4rem 0.8rem;
+  margin-bottom: 0.75rem;
+  background: #fdf0ee;
+}
+.urgent-label {
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #C0392B;
+}
+.urgent-reason {
+  font-size: 0.8rem;
+  color: #C0392B;
+  line-height: 1.4;
+}
+.card-teaser {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--mid);
+  margin-bottom: 0.75rem;
+}
+.card-link {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--green);
+  text-decoration: none;
+  border-bottom: 1px solid var(--green);
+  padding-bottom: 0.05em;
+}
+.card-link:hover { opacity: 0.7; }
+
+/* ── Footer ── */
+.footer {
+  text-align: center;
+  padding: 2.5rem 1rem;
+  font-size: 0.75rem;
+  color: var(--light);
+  border-top: 1px solid #e0dbd0;
+  margin-top: 1rem;
+}
+
+@media (max-width: 560px) {
+  .card-rank { display: none; }
+  .story-card { padding: 1.25rem 0; }
+}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-kicker">County Meath &nbsp;·&nbsp; Local Intelligence</div>
+  <h1 class="masthead-title">Meath <em>Morning</em><br>Edition</h1>
+  <div class="masthead-date">Saturday, April 25, 2026</div>
+  <span class="urgent-count">&#9888; 1 urgent alert</span>
+</header>
+
+
+    <div class="weather-bar">
+      <span class="weather-place">Navan, Co. Meath</span>
+      <span class="weather-desc">Overcast</span>
+      <span class="weather-temps">5–19°C</span>
+      
+    </div>
+
+<main class="stories">
+
+  <article class="story-card ">
+    <div class="card-rank">01</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Transport & Infrastructure</span>
+        <span class="card-source">Meath Chronicle</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://www.meathchronicle.ie/2026/04/24/person-airlifted-after-n3-crash-road-remains-closed/" target="_blank" rel="noopener">Person Airlifted After N3 Crash — Road Remains Closed, Delays Expected</a>
+      </h2>
+      
+    <div class="urgent-badge">
+      <span class="urgent-label">&#9888; URGENT</span>
+      <span class="urgent-reason">The N3 is a major commuter route through Meath; ongoing closure will cause significant disruption for drivers today.</span>
+    </div>
+      <p class="card-teaser">A person has been airlifted to hospital following a serious crash on the N3. The road remains closed and motorists are advised to expect significant delays, follow diversion signage, and allow extra travel time.</p>
+      <a class="card-link" href="https://www.meathchronicle.ie/2026/04/24/person-airlifted-after-n3-crash-road-remains-closed/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card card-alt">
+    <div class="card-rank">02</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Local News</span>
+        <span class="card-source">Google Alert</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://www.independent.ie/regionals/meath/news/navans-only-homeless-drop-in-service-secures-new-home-after-risk-of-closure/a1782693706.html" target="_blank" rel="noopener">Navan's Only Homeless Drop-In Service Secures New Home After Closure Threat</a>
+      </h2>
+      
+      <p class="card-teaser">Navan's sole drop-in service for people experiencing homelessness has found a new premises after facing the prospect of permanent closure. The service is a vital lifeline for vulnerable people in the county town.</p>
+      <a class="card-link" href="https://www.independent.ie/regionals/meath/news/navans-only-homeless-drop-in-service-secures-new-home-after-risk-of-closure/a1782693706.html" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card ">
+    <div class="card-rank">03</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Planning & Development</span>
+        <span class="card-source">Meath Live</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://meathlive.net/2026/04/24/high-numbers-who-built-without-planning-permission-got-retention/" target="_blank" rel="noopener">High Number of Unauthorised Meath Buildings Granted Retention Permission</a>
+      </h2>
+      
+      <p class="card-teaser">Statistics released by Meath County Council show that a high proportion of people who built structures without planning permission were subsequently granted retention. The figures raise questions about enforcement of planning regulations across the county.</p>
+      <a class="card-link" href="https://meathlive.net/2026/04/24/high-numbers-who-built-without-planning-permission-got-retention/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card card-alt">
+    <div class="card-rank">04</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Council & Politics</span>
+        <span class="card-source">Meath Live</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://meathlive.net/2026/04/24/councillor-wants-equal-access-under-bulk-waste-amnesty/" target="_blank" rel="noopener">Councillor Calls for Equal Access to Bulk Waste Amnesty Across Meath</a>
+      </h2>
+      
+      <p class="card-teaser">Independent councillor Carol Lennon has tabled a motion at Meath County Council calling for the bulk waste amnesty to be made available equally across all municipal districts. Some areas have been left out of previous collection rounds.</p>
+      <a class="card-link" href="https://meathlive.net/2026/04/24/councillor-wants-equal-access-under-bulk-waste-amnesty/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card ">
+    <div class="card-rank">05</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Council & Politics</span>
+        <span class="card-source">Meath Live</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://meathlive.net/2026/04/24/raise-hap-limits-says-aontu-councillor/" target="_blank" rel="noopener">Aontú Councillor Calls on Government to Raise HAP Limits for Meath Tenants</a>
+      </h2>
+      
+      <p class="card-teaser">Aontú councillor Dave Boyne has called for a review and increase of Housing Assistance Payment (HAP) limits, arguing current caps are out of step with actual rents in Meath. The motion was brought before a recent council meeting.</p>
+      <a class="card-link" href="https://meathlive.net/2026/04/24/raise-hap-limits-says-aontu-councillor/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card card-alt">
+    <div class="card-rank">06</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Courts & Crime</span>
+        <span class="card-source">Meath Chronicle</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://www.meathchronicle.ie/2026/04/24/former-navan-resident-jailed-for-romance-fraud/" target="_blank" rel="noopener">Former Navan Resident Jailed for Romance Fraud</a>
+      </h2>
+      
+      <p class="card-teaser">A former resident of Navan has been sentenced to a jail term after being convicted of romance fraud. The case highlights the growing prevalence of online scams targeting victims through dating platforms.</p>
+      <a class="card-link" href="https://www.meathchronicle.ie/2026/04/24/former-navan-resident-jailed-for-romance-fraud/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card ">
+    <div class="card-rank">07</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Sport</span>
+        <span class="card-source">Meath Chronicle</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://www.meathchronicle.ie/2026/04/24/we-didnt-get-to-the-pitch-of-championship-football-thats-our-biggest-disappointment/" target="_blank" rel="noopener">Meath GAA: 'We Didn't Reach Championship Pitch' — Fallout Continues</a>
+      </h2>
+      
+      <p class="card-teaser">Just weeks after celebrating promotion from NFL Division 2 in Tullamore, Meath footballers suffered a shock championship defeat that has left players and supporters reeling. The post-mortem is under way as the county assesses what went wrong.</p>
+      <a class="card-link" href="https://www.meathchronicle.ie/2026/04/24/we-didnt-get-to-the-pitch-of-championship-football-thats-our-biggest-disappointment/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card card-alt">
+    <div class="card-rank">08</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Courts & Crime</span>
+        <span class="card-source">Meath Chronicle</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://www.meathchronicle.ie/2026/04/22/man-takes-case-against-dunshaughlin-firm-over-ev-charger-that-stopped-working/" target="_blank" rel="noopener">Man Takes Case Against Dunshaughlin Firm Over Faulty EV Charger</a>
+      </h2>
+      
+      <p class="card-teaser">A consumer has brought a court case against a Dunshaughlin-based company after an electric vehicle charger he purchased allegedly stopped working. The case spotlights consumer rights issues in the growing EV market.</p>
+      <a class="card-link" href="https://www.meathchronicle.ie/2026/04/22/man-takes-case-against-dunshaughlin-firm-over-ev-charger-that-stopped-working/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+</main>
+
+<footer class="footer">
+  <p>Meath Morning Edition &nbsp;·&nbsp; 2026-04-25</p>
+  <p style="margin-top:0.4rem;">Sources: Meath Live &nbsp;·&nbsp; Meath Chronicle &nbsp;·&nbsp; Google Alert</p>
+</footer>
+
+</body>
+</html>
