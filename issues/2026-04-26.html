@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meath Morning Edition — 2026-04-26</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --green: #1A4731;
+  --gold:  #B8860B;
+  --cream: #FAF7F0;
+  --ink:   #1A1A1A;
+  --mid:   #555;
+  --light: #888;
+  --sans:  'Inter', system-ui, sans-serif;
+  --serif: 'Fraunces', Georgia, serif;
+}
+body { font-family: var(--sans); background: var(--cream); color: var(--ink); -webkit-font-smoothing: antialiased; }
+
+/* ── Masthead ── */
+.masthead {
+  background: var(--green);
+  color: #fff;
+  padding: 2.5rem 2rem 2rem;
+  text-align: center;
+  border-bottom: 4px solid var(--gold);
+}
+.masthead-kicker {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.75rem;
+}
+.masthead-title {
+  font-family: var(--serif);
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-weight: 900;
+  line-height: 1;
+  color: #fff;
+  margin-bottom: 0.3em;
+}
+.masthead-title em {
+  font-style: italic;
+  color: var(--gold);
+}
+.masthead-date {
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 1rem;
+}
+.urgent-count {
+  display: inline-block;
+  background: #C0392B;
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.3em 0.9em;
+  border-radius: 2px;
+  margin-bottom: 0.5rem;
+}
+
+/* ── Weather bar ── */
+.weather-bar {
+  background: #fff;
+  border-bottom: 1px solid #e0dbd0;
+  padding: 0.6rem 2rem;
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+  font-size: 0.82rem;
+}
+.weather-place { font-weight: 600; color: var(--green); }
+.weather-desc  { color: var(--mid); }
+.weather-temps { font-weight: 500; }
+.weather-rain  { color: #2980b9; }
+
+/* ── Story cards ── */
+.stories {
+  max-width: 860px;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+}
+.story-card {
+  display: flex;
+  gap: 1.5rem;
+  padding: 1.75rem 0;
+  border-bottom: 1px solid #e0dbd0;
+  align-items: flex-start;
+}
+.card-alt { background: transparent; }
+.card-rank {
+  font-family: var(--serif);
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: rgba(26,71,49,0.12);
+  min-width: 3rem;
+  text-align: right;
+  line-height: 1;
+  padding-top: 0.15em;
+  flex-shrink: 0;
+}
+.card-body { flex: 1; }
+.card-meta {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
+}
+.card-category {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  background: var(--green);
+  color: #fff;
+  padding: 0.25em 0.7em;
+  border-radius: 2px;
+}
+.card-source {
+  font-size: 0.72rem;
+  color: var(--light);
+  font-weight: 500;
+}
+.card-title {
+  font-family: var(--serif);
+  font-size: clamp(1.2rem, 3vw, 1.6rem);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 0.6rem;
+}
+.card-title a {
+  color: var(--ink);
+  text-decoration: none;
+}
+.card-title a:hover { color: var(--green); }
+.urgent-badge {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  border-left: 3px solid #C0392B;
+  padding: 0.4rem 0.8rem;
+  margin-bottom: 0.75rem;
+  background: #fdf0ee;
+}
+.urgent-label {
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #C0392B;
+}
+.urgent-reason {
+  font-size: 0.8rem;
+  color: #C0392B;
+  line-height: 1.4;
+}
+.card-teaser {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--mid);
+  margin-bottom: 0.75rem;
+}
+.card-link {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--green);
+  text-decoration: none;
+  border-bottom: 1px solid var(--green);
+  padding-bottom: 0.05em;
+}
+.card-link:hover { opacity: 0.7; }
+
+/* ── Footer ── */
+.footer {
+  text-align: center;
+  padding: 2.5rem 1rem;
+  font-size: 0.75rem;
+  color: var(--light);
+  border-top: 1px solid #e0dbd0;
+  margin-top: 1rem;
+}
+
+@media (max-width: 560px) {
+  .card-rank { display: none; }
+  .story-card { padding: 1.25rem 0; }
+}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-kicker">County Meath &nbsp;·&nbsp; Local Intelligence</div>
+  <h1 class="masthead-title">Meath <em>Morning</em><br>Edition</h1>
+  <div class="masthead-date">Sunday, April 26, 2026</div>
+  <span class="urgent-count">&#9888; 2 urgent alerts</span>
+</header>
+
+
+    <div class="weather-bar">
+      <span class="weather-place">Navan, Co. Meath</span>
+      <span class="weather-desc">Unavailable</span>
+      <span class="weather-temps">--–--°C</span>
+      
+    </div>
+
+<main class="stories">
+
+  <article class="story-card ">
+    <div class="card-rank">01</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Transport & Infrastructure</span>
+        <span class="card-source">Meath Chronicle</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://www.meathchronicle.ie/2026/04/25/road-reopens-after-n3-crash/" target="_blank" rel="noopener">N3 Reopens After Serious Crash Involving Emergency Services from Cavan</a>
+      </h2>
+      
+    <div class="urgent-badge">
+      <span class="urgent-label">&#9888; URGENT</span>
+      <span class="urgent-reason">N3 is a major Meath commuter route — drivers should check for residual delays.</span>
+    </div>
+      <p class="card-teaser">The N3 has reopened following a serious crash that required Gardaí, fire crews from Cavan and Ballyjamesduff, and multiple ambulances. The collision caused significant disruption on one of Meath's key commuter routes on Friday.</p>
+      <a class="card-link" href="https://www.meathchronicle.ie/2026/04/25/road-reopens-after-n3-crash/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card card-alt">
+    <div class="card-rank">02</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Local News</span>
+        <span class="card-source">Meath Live</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://meathlive.net/2026/04/24/serious-injury-road-traffic-collision-clonmellon/" target="_blank" rel="noopener">Gardaí Appeal for Witnesses to Serious Collision Near Clonmellon</a>
+      </h2>
+      
+    <div class="urgent-badge">
+      <span class="urgent-label">&#9888; URGENT</span>
+      <span class="urgent-reason">Active Garda witness appeal — local residents who travelled the route may have vital information.</span>
+    </div>
+      <p class="card-teaser">Gardaí are seeking witnesses to a serious injury road traffic collision on the L6821 near Clonmellon on Wednesday evening, 22 April. The incident occurred shortly before 7.30pm. Anyone with information or dashcam footage is asked to come forward.</p>
+      <a class="card-link" href="https://meathlive.net/2026/04/24/serious-injury-road-traffic-collision-clonmellon/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card ">
+    <div class="card-rank">03</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Sport</span>
+        <span class="card-source">Meath Chronicle</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://www.meathchronicle.ie/2026/04/25/royal-camogs-fall-short-to-neighbours/" target="_blank" rel="noopener">Meath Camogs Knocked Out of Leinster Championship by Westmeath</a>
+      </h2>
+      
+      <p class="card-teaser">Stephen Sheil's Meath were eliminated from the Leinster Intermediate Camogie Championship after falling short against neighbours Westmeath on Saturday. The defeat ends the Royals' campaign at the provincial stage.</p>
+      <a class="card-link" href="https://www.meathchronicle.ie/2026/04/25/royal-camogs-fall-short-to-neighbours/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card card-alt">
+    <div class="card-rank">04</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Business & Jobs</span>
+        <span class="card-source">Meath Chronicle</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://www.meathchronicle.ie/2026/04/24/pharmacy-gutted-in-arson-attack-re-opens/" target="_blank" rel="noopener">Pharmacy Gutted in Arson Attack Reopens Its Doors</a>
+      </h2>
+      
+      <p class="card-teaser">A local pharmacy that was destroyed in an arson attack has reopened, restoring a vital health service to the community. The business had been out of action while extensive repairs were carried out following the fire.</p>
+      <a class="card-link" href="https://www.meathchronicle.ie/2026/04/24/pharmacy-gutted-in-arson-attack-re-opens/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card ">
+    <div class="card-rank">05</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Courts & Crime</span>
+        <span class="card-source">Meath Chronicle</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://www.meathchronicle.ie/2026/04/22/man-drove-off-with-garda-holding-door/" target="_blank" rel="noopener">Man Drove Off with Garda Holding Onto Car Door, Court Hears</a>
+      </h2>
+      
+      <p class="card-teaser">A man appeared in court charged after allegedly driving away from a Garda while the officer was still holding onto the vehicle's door. The incident is among a number of cases heard at local district court sittings this week.</p>
+      <a class="card-link" href="https://www.meathchronicle.ie/2026/04/22/man-drove-off-with-garda-holding-door/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card card-alt">
+    <div class="card-rank">06</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Courts & Crime</span>
+        <span class="card-source">Meath Chronicle</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://www.meathchronicle.ie/2026/04/22/leave-the-country-judge-tells-romanian-nationals/" target="_blank" rel="noopener">'Leave the Country' — Judge's Warning to Romanian Nationals in Court</a>
+      </h2>
+      
+      <p class="card-teaser">A judge told Romanian nationals to leave the country during a local court sitting. The case drew attention for the severity of the judge's remarks during sentencing.</p>
+      <a class="card-link" href="https://www.meathchronicle.ie/2026/04/22/leave-the-country-judge-tells-romanian-nationals/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card ">
+    <div class="card-rank">07</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Courts & Crime</span>
+        <span class="card-source">Meath Chronicle</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://www.meathchronicle.ie/2026/04/24/pub-trade-at-the-pin-of-its-collar-says-solicitor-asking-for-leniency-for-pub-that-allowed-smoking-on-its-premises/" target="_blank" rel="noopener">Pub Fined After Allowing Smoking on Premises, Solicitor Cites Trade Pressures</a>
+      </h2>
+      
+      <p class="card-teaser">A solicitor pleaded for leniency for a pub prosecuted for allowing smoking on its premises, telling the court the trade is 'at the pin of its collar.' The case highlights ongoing pressures facing local hospitality businesses.</p>
+      <a class="card-link" href="https://www.meathchronicle.ie/2026/04/24/pub-trade-at-the-pin-of-its-collar-says-solicitor-asking-for-leniency-for-pub-that-allowed-smoking-on-its-premises/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card card-alt">
+    <div class="card-rank">08</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Sport</span>
+        <span class="card-source">Meath Chronicle</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://www.meathchronicle.ie/2026/04/25/smyth-has-eye-on-elusive-leinster-title/" target="_blank" rel="noopener">Smyth Eyes Elusive Leinster Title for Meath</a>
+      </h2>
+      
+      <p class="card-teaser">Meath's Smyth has set sights on capturing an elusive Leinster title as the provincial championship campaign intensifies. The feature looks at what a breakthrough win would mean for the county.</p>
+      <a class="card-link" href="https://www.meathchronicle.ie/2026/04/25/smyth-has-eye-on-elusive-leinster-title/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+</main>
+
+<footer class="footer">
+  <p>Meath Morning Edition &nbsp;·&nbsp; 2026-04-26</p>
+  <p style="margin-top:0.4rem;">Sources: Meath Live &nbsp;·&nbsp; Meath Chronicle &nbsp;·&nbsp; Google Alert</p>
+</footer>
+
+</body>
+</html>
