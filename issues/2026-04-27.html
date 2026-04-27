@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meath Morning Edition — 2026-04-27</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --green: #1A4731;
+  --gold:  #B8860B;
+  --cream: #FAF7F0;
+  --ink:   #1A1A1A;
+  --mid:   #555;
+  --light: #888;
+  --sans:  'Inter', system-ui, sans-serif;
+  --serif: 'Fraunces', Georgia, serif;
+}
+body { font-family: var(--sans); background: var(--cream); color: var(--ink); -webkit-font-smoothing: antialiased; }
+
+/* ── Masthead ── */
+.masthead {
+  background: var(--green);
+  color: #fff;
+  padding: 2.5rem 2rem 2rem;
+  text-align: center;
+  border-bottom: 4px solid var(--gold);
+}
+.masthead-kicker {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.75rem;
+}
+.masthead-title {
+  font-family: var(--serif);
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-weight: 900;
+  line-height: 1;
+  color: #fff;
+  margin-bottom: 0.3em;
+}
+.masthead-title em {
+  font-style: italic;
+  color: var(--gold);
+}
+.masthead-date {
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 1rem;
+}
+.urgent-count {
+  display: inline-block;
+  background: #C0392B;
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.3em 0.9em;
+  border-radius: 2px;
+  margin-bottom: 0.5rem;
+}
+
+/* ── Weather bar ── */
+.weather-bar {
+  background: #fff;
+  border-bottom: 1px solid #e0dbd0;
+  padding: 0.6rem 2rem;
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+  font-size: 0.82rem;
+}
+.weather-place { font-weight: 600; color: var(--green); }
+.weather-desc  { color: var(--mid); }
+.weather-temps { font-weight: 500; }
+.weather-rain  { color: #2980b9; }
+
+/* ── Story cards ── */
+.stories {
+  max-width: 860px;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+}
+.story-card {
+  display: flex;
+  gap: 1.5rem;
+  padding: 1.75rem 0;
+  border-bottom: 1px solid #e0dbd0;
+  align-items: flex-start;
+}
+.card-alt { background: transparent; }
+.card-rank {
+  font-family: var(--serif);
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: rgba(26,71,49,0.12);
+  min-width: 3rem;
+  text-align: right;
+  line-height: 1;
+  padding-top: 0.15em;
+  flex-shrink: 0;
+}
+.card-body { flex: 1; }
+.card-meta {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
+}
+.card-category {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  background: var(--green);
+  color: #fff;
+  padding: 0.25em 0.7em;
+  border-radius: 2px;
+}
+.card-source {
+  font-size: 0.72rem;
+  color: var(--light);
+  font-weight: 500;
+}
+.card-title {
+  font-family: var(--serif);
+  font-size: clamp(1.2rem, 3vw, 1.6rem);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 0.6rem;
+}
+.card-title a {
+  color: var(--ink);
+  text-decoration: none;
+}
+.card-title a:hover { color: var(--green); }
+.urgent-badge {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  border-left: 3px solid #C0392B;
+  padding: 0.4rem 0.8rem;
+  margin-bottom: 0.75rem;
+  background: #fdf0ee;
+}
+.urgent-label {
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #C0392B;
+}
+.urgent-reason {
+  font-size: 0.8rem;
+  color: #C0392B;
+  line-height: 1.4;
+}
+.card-teaser {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--mid);
+  margin-bottom: 0.75rem;
+}
+.card-link {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--green);
+  text-decoration: none;
+  border-bottom: 1px solid var(--green);
+  padding-bottom: 0.05em;
+}
+.card-link:hover { opacity: 0.7; }
+
+/* ── Footer ── */
+.footer {
+  text-align: center;
+  padding: 2.5rem 1rem;
+  font-size: 0.75rem;
+  color: var(--light);
+  border-top: 1px solid #e0dbd0;
+  margin-top: 1rem;
+}
+
+@media (max-width: 560px) {
+  .card-rank { display: none; }
+  .story-card { padding: 1.25rem 0; }
+}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-kicker">County Meath &nbsp;·&nbsp; Local Intelligence</div>
+  <h1 class="masthead-title">Meath <em>Morning</em><br>Edition</h1>
+  <div class="masthead-date">Monday, April 27, 2026</div>
+  
+</header>
+
+
+    <div class="weather-bar">
+      <span class="weather-place">Navan, Co. Meath</span>
+      <span class="weather-desc">Light drizzle</span>
+      <span class="weather-temps">7–15°C</span>
+      <span class="weather-rain">0.1mm rain</span>
+    </div>
+
+<main class="stories">
+
+  <article class="story-card ">
+    <div class="card-rank">01</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Courts & Crime</span>
+        <span class="card-source">MSN / Google Alert</span>
+      </div>
+      <h2 class="card-title">
+        <a href="http://www.msn.com/en-ie/news/other/court-hears-of-three-separate-threats-made-against-workers-demolishing-illegal-meath-home/ar-AA1ZdIyz" target="_blank" rel="noopener">Court Hears of Threats Against Workers Demolishing Illegal Meath Home</a>
+      </h2>
+      
+      <p class="card-teaser">A court has heard details of three separate threats made against workers involved in demolishing an illegal home in County Meath. The case centres on allegations that a couple failed to comply with enforcement orders. Sergeant David Owens gave evidence in the proceedings.</p>
+      <a class="card-link" href="http://www.msn.com/en-ie/news/other/court-hears-of-three-separate-threats-made-against-workers-demolishing-illegal-meath-home/ar-AA1ZdIyz" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card card-alt">
+    <div class="card-rank">02</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Sport</span>
+        <span class="card-source">Meath Chronicle</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://www.meathchronicle.ie/2026/04/26/rampant-royals-dispatch-wicklow/" target="_blank" rel="noopener">Rampant Royals: Meath Hurlers Crush Wicklow in Christy Ring Cup</a>
+      </h2>
+      
+      <p class="card-teaser">Johnny Greville's Meath delivered a huge statement victory over Wicklow in the Christy Ring Cup on Sunday. The Royals were dominant throughout in a performance that will boost confidence ahead of the next round.</p>
+      <a class="card-link" href="https://www.meathchronicle.ie/2026/04/26/rampant-royals-dispatch-wicklow/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card ">
+    <div class="card-rank">03</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Sport</span>
+        <span class="card-source">RTÉ Sport</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://www.rte.ie/sport/racing/2026/0425/1570190-thundering-on-stars-in-salsabil-at-navan/" target="_blank" rel="noopener">Thundering On Stars in Salsabil Stakes at Navan Racecourse</a>
+      </h2>
+      
+      <p class="card-teaser">Thundering On produced an impressive display to win the Salsabil Stakes at Navan Racecourse. The meeting at the County Meath venue drew strong crowds and featured competitive racing across the card.</p>
+      <a class="card-link" href="https://www.rte.ie/sport/racing/2026/0425/1570190-thundering-on-stars-in-salsabil-at-navan/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card card-alt">
+    <div class="card-rank">04</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Courts & Crime</span>
+        <span class="card-source">Meath Chronicle</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://www.meathchronicle.ie/2026/04/22/nail-bar-employee-didnt-have-relevant-work-permit/" target="_blank" rel="noopener">Nail Bar Employee Prosecuted for Working Without Relevant Permit</a>
+      </h2>
+      
+      <p class="card-teaser">A nail bar employee appeared in court after it emerged they did not hold the relevant work permit. The case highlights ongoing enforcement of employment permit regulations in businesses across County Meath.</p>
+      <a class="card-link" href="https://www.meathchronicle.ie/2026/04/22/nail-bar-employee-didnt-have-relevant-work-permit/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card ">
+    <div class="card-rank">05</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Community & Events</span>
+        <span class="card-source">Meath Live</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://meathlive.net/2026/04/24/mornington-man-writes-song-for-homeless-and-sick-glowing-from-within/" target="_blank" rel="noopener">Mornington Man Christy Fleming Releases Charity Song for Homeless</a>
+      </h2>
+      
+      <p class="card-teaser">Dublin native Christy Fleming, who has lived in Mornington for over 20 years, has released a charity single called 'Glowing From Within' on YouTube. The song was written to raise awareness and support for people experiencing homelessness and illness.</p>
+      <a class="card-link" href="https://meathlive.net/2026/04/24/mornington-man-writes-song-for-homeless-and-sick-glowing-from-within/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card card-alt">
+    <div class="card-rank">06</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Council & Politics</span>
+        <span class="card-source">Meath Chronicle</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://www.meathchronicle.ie/2026/04/24/government-sleep-walking-into-special-education-crisis-orourke/" target="_blank" rel="noopener">Government 'Sleepwalking' Into Special Education Crisis, Says O'Rourke</a>
+      </h2>
+      
+      <p class="card-teaser">Concerns have been raised that the Government is 'sleepwalking' into a special education crisis, with demand for places outstripping supply. The issue is keenly felt in Meath, where rapid population growth has intensified pressure on school places and special needs provision.</p>
+      <a class="card-link" href="https://www.meathchronicle.ie/2026/04/24/government-sleep-walking-into-special-education-crisis-orourke/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card ">
+    <div class="card-rank">07</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Local News</span>
+        <span class="card-source">Meath Chronicle</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://www.meathchronicle.ie/2026/04/24/almost-5600-children-living-in-emergency-accommodation-in-march/" target="_blank" rel="noopener">Nearly 5,600 Children in Emergency Accommodation Nationally in March</a>
+      </h2>
+      
+      <p class="card-teaser">New figures reveal almost 5,600 children were living in emergency accommodation in March. The housing crisis continues to affect families across the country, including in Meath where demand for social and affordable housing remains high.</p>
+      <a class="card-link" href="https://www.meathchronicle.ie/2026/04/24/almost-5600-children-living-in-emergency-accommodation-in-march/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card card-alt">
+    <div class="card-rank">08</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Business & Jobs</span>
+        <span class="card-source">Meath Chronicle</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://www.meathchronicle.ie/2026/04/24/government-launches-new-ai-skilling-platform/" target="_blank" rel="noopener">Government Launches Free AI Skills Training Platform</a>
+      </h2>
+      
+      <p class="card-teaser">The Government has launched a new AI skilling platform designed to help workers and jobseekers develop artificial intelligence skills. The initiative is open to all residents and could benefit Meath-based workers and businesses looking to upskill.</p>
+      <a class="card-link" href="https://www.meathchronicle.ie/2026/04/24/government-launches-new-ai-skilling-platform/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+</main>
+
+<footer class="footer">
+  <p>Meath Morning Edition &nbsp;·&nbsp; 2026-04-27</p>
+  <p style="margin-top:0.4rem;">Sources: Meath Live &nbsp;·&nbsp; Meath Chronicle &nbsp;·&nbsp; Google Alert</p>
+</footer>
+
+</body>
+</html>
