@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meath Morning Edition — 2026-04-30</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --green: #1A4731;
+  --gold:  #B8860B;
+  --cream: #FAF7F0;
+  --ink:   #1A1A1A;
+  --mid:   #555;
+  --light: #888;
+  --sans:  'Inter', system-ui, sans-serif;
+  --serif: 'Fraunces', Georgia, serif;
+}
+body { font-family: var(--sans); background: var(--cream); color: var(--ink); -webkit-font-smoothing: antialiased; }
+
+/* ── Masthead ── */
+.masthead {
+  background: var(--green);
+  color: #fff;
+  padding: 2.5rem 2rem 2rem;
+  text-align: center;
+  border-bottom: 4px solid var(--gold);
+}
+.masthead-kicker {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.75rem;
+}
+.masthead-title {
+  font-family: var(--serif);
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-weight: 900;
+  line-height: 1;
+  color: #fff;
+  margin-bottom: 0.3em;
+}
+.masthead-title em {
+  font-style: italic;
+  color: var(--gold);
+}
+.masthead-date {
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 1rem;
+}
+.urgent-count {
+  display: inline-block;
+  background: #C0392B;
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.3em 0.9em;
+  border-radius: 2px;
+  margin-bottom: 0.5rem;
+}
+
+/* ── Weather bar ── */
+.weather-bar {
+  background: #fff;
+  border-bottom: 1px solid #e0dbd0;
+  padding: 0.6rem 2rem;
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+  font-size: 0.82rem;
+}
+.weather-place { font-weight: 600; color: var(--green); }
+.weather-desc  { color: var(--mid); }
+.weather-temps { font-weight: 500; }
+.weather-rain  { color: #2980b9; }
+
+/* ── Story cards ── */
+.stories {
+  max-width: 860px;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+}
+.story-card {
+  display: flex;
+  gap: 1.5rem;
+  padding: 1.75rem 0;
+  border-bottom: 1px solid #e0dbd0;
+  align-items: flex-start;
+}
+.card-alt { background: transparent; }
+.card-rank {
+  font-family: var(--serif);
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: rgba(26,71,49,0.12);
+  min-width: 3rem;
+  text-align: right;
+  line-height: 1;
+  padding-top: 0.15em;
+  flex-shrink: 0;
+}
+.card-body { flex: 1; }
+.card-meta {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
+}
+.card-category {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  background: var(--green);
+  color: #fff;
+  padding: 0.25em 0.7em;
+  border-radius: 2px;
+}
+.card-source {
+  font-size: 0.72rem;
+  color: var(--light);
+  font-weight: 500;
+}
+.card-title {
+  font-family: var(--serif);
+  font-size: clamp(1.2rem, 3vw, 1.6rem);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 0.6rem;
+}
+.card-title a {
+  color: var(--ink);
+  text-decoration: none;
+}
+.card-title a:hover { color: var(--green); }
+.urgent-badge {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  border-left: 3px solid #C0392B;
+  padding: 0.4rem 0.8rem;
+  margin-bottom: 0.75rem;
+  background: #fdf0ee;
+}
+.urgent-label {
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #C0392B;
+}
+.urgent-reason {
+  font-size: 0.8rem;
+  color: #C0392B;
+  line-height: 1.4;
+}
+.card-teaser {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--mid);
+  margin-bottom: 0.75rem;
+}
+.card-link {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--green);
+  text-decoration: none;
+  border-bottom: 1px solid var(--green);
+  padding-bottom: 0.05em;
+}
+.card-link:hover { opacity: 0.7; }
+
+/* ── Footer ── */
+.footer {
+  text-align: center;
+  padding: 2.5rem 1rem;
+  font-size: 0.75rem;
+  color: var(--light);
+  border-top: 1px solid #e0dbd0;
+  margin-top: 1rem;
+}
+
+@media (max-width: 560px) {
+  .card-rank { display: none; }
+  .story-card { padding: 1.25rem 0; }
+}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-kicker">County Meath &nbsp;·&nbsp; Local Intelligence</div>
+  <h1 class="masthead-title">Meath <em>Morning</em><br>Edition</h1>
+  <div class="masthead-date">Thursday, April 30, 2026</div>
+  <span class="urgent-count">&#9888; 1 urgent alert</span>
+</header>
+
+
+    <div class="weather-bar">
+      <span class="weather-place">Navan, Co. Meath</span>
+      <span class="weather-desc">Light drizzle</span>
+      <span class="weather-temps">9–17°C</span>
+      <span class="weather-rain">1.0mm rain</span>
+    </div>
+
+<main class="stories">
+
+  <article class="story-card ">
+    <div class="card-rank">01</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Transport & Infrastructure</span>
+        <span class="card-source">Meath Live</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://meathlive.net/2026/04/28/slane-bypass-judicial-review-dismissed/" target="_blank" rel="noopener">High Court Dismisses Challenge to Slane Bypass — Project Can Now Proceed</a>
+      </h2>
+      
+    <div class="urgent-badge">
+      <span class="urgent-label">&#9888; URGENT</span>
+      <span class="urgent-reason">Major infrastructure decision directly affecting Slane village and N2 commuters — bypass can now advance.</span>
+    </div>
+      <p class="card-teaser">The High Court has dismissed a judicial review against the Slane Bypass, clearing the way for the long-awaited project to proceed. The decision is welcomed by local councillors and residents of Slane village, where traffic congestion has been a major concern for decades.</p>
+      <a class="card-link" href="https://meathlive.net/2026/04/28/slane-bypass-judicial-review-dismissed/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card card-alt">
+    <div class="card-rank">02</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Planning & Development</span>
+        <span class="card-source">LMFM</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://www.lmfm.ie/news/lmfm-news/residents-shocked-and-angered-by-planning-approval-for-new-trim-housing-development/" target="_blank" rel="noopener">Residents 'Shocked and Angered' by Planning Approval for New Trim Housing Development</a>
+      </h2>
+      
+      <p class="card-teaser">Residents in Trim have reacted with anger to the granting of planning permission for a new housing development in the area. Locals say they are shocked by the decision and have raised concerns about the impact on the town's infrastructure and services.</p>
+      <a class="card-link" href="https://www.lmfm.ie/news/lmfm-news/residents-shocked-and-angered-by-planning-approval-for-new-trim-housing-development/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card ">
+    <div class="card-rank">03</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Council & Politics</span>
+        <span class="card-source">Meath Chronicle</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://www.meathchronicle.ie/2026/04/28/laytown-is-being-left-behind-its-not-fair-and-people-have-had-enough/" target="_blank" rel="noopener">'Laytown Is Being Left Behind' — Calls for Investment in East Meath</a>
+      </h2>
+      
+      <p class="card-teaser">Local representatives are voicing frustration over what they say is a persistent lack of investment in Laytown and East Meath. Residents and politicians argue the area's rapid population growth has not been matched by services, amenities, or infrastructure.</p>
+      <a class="card-link" href="https://www.meathchronicle.ie/2026/04/28/laytown-is-being-left-behind-its-not-fair-and-people-have-had-enough/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card card-alt">
+    <div class="card-rank">04</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Sport</span>
+        <span class="card-source">Meath Live</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://meathlive.net/2026/04/28/navan-women-lift-division-one-title-on-debut/" target="_blank" rel="noopener">Navan RFC Women Win Division One Title in Debut Season</a>
+      </h2>
+      
+      <p class="card-teaser">Navan RFC Women's first XV capped a remarkable debut Division 1 season by lifting the league title, beating Edenderry 45–26 in Portlaoise. The achievement marks a major milestone for women's rugby in the county.</p>
+      <a class="card-link" href="https://meathlive.net/2026/04/28/navan-women-lift-division-one-title-on-debut/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card ">
+    <div class="card-rank">05</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Community & Events</span>
+        <span class="card-source">Meath Chronicle</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://www.meathchronicle.ie/2026/04/28/enfield-earns-autism-friendly-status-as-navan-and-trim-also-recognised/" target="_blank" rel="noopener">Enfield Earns Autism Friendly Status as Navan and Trim Also Recognised</a>
+      </h2>
+      
+      <p class="card-teaser">Enfield has been officially awarded Autism Friendly Town status, with Navan and Trim also receiving recognition for their efforts. The designations reflect community-wide work to make local businesses and services more accessible to people with autism.</p>
+      <a class="card-link" href="https://www.meathchronicle.ie/2026/04/28/enfield-earns-autism-friendly-status-as-navan-and-trim-also-recognised/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card card-alt">
+    <div class="card-rank">06</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Local News</span>
+        <span class="card-source">Meath Chronicle</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://www.meathchronicle.ie/2026/04/28/theft-of-historic-water-pumps-sparks-concern-in-lobinstown-and-drumconrath/" target="_blank" rel="noopener">Theft of Historic Water Pumps Sparks Concern in North Meath</a>
+      </h2>
+      
+      <p class="card-teaser">Historic water pumps have been stolen in the Lobinstown and Drumconrath areas of north Meath, prompting concern among locals about the loss of heritage features. Residents are being asked to report any information to gardaí.</p>
+      <a class="card-link" href="https://www.meathchronicle.ie/2026/04/28/theft-of-historic-water-pumps-sparks-concern-in-lobinstown-and-drumconrath/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card ">
+    <div class="card-rank">07</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Courts & Crime</span>
+        <span class="card-source">Meath Live</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://meathlive.net/2026/04/29/sex-assault-alleged-twice-on-female/" target="_blank" rel="noopener">Meath Man Faces Two Sexual Assault Charges, Remanded on Bail</a>
+      </h2>
+      
+      <p class="card-teaser">A 48-year-old Meath man has been remanded on bail after being charged with two counts of sexual assault on a female. He is due to appear before Trim Circuit Criminal Court on May 5.</p>
+      <a class="card-link" href="https://meathlive.net/2026/04/29/sex-assault-alleged-twice-on-female/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card card-alt">
+    <div class="card-rank">08</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Transport & Infrastructure</span>
+        <span class="card-source">Meath Chronicle</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://www.meathchronicle.ie/2026/04/28/meyer-calls-on-the-minister-for-transport-to-increase-funding-for-bus-stop-infrastructure-in-the-ashbourne-area/" target="_blank" rel="noopener">Calls for More Bus Stop Funding in Ashbourne Area</a>
+      </h2>
+      
+      <p class="card-teaser">Councillor Alan Meyer has called on the Minister for Transport to increase funding for bus stop infrastructure around Ashbourne. The area has seen significant population growth, and commuters are facing inadequate facilities at key stops.</p>
+      <a class="card-link" href="https://www.meathchronicle.ie/2026/04/28/meyer-calls-on-the-minister-for-transport-to-increase-funding-for-bus-stop-infrastructure-in-the-ashbourne-area/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+</main>
+
+<footer class="footer">
+  <p>Meath Morning Edition &nbsp;·&nbsp; 2026-04-30</p>
+  <p style="margin-top:0.4rem;">Sources: Meath Live &nbsp;·&nbsp; Meath Chronicle &nbsp;·&nbsp; Google Alert</p>
+</footer>
+
+</body>
+</html>
