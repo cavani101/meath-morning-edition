@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meath Morning Edition — 2026-05-01</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --green: #1A4731;
+  --gold:  #B8860B;
+  --cream: #FAF7F0;
+  --ink:   #1A1A1A;
+  --mid:   #555;
+  --light: #888;
+  --sans:  'Inter', system-ui, sans-serif;
+  --serif: 'Fraunces', Georgia, serif;
+}
+body { font-family: var(--sans); background: var(--cream); color: var(--ink); -webkit-font-smoothing: antialiased; }
+
+/* ── Masthead ── */
+.masthead {
+  background: var(--green);
+  color: #fff;
+  padding: 2.5rem 2rem 2rem;
+  text-align: center;
+  border-bottom: 4px solid var(--gold);
+}
+.masthead-kicker {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.75rem;
+}
+.masthead-title {
+  font-family: var(--serif);
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-weight: 900;
+  line-height: 1;
+  color: #fff;
+  margin-bottom: 0.3em;
+}
+.masthead-title em {
+  font-style: italic;
+  color: var(--gold);
+}
+.masthead-date {
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 1rem;
+}
+.urgent-count {
+  display: inline-block;
+  background: #C0392B;
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.3em 0.9em;
+  border-radius: 2px;
+  margin-bottom: 0.5rem;
+}
+
+/* ── Weather bar ── */
+.weather-bar {
+  background: #fff;
+  border-bottom: 1px solid #e0dbd0;
+  padding: 0.6rem 2rem;
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+  font-size: 0.82rem;
+}
+.weather-place { font-weight: 600; color: var(--green); }
+.weather-desc  { color: var(--mid); }
+.weather-temps { font-weight: 500; }
+.weather-rain  { color: #2980b9; }
+
+/* ── Story cards ── */
+.stories {
+  max-width: 860px;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+}
+.story-card {
+  display: flex;
+  gap: 1.5rem;
+  padding: 1.75rem 0;
+  border-bottom: 1px solid #e0dbd0;
+  align-items: flex-start;
+}
+.card-alt { background: transparent; }
+.card-rank {
+  font-family: var(--serif);
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: rgba(26,71,49,0.12);
+  min-width: 3rem;
+  text-align: right;
+  line-height: 1;
+  padding-top: 0.15em;
+  flex-shrink: 0;
+}
+.card-body { flex: 1; }
+.card-meta {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
+}
+.card-category {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  background: var(--green);
+  color: #fff;
+  padding: 0.25em 0.7em;
+  border-radius: 2px;
+}
+.card-source {
+  font-size: 0.72rem;
+  color: var(--light);
+  font-weight: 500;
+}
+.card-title {
+  font-family: var(--serif);
+  font-size: clamp(1.2rem, 3vw, 1.6rem);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 0.6rem;
+}
+.card-title a {
+  color: var(--ink);
+  text-decoration: none;
+}
+.card-title a:hover { color: var(--green); }
+.urgent-badge {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  border-left: 3px solid #C0392B;
+  padding: 0.4rem 0.8rem;
+  margin-bottom: 0.75rem;
+  background: #fdf0ee;
+}
+.urgent-label {
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #C0392B;
+}
+.urgent-reason {
+  font-size: 0.8rem;
+  color: #C0392B;
+  line-height: 1.4;
+}
+.card-teaser {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--mid);
+  margin-bottom: 0.75rem;
+}
+.card-link {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--green);
+  text-decoration: none;
+  border-bottom: 1px solid var(--green);
+  padding-bottom: 0.05em;
+}
+.card-link:hover { opacity: 0.7; }
+
+/* ── Footer ── */
+.footer {
+  text-align: center;
+  padding: 2.5rem 1rem;
+  font-size: 0.75rem;
+  color: var(--light);
+  border-top: 1px solid #e0dbd0;
+  margin-top: 1rem;
+}
+
+@media (max-width: 560px) {
+  .card-rank { display: none; }
+  .story-card { padding: 1.25rem 0; }
+}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-kicker">County Meath &nbsp;·&nbsp; Local Intelligence</div>
+  <h1 class="masthead-title">Meath <em>Morning</em><br>Edition</h1>
+  <div class="masthead-date">Friday, May 1, 2026</div>
+  <span class="urgent-count">&#9888; 1 urgent alert</span>
+</header>
+
+
+    <div class="weather-bar">
+      <span class="weather-place">Navan, Co. Meath</span>
+      <span class="weather-desc">Light drizzle</span>
+      <span class="weather-temps">12–18°C</span>
+      <span class="weather-rain">0.3mm rain</span>
+    </div>
+
+<main class="stories">
+
+  <article class="story-card ">
+    <div class="card-rank">01</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Transport & Infrastructure</span>
+        <span class="card-source">Meath Chronicle</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://www.meathchronicle.ie/2026/04/30/its-become-a-major-concern-for-everyone-living-here-water-problems-worsen-in-dunshaughlin/" target="_blank" rel="noopener">Water Problems Worsen in Dunshaughlin, Raising Resident Concerns</a>
+      </h2>
+      
+    <div class="urgent-badge">
+      <span class="urgent-label">&#9888; URGENT</span>
+      <span class="urgent-reason">Ongoing water supply disruption directly affecting Dunshaughlin residents.</span>
+    </div>
+      <p class="card-teaser">Water supply problems in Dunshaughlin are reportedly worsening, with residents describing the situation as a major concern for everyone in the area. The ongoing issues are affecting daily life in the town and calls are growing for urgent intervention.</p>
+      <a class="card-link" href="https://www.meathchronicle.ie/2026/04/30/its-become-a-major-concern-for-everyone-living-here-water-problems-worsen-in-dunshaughlin/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card card-alt">
+    <div class="card-rank">02</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Planning & Development</span>
+        <span class="card-source">Meath Chronicle</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://www.meathchronicle.ie/2026/04/28/high-court-dismisses-challenge-to-slane-bypass-project/" target="_blank" rel="noopener">High Court Dismisses Challenge to Slane Bypass Project</a>
+      </h2>
+      
+      <p class="card-teaser">The High Court has dismissed a legal challenge to the long-awaited Slane bypass project, clearing a significant hurdle for the scheme. The bypass has been sought for decades to relieve heavy traffic through the historic village on the N2.</p>
+      <a class="card-link" href="https://www.meathchronicle.ie/2026/04/28/high-court-dismisses-challenge-to-slane-bypass-project/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card ">
+    <div class="card-rank">03</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Planning & Development</span>
+        <span class="card-source">Meath Chronicle</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://www.meathchronicle.ie/2026/04/30/councillors-presented-with-plans-for-major-revamp-vision-for-navans-flower-hill/" target="_blank" rel="noopener">Councillors Presented with Major Revamp Plans for Navan's Flower Hill</a>
+      </h2>
+      
+      <p class="card-teaser">Meath County Councillors have been shown plans for a significant regeneration of the Flower Hill area in Navan town centre. The revamp vision could transform one of the county town's key locations.</p>
+      <a class="card-link" href="https://www.meathchronicle.ie/2026/04/30/councillors-presented-with-plans-for-major-revamp-vision-for-navans-flower-hill/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card card-alt">
+    <div class="card-rank">04</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Transport & Infrastructure</span>
+        <span class="card-source">Meath Chronicle</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://www.meathchronicle.ie/2026/04/30/design-of-ballivor-traffic-calming-measures-underway/" target="_blank" rel="noopener">Design of Ballivor Traffic Calming Measures Now Underway</a>
+      </h2>
+      
+      <p class="card-teaser">Design work has begun on traffic calming measures for Ballivor village. The measures are expected to address safety concerns raised by local residents and improve conditions for pedestrians and motorists.</p>
+      <a class="card-link" href="https://www.meathchronicle.ie/2026/04/30/design-of-ballivor-traffic-calming-measures-underway/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card ">
+    <div class="card-rank">05</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Community & Events</span>
+        <span class="card-source">Meath Chronicle</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://www.meathchronicle.ie/2026/04/30/bank-holiday-seafood-festival-in-navan/" target="_blank" rel="noopener">Bank Holiday Seafood Festival Coming to Navan</a>
+      </h2>
+      
+      <p class="card-teaser">A seafood festival is set for Navan over the bank holiday weekend, promising three nights of food, entertainment and festivities. The event will showcase a range of seafood offerings in the county town.</p>
+      <a class="card-link" href="https://www.meathchronicle.ie/2026/04/30/bank-holiday-seafood-festival-in-navan/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card card-alt">
+    <div class="card-rank">06</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Sport</span>
+        <span class="card-source">Meath Chronicle</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://www.meathchronicle.ie/2026/04/30/patchy-royals-fall-short-to-lilywhites/" target="_blank" rel="noopener">Meath U-20 Footballers Fall Short Against Kildare</a>
+      </h2>
+      
+      <p class="card-teaser">Meath's U-20 football campaign came to an end on Wednesday evening after a defeat to Kildare. A patchy performance from the Royals saw Kildare advance to the next round of the championship.</p>
+      <a class="card-link" href="https://www.meathchronicle.ie/2026/04/30/patchy-royals-fall-short-to-lilywhites/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card ">
+    <div class="card-rank">07</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Business & Jobs</span>
+        <span class="card-source">Meath Chronicle</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://www.meathchronicle.ie/2026/04/30/gallery-sunshine-celebration-for-pharmacy-re-opening-in-oldcastle/" target="_blank" rel="noopener">Pharmacy Reopens in Oldcastle to Community Celebration</a>
+      </h2>
+      
+      <p class="card-teaser">A pharmacy in Oldcastle has reopened its doors, with locals turning out in sunny weather to celebrate the occasion. The reopening is a boost for the north Meath town's services and local health provision.</p>
+      <a class="card-link" href="https://www.meathchronicle.ie/2026/04/30/gallery-sunshine-celebration-for-pharmacy-re-opening-in-oldcastle/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card card-alt">
+    <div class="card-rank">08</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Courts & Crime</span>
+        <span class="card-source">Meath Live</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://meathlive.net/2026/04/28/drogheda-woman-defrauded-in-complex-money-laundering-case/" target="_blank" rel="noopener">Drogheda Woman a Victim in Complex €7,000 Money Laundering Fraud</a>
+      </h2>
+      
+      <p class="card-teaser">Trim District Court heard how €7,000 was fraudulently taken from a man's bank account and routed into the account of a Drogheda woman, who herself became a victim of the elaborate scam. The case highlighted the complex tactics used in modern money laundering fraud.</p>
+      <a class="card-link" href="https://meathlive.net/2026/04/28/drogheda-woman-defrauded-in-complex-money-laundering-case/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+</main>
+
+<footer class="footer">
+  <p>Meath Morning Edition &nbsp;·&nbsp; 2026-05-01</p>
+  <p style="margin-top:0.4rem;">Sources: Meath Live &nbsp;·&nbsp; Meath Chronicle &nbsp;·&nbsp; Google Alert</p>
+</footer>
+
+</body>
+</html>
