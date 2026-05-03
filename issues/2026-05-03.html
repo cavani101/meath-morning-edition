@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meath Morning Edition — 2026-05-03</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --green: #1A4731;
+  --gold:  #B8860B;
+  --cream: #FAF7F0;
+  --ink:   #1A1A1A;
+  --mid:   #555;
+  --light: #888;
+  --sans:  'Inter', system-ui, sans-serif;
+  --serif: 'Fraunces', Georgia, serif;
+}
+body { font-family: var(--sans); background: var(--cream); color: var(--ink); -webkit-font-smoothing: antialiased; }
+
+/* ── Masthead ── */
+.masthead {
+  background: var(--green);
+  color: #fff;
+  padding: 2.5rem 2rem 2rem;
+  text-align: center;
+  border-bottom: 4px solid var(--gold);
+}
+.masthead-kicker {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.75rem;
+}
+.masthead-title {
+  font-family: var(--serif);
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-weight: 900;
+  line-height: 1;
+  color: #fff;
+  margin-bottom: 0.3em;
+}
+.masthead-title em {
+  font-style: italic;
+  color: var(--gold);
+}
+.masthead-date {
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 1rem;
+}
+.urgent-count {
+  display: inline-block;
+  background: #C0392B;
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.3em 0.9em;
+  border-radius: 2px;
+  margin-bottom: 0.5rem;
+}
+
+/* ── Weather bar ── */
+.weather-bar {
+  background: #fff;
+  border-bottom: 1px solid #e0dbd0;
+  padding: 0.6rem 2rem;
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+  font-size: 0.82rem;
+}
+.weather-place { font-weight: 600; color: var(--green); }
+.weather-desc  { color: var(--mid); }
+.weather-temps { font-weight: 500; }
+.weather-rain  { color: #2980b9; }
+
+/* ── Story cards ── */
+.stories {
+  max-width: 860px;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+}
+.story-card {
+  display: flex;
+  gap: 1.5rem;
+  padding: 1.75rem 0;
+  border-bottom: 1px solid #e0dbd0;
+  align-items: flex-start;
+}
+.card-alt { background: transparent; }
+.card-rank {
+  font-family: var(--serif);
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: rgba(26,71,49,0.12);
+  min-width: 3rem;
+  text-align: right;
+  line-height: 1;
+  padding-top: 0.15em;
+  flex-shrink: 0;
+}
+.card-body { flex: 1; }
+.card-meta {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
+}
+.card-category {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  background: var(--green);
+  color: #fff;
+  padding: 0.25em 0.7em;
+  border-radius: 2px;
+}
+.card-source {
+  font-size: 0.72rem;
+  color: var(--light);
+  font-weight: 500;
+}
+.card-title {
+  font-family: var(--serif);
+  font-size: clamp(1.2rem, 3vw, 1.6rem);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 0.6rem;
+}
+.card-title a {
+  color: var(--ink);
+  text-decoration: none;
+}
+.card-title a:hover { color: var(--green); }
+.urgent-badge {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  border-left: 3px solid #C0392B;
+  padding: 0.4rem 0.8rem;
+  margin-bottom: 0.75rem;
+  background: #fdf0ee;
+}
+.urgent-label {
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #C0392B;
+}
+.urgent-reason {
+  font-size: 0.8rem;
+  color: #C0392B;
+  line-height: 1.4;
+}
+.card-teaser {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--mid);
+  margin-bottom: 0.75rem;
+}
+.card-link {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--green);
+  text-decoration: none;
+  border-bottom: 1px solid var(--green);
+  padding-bottom: 0.05em;
+}
+.card-link:hover { opacity: 0.7; }
+
+/* ── Footer ── */
+.footer {
+  text-align: center;
+  padding: 2.5rem 1rem;
+  font-size: 0.75rem;
+  color: var(--light);
+  border-top: 1px solid #e0dbd0;
+  margin-top: 1rem;
+}
+
+@media (max-width: 560px) {
+  .card-rank { display: none; }
+  .story-card { padding: 1.25rem 0; }
+}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-kicker">County Meath &nbsp;·&nbsp; Local Intelligence</div>
+  <h1 class="masthead-title">Meath <em>Morning</em><br>Edition</h1>
+  <div class="masthead-date">Sunday, May 3, 2026</div>
+  <span class="urgent-count">&#9888; 2 urgent alerts</span>
+</header>
+
+
+    <div class="weather-bar">
+      <span class="weather-place">Navan, Co. Meath</span>
+      <span class="weather-desc">Drizzle</span>
+      <span class="weather-temps">10–13°C</span>
+      <span class="weather-rain">3.8mm rain</span>
+    </div>
+
+<main class="stories">
+
+  <article class="story-card ">
+    <div class="card-rank">01</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Local News</span>
+        <span class="card-source">Meath Chronicle</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://www.meathchronicle.ie/2026/05/02/gardai-see-assistance-tracing-missing-teen-last-seen-in-navan/" target="_blank" rel="noopener">Gardaí Seek Help Tracing Missing Teen Last Seen in Navan</a>
+      </h2>
+      
+    <div class="urgent-badge">
+      <span class="urgent-label">&#9888; URGENT</span>
+      <span class="urgent-reason">Active missing person appeal — Meath residents may have information that could help locate the teenager.</span>
+    </div>
+      <p class="card-teaser">Gardaí are appealing for public assistance in tracing a missing teenager who was last seen in the Navan area. Anyone with information on the teen's whereabouts is asked to contact their local Garda station immediately.</p>
+      <a class="card-link" href="https://www.meathchronicle.ie/2026/05/02/gardai-see-assistance-tracing-missing-teen-last-seen-in-navan/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card card-alt">
+    <div class="card-rank">02</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Local News</span>
+        <span class="card-source">Meath Chronicle</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://www.meathchronicle.ie/2026/05/01/met-eireann-warn-of-high-pollen-for-the-bank-holiday-weekend/" target="_blank" rel="noopener">Met Éireann Warns of High Pollen Levels Over Bank Holiday Weekend</a>
+      </h2>
+      
+    <div class="urgent-badge">
+      <span class="urgent-label">&#9888; URGENT</span>
+      <span class="urgent-reason">Timely health advisory affecting residents planning outdoor activities this bank holiday weekend.</span>
+    </div>
+      <p class="card-teaser">Met Éireann has issued a warning for high pollen counts across the region over the bank holiday weekend. Hay fever sufferers in Meath are advised to take precautions, particularly if spending time outdoors during the holiday period.</p>
+      <a class="card-link" href="https://www.meathchronicle.ie/2026/05/01/met-eireann-warn-of-high-pollen-for-the-bank-holiday-weekend/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card ">
+    <div class="card-rank">03</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Community & Events</span>
+        <span class="card-source">Irish Independent (Regionals)</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://www.independent.ie/regionals/meath/news/meath-care-team-honoured-at-my-life-staff-appreciation-night-in-slane-castle/a1852015849.html" target="_blank" rel="noopener">Meath Care Team Honoured at My Life Staff Night in Slane Castle</a>
+      </h2>
+      
+      <p class="card-teaser">A Meath-based care team supporting adults with physical and sensory needs has been recognised for outstanding work at the annual My Life Staff Appreciation Night held at Slane Castle. The event celebrated the dedication of care workers across the organisation.</p>
+      <a class="card-link" href="https://www.independent.ie/regionals/meath/news/meath-care-team-honoured-at-my-life-staff-appreciation-night-in-slane-castle/a1852015849.html" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card card-alt">
+    <div class="card-rank">04</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Community & Events</span>
+        <span class="card-source">Meath Chronicle</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://www.meathchronicle.ie/2026/04/30/creative-writing-award-for-bettystown-native/" target="_blank" rel="noopener">Creative Writing Award for Bettystown Native</a>
+      </h2>
+      
+      <p class="card-teaser">A writer from Bettystown has been honoured with a creative writing award. The accolade recognises the literary talent emerging from east Meath's growing arts community.</p>
+      <a class="card-link" href="https://www.meathchronicle.ie/2026/04/30/creative-writing-award-for-bettystown-native/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card ">
+    <div class="card-rank">05</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Sport</span>
+        <span class="card-source">Meath Live</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://meathlive.net/2026/04/28/snooker-star-hossein-vafaei-navan-connection/" target="_blank" rel="noopener">Snooker Star Hossein Vafaei's Navan Connection Revealed</a>
+      </h2>
+      
+      <p class="card-teaser">Iranian snooker star Hossein Vafaei, who has links to Navan, defeated world number one Judd Trump 13-12 in a dramatic second-round match to reach the World Championship quarter-finals. Vafaei's connection to the Meath town has been highlighted following his stunning victory.</p>
+      <a class="card-link" href="https://meathlive.net/2026/04/28/snooker-star-hossein-vafaei-navan-connection/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card card-alt">
+    <div class="card-rank">06</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Council & Politics</span>
+        <span class="card-source">Meath Chronicle</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://www.meathchronicle.ie/2026/05/01/e29-million-to-reduce-waste-and-reuse-more/" target="_blank" rel="noopener">€29 Million Fund Announced to Reduce Waste and Boost Reuse</a>
+      </h2>
+      
+      <p class="card-teaser">A €29 million funding package has been announced to support waste reduction and reuse initiatives. Meath communities and businesses may benefit from grants and programmes aimed at boosting the circular economy locally.</p>
+      <a class="card-link" href="https://www.meathchronicle.ie/2026/05/01/e29-million-to-reduce-waste-and-reuse-more/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card ">
+    <div class="card-rank">07</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Sport</span>
+        <span class="card-source">Meath Chronicle</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://www.meathchronicle.ie/2026/05/01/he-didnt-care-how-well-you-played-he-just-wanted-to-watch-you/" target="_blank" rel="noopener">Meath Sports Tribute: 'He Just Wanted to Watch You Play'</a>
+      </h2>
+      
+      <p class="card-teaser">Jimmy Geoghegan writes a heartfelt tribute to a beloved figure in Meath's sporting community. The piece celebrates the quiet dedication of those who support local sport simply for the love of the game.</p>
+      <a class="card-link" href="https://www.meathchronicle.ie/2026/05/01/he-didnt-care-how-well-you-played-he-just-wanted-to-watch-you/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card card-alt">
+    <div class="card-rank">08</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Community & Events</span>
+        <span class="card-source">Meath Chronicle</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://www.meathchronicle.ie/2026/04/30/meath-bride-stuns-in-mams-62-year-old-dress/" target="_blank" rel="noopener">Meath Bride Wears Mother's 62-Year-Old Wedding Dress</a>
+      </h2>
+      
+      <p class="card-teaser">A Meath bride made a memorable entrance wearing her mother's wedding dress, which is 62 years old. The touching tribute to family tradition has resonated with readers across the county.</p>
+      <a class="card-link" href="https://www.meathchronicle.ie/2026/04/30/meath-bride-stuns-in-mams-62-year-old-dress/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+</main>
+
+<footer class="footer">
+  <p>Meath Morning Edition &nbsp;·&nbsp; 2026-05-03</p>
+  <p style="margin-top:0.4rem;">Sources: Meath Live &nbsp;·&nbsp; Meath Chronicle &nbsp;·&nbsp; Google Alert</p>
+</footer>
+
+</body>
+</html>
