@@ -68,11 +68,40 @@ body { font-family: var(--sans); background: var(--cream); color: var(--ink); -w
   margin-bottom: 0.5rem;
 }
 
+/* ── Shared section heading ── */
+.section-header {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+  padding-top: 1.5rem;
+  border-top: 2px solid var(--green);
+}
+.section-heading {
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--green);
+}
+.section-sub {
+  font-size: 0.68rem;
+  color: var(--light);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
 /* ── Weather bar ── */
 .weather-bar {
   background: #fff;
   border-bottom: 1px solid #e0dbd0;
-  padding: 0.65rem 2rem;
+  padding: 0.5rem 2rem 0.85rem;
+}
+.weather-bar .section-header {
+  padding-top: 0.4rem;
+  border-top: none;
+  margin-bottom: 0.5rem;
+}
+.weather-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   gap: 0.4rem 1.25rem;
@@ -93,26 +122,6 @@ body { font-family: var(--sans); background: var(--cream); color: var(--ink); -w
   max-width: 860px;
   margin: 0 auto 2rem;
   padding: 0 1.5rem;
-}
-.events-header {
-  display: flex;
-  align-items: baseline;
-  gap: 0.75rem;
-  margin-bottom: 1rem;
-  padding-top: 1.5rem;
-  border-top: 2px solid var(--green);
-}
-.events-heading {
-  font-family: var(--serif);
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: var(--green);
-}
-.events-sub {
-  font-size: 0.68rem;
-  color: var(--light);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
 }
 .events-list {
   display: grid;
@@ -288,32 +297,37 @@ body { font-family: var(--sans); background: var(--cream); color: var(--ink); -w
   <div class="masthead-kicker">County Meath &nbsp;·&nbsp; Local Intelligence</div>
   <h1 class="masthead-title">Meath <em>Morning</em><br>Edition</h1>
   <div class="masthead-date">Thursday, May 7, 2026</div>
-  <span class="key_story-count">&#9733; 4 key stories today</span>
+  <span class="key_story-count">&#9733; 5 key stories today</span>
 </header>
 
 <div class="weather-bar">
+  <div class="section-header">
+    <span class="section-heading">Weather</span>
+    <span class="section-sub">Today &middot; Co. Meath</span>
+  </div>
+  <div class="weather-grid">
     <div class="weather-item">
       <span class="weather-place">Navan</span>
       <span class="weather-desc">Light drizzle</span>
-      <span class="weather-temps">8–13°C</span>
+      <span class="weather-temps">8–14°C</span>
       <span class="weather-rain">0.7mm</span>
     </div>
     <div class="weather-item">
       <span class="weather-place">Trim</span>
       <span class="weather-desc">Heavy drizzle</span>
-      <span class="weather-temps">8–13°C</span>
+      <span class="weather-temps">8–14°C</span>
       <span class="weather-rain">2.7mm</span>
     </div>
     <div class="weather-item">
       <span class="weather-place">Kells</span>
       <span class="weather-desc">Light rain</span>
-      <span class="weather-temps">7–13°C</span>
+      <span class="weather-temps">8–13°C</span>
       <span class="weather-rain">2.2mm</span>
     </div>
     <div class="weather-item">
       <span class="weather-place">Oldcastle</span>
       <span class="weather-desc">Drizzle</span>
-      <span class="weather-temps">7–13°C</span>
+      <span class="weather-temps">7–12°C</span>
       <span class="weather-rain">2.0mm</span>
     </div>
     <div class="weather-item">
@@ -325,12 +339,17 @@ body { font-family: var(--sans); background: var(--cream); color: var(--ink); -w
     <div class="weather-item">
       <span class="weather-place">Dunshaughlin</span>
       <span class="weather-desc">Drizzle</span>
-      <span class="weather-temps">7–13°C</span>
+      <span class="weather-temps">7–14°C</span>
       <span class="weather-rain">1.3mm</span>
     </div>
-    </div>
+  </div>
+</div>
 
 <main class="stories">
+  <div class="section-header">
+    <span class="section-heading">News</span>
+    <span class="section-sub">Today&rsquo;s edition</span>
+  </div>
 
   <article class="story-card ">
     <div class="card-rank">01</div>
@@ -340,14 +359,14 @@ body { font-family: var(--sans); background: var(--cream); color: var(--ink); -w
         <span class="card-source">The Irish Independent</span>
       </div>
       <h2 class="card-title">
-        <a href="https://www.independent.ie/regionals/meath/news/long-awaited-navan-playground-and-park-plans-unveiled-we-have-waited-nearly-seven-years-for-this-day/a917865756.html" target="_blank" rel="noopener">Long-Awaited Navan Playground and Park Plans Finally Unveiled</a>
+        <a href="https://www.independent.ie/regionals/meath/news/long-awaited-navan-playground-and-park-plans-unveiled-we-have-waited-nearly-seven-years-for-this-day/a917865756.html" target="_blank" rel="noopener">Long-Awaited Navan Playground and Park Plans Unveiled After Seven Years</a>
       </h2>
       
     <div class="key_story-badge">
       <span class="key_story-label">&#9733; Key Story</span>
-      <span class="key_story-reason">Major new public amenity for Navan — residents will want to engage with plans and consultation process.</span>
+      <span class="key_story-reason">Major public amenity plans now entering public consultation phase — residents will want to engage and respond.</span>
     </div>
-      <p class="card-teaser">Plans for a long-awaited playground and park in Navan have been unveiled after nearly seven years of waiting. The announcement marks a significant milestone for families in the area who have campaigned for the facility.</p>
+      <p class="card-teaser">Plans for a long-awaited playground and park in Navan have been unveiled after nearly seven years of waiting. The announcement marks a significant milestone for the community, which has campaigned for the facility for years.</p>
       <a class="card-link" href="https://www.independent.ie/regionals/meath/news/long-awaited-navan-playground-and-park-plans-unveiled-we-have-waited-nearly-seven-years-for-this-day/a917865756.html" target="_blank" rel="noopener">Read more &rarr;</a>
     </div>
   </article>
@@ -359,14 +378,14 @@ body { font-family: var(--sans); background: var(--cream); color: var(--ink); -w
         <span class="card-source">Meath Chronicle</span>
       </div>
       <h2 class="card-title">
-        <a href="https://www.meathchronicle.ie/2026/05/05/cllrs-hear-plan-for-new-footpath-across-fields-in-kells-would-eliminate-a-2km-drive-through-the-town-for-many-schoolgoers/" target="_blank" rel="noopener">New Kells Footpath Plan Could Eliminate 2km School Drive for Families</a>
+        <a href="https://www.meathchronicle.ie/2026/05/05/cllrs-hear-plan-for-new-footpath-across-fields-in-kells-would-eliminate-a-2km-drive-through-the-town-for-many-schoolgoers/" target="_blank" rel="noopener">New Footpath Plan in Kells Could Eliminate 2km School Drive for Families</a>
       </h2>
       
     <div class="key_story-badge">
       <span class="key_story-label">&#9733; Key Story</span>
-      <span class="key_story-reason">Proposed infrastructure change affecting daily school commutes for Kells families — still under council consideration.</span>
+      <span class="key_story-reason">Proposed infrastructure change affecting daily school commutes in Kells — of ongoing relevance to local families and planners.</span>
     </div>
-      <p class="card-teaser">Councillors have heard proposals for a new footpath across fields in Kells that would provide a direct walking route for schoolchildren, removing the need for a 2km car journey through the town. The plan could significantly ease traffic congestion at school times.</p>
+      <p class="card-teaser">Councillors heard a proposal for a new footpath across fields in Kells that would remove the need for a 2km car journey through town for many schoolchildren. The plan aims to improve pedestrian access and ease traffic congestion in the area.</p>
       <a class="card-link" href="https://www.meathchronicle.ie/2026/05/05/cllrs-hear-plan-for-new-footpath-across-fields-in-kells-would-eliminate-a-2km-drive-through-the-town-for-many-schoolgoers/" target="_blank" rel="noopener">Read more &rarr;</a>
     </div>
   </article>
@@ -378,14 +397,14 @@ body { font-family: var(--sans); background: var(--cream); color: var(--ink); -w
         <span class="card-source">Meath Chronicle</span>
       </div>
       <h2 class="card-title">
-        <a href="https://www.meathchronicle.ie/2026/05/05/vision-for-new-street-linking-railway-st-and-academy-st-as-part-of-cultural-quarter-regeneration/" target="_blank" rel="noopener">Vision for New Street and 'Cultural Quarter' Regeneration in Navan</a>
+        <a href="https://www.meathchronicle.ie/2026/05/05/vision-for-new-street-linking-railway-st-and-academy-st-as-part-of-cultural-quarter-regeneration/" target="_blank" rel="noopener">Vision for New Street Linking Railway St and Academy St in Cultural Quarter</a>
       </h2>
       
     <div class="key_story-badge">
       <span class="key_story-label">&#9733; Key Story</span>
-      <span class="key_story-reason">Major town-centre regeneration plan for Navan with lasting implications for businesses and residents.</span>
+      <span class="key_story-reason">Major town-centre regeneration proposal with long-term implications for local businesses and residents.</span>
     </div>
-      <p class="card-teaser">Plans have been outlined for a new street linking Railway Street and Academy Street in Navan as part of a wider 'cultural quarter' regeneration project. The vision aims to revitalise a key section of the county town.</p>
+      <p class="card-teaser">Plans have been outlined for a new street connecting Railway Street and Academy Street as part of a 'cultural quarter' regeneration project. The vision aims to transform the area into a vibrant hub for arts, heritage and community life.</p>
       <a class="card-link" href="https://www.meathchronicle.ie/2026/05/05/vision-for-new-street-linking-railway-st-and-academy-st-as-part-of-cultural-quarter-regeneration/" target="_blank" rel="noopener">Read more &rarr;</a>
     </div>
   </article>
@@ -397,10 +416,14 @@ body { font-family: var(--sans); background: var(--cream); color: var(--ink); -w
         <span class="card-source">Meath Chronicle</span>
       </div>
       <h2 class="card-title">
-        <a href="https://www.meathchronicle.ie/2026/05/06/trim-recruitment-event-part-of-drive-to-hire-800-home-care-workers/" target="_blank" rel="noopener">Trim Recruitment Event as HSE Seeks 800 Home Care Workers</a>
+        <a href="https://www.meathchronicle.ie/2026/05/06/trim-recruitment-event-part-of-drive-to-hire-800-home-care-workers/" target="_blank" rel="noopener">Trim Recruitment Event to Help Fill 800 Home Care Worker Positions</a>
       </h2>
       
-      <p class="card-teaser">A recruitment event is taking place in Trim as part of a national drive to hire 800 home care workers. The event offers local job seekers an opportunity to enter the health care sector amid growing demand for home support services.</p>
+    <div class="key_story-badge">
+      <span class="key_story-label">&#9733; Key Story</span>
+      <span class="key_story-reason">Active recruitment event with job opportunities for Meath residents — practical information readers may act on.</span>
+    </div>
+      <p class="card-teaser">A recruitment event in Trim is part of a wider drive to hire 800 home care workers. The event offers a significant employment opportunity for Meath residents interested in the healthcare sector.</p>
       <a class="card-link" href="https://www.meathchronicle.ie/2026/05/06/trim-recruitment-event-part-of-drive-to-hire-800-home-care-workers/" target="_blank" rel="noopener">Read more &rarr;</a>
     </div>
   </article>
@@ -408,19 +431,19 @@ body { font-family: var(--sans); background: var(--cream); color: var(--ink); -w
     <div class="card-rank">05</div>
     <div class="card-body">
       <div class="card-meta">
-        <span class="card-category">Community & Events</span>
-        <span class="card-source">Meath Live</span>
+        <span class="card-category">Local News</span>
+        <span class="card-source">Meath Chronicle</span>
       </div>
       <h2 class="card-title">
-        <a href="https://meathlive.net/2026/05/06/johnstown-residents-urged-to-engage-with-consultation-on-proposed-park/" target="_blank" rel="noopener">Johnstown Residents Urged to Have Their Say on Proposed New Park</a>
+        <a href="https://www.meathchronicle.ie/2026/05/06/44500-meath-youngsters-to-benefit-from-continued-roll-out-of-free-schoolbooks-scheme/" target="_blank" rel="noopener">44,500 Meath Children to Benefit from Free Schoolbooks Scheme Rollout</a>
       </h2>
       
     <div class="key_story-badge">
       <span class="key_story-label">&#9733; Key Story</span>
-      <span class="key_story-reason">Active public consultation — residents need to know about the deadline and how to participate.</span>
+      <span class="key_story-reason">Ongoing scheme affecting tens of thousands of Meath families — practical financial impact for the coming school year.</span>
     </div>
-      <p class="card-teaser">Residents of Johnstown and the wider Navan area are being encouraged to take part in a public consultation on a proposed new park. TD Johnny Guirke and Peace Commissioner Diego Keegan are urging locals to engage with the process.</p>
-      <a class="card-link" href="https://meathlive.net/2026/05/06/johnstown-residents-urged-to-engage-with-consultation-on-proposed-park/" target="_blank" rel="noopener">Read more &rarr;</a>
+      <p class="card-teaser">Some 44,500 young people across County Meath will benefit from the continued rollout of the Government's Free Schoolbooks Scheme. The programme covers primary and secondary students, easing a significant cost burden for local families.</p>
+      <a class="card-link" href="https://www.meathchronicle.ie/2026/05/06/44500-meath-youngsters-to-benefit-from-continued-roll-out-of-free-schoolbooks-scheme/" target="_blank" rel="noopener">Read more &rarr;</a>
     </div>
   </article>
   <article class="story-card card-alt">
@@ -431,10 +454,10 @@ body { font-family: var(--sans); background: var(--cream); color: var(--ink); -w
         <span class="card-source">Meath Chronicle</span>
       </div>
       <h2 class="card-title">
-        <a href="https://www.meathchronicle.ie/2026/05/06/preparations-underway-for-six-darkness-into-light-events-in-meath/" target="_blank" rel="noopener">Seven Darkness into Light Walks Planned Across Meath</a>
+        <a href="https://www.meathchronicle.ie/2026/05/06/preparations-underway-for-six-darkness-into-light-events-in-meath/" target="_blank" rel="noopener">Seven Darkness into Light Events Planned Across Meath</a>
       </h2>
       
-      <p class="card-teaser">Preparations are underway for seven Darkness into Light events across County Meath, including walks starting from venues such as Fairyhouse Racecourse and Ratoath Rugby Club. The annual Pieta House fundraiser promotes awareness of suicide and self-harm.</p>
+      <p class="card-teaser">Preparations are underway for seven Darkness into Light events across County Meath, with walks planned at locations including Fairyhouse Racecourse and Ratoath. The annual sunrise events raise awareness and funds for suicide prevention through Pieta House.</p>
       <a class="card-link" href="https://www.meathchronicle.ie/2026/05/06/preparations-underway-for-six-darkness-into-light-events-in-meath/" target="_blank" rel="noopener">Read more &rarr;</a>
     </div>
   </article>
@@ -442,15 +465,15 @@ body { font-family: var(--sans); background: var(--cream); color: var(--ink); -w
     <div class="card-rank">07</div>
     <div class="card-body">
       <div class="card-meta">
-        <span class="card-category">Local News</span>
-        <span class="card-source">Meath Chronicle</span>
+        <span class="card-category">Planning & Development</span>
+        <span class="card-source">Meath Live</span>
       </div>
       <h2 class="card-title">
-        <a href="https://www.meathchronicle.ie/2026/05/06/44500-meath-youngsters-to-benefit-from-continued-roll-out-of-free-schoolbooks-scheme/" target="_blank" rel="noopener">44,500 Meath Students to Benefit from Free Schoolbooks Scheme</a>
+        <a href="https://meathlive.net/2026/05/06/johnstown-residents-urged-to-engage-with-consultation-on-proposed-park/" target="_blank" rel="noopener">Johnstown Residents Urged to Have Their Say on Proposed New Park</a>
       </h2>
       
-      <p class="card-teaser">Some 44,500 young people in County Meath are set to benefit from the continued rollout of the Government's Free Schoolbooks Scheme. The initiative covers primary and post-primary students, easing back-to-school costs for local families.</p>
-      <a class="card-link" href="https://www.meathchronicle.ie/2026/05/06/44500-meath-youngsters-to-benefit-from-continued-roll-out-of-free-schoolbooks-scheme/" target="_blank" rel="noopener">Read more &rarr;</a>
+      <p class="card-teaser">Residents of Johnstown and the wider Navan area are being encouraged to take part in a public consultation on a proposed new park. TD Johnny Guirke and Peace Commissioner Diego Keegan are calling for strong community engagement with the plans.</p>
+      <a class="card-link" href="https://meathlive.net/2026/05/06/johnstown-residents-urged-to-engage-with-consultation-on-proposed-park/" target="_blank" rel="noopener">Read more &rarr;</a>
     </div>
   </article>
   <article class="story-card card-alt">
@@ -461,33 +484,33 @@ body { font-family: var(--sans); background: var(--cream); color: var(--ink); -w
         <span class="card-source">Meath Chronicle</span>
       </div>
       <h2 class="card-title">
-        <a href="https://www.meathchronicle.ie/2026/05/06/minors-cruise-to-semis/" target="_blank" rel="noopener">Meath Minors Cruise into Leinster Football Semi-Finals</a>
+        <a href="https://www.meathchronicle.ie/2026/05/06/minors-cruise-to-semis/" target="_blank" rel="noopener">Meath Minors Cruise into Leinster Championship Semi-Finals</a>
       </h2>
       
-      <p class="card-teaser">Meath's minor footballers booked their place in the Leinster MFC semi-finals with a commanding performance. A superb final quarter display saw the Giles-managed side pull clear to ease through to the last four.</p>
+      <p class="card-teaser">Meath's minor footballers produced a superb final-quarter performance to ease their way into the Leinster Minor Football Championship semi-finals. The side managed by Giles will now prepare for a last-four clash in the provincial competition.</p>
       <a class="card-link" href="https://www.meathchronicle.ie/2026/05/06/minors-cruise-to-semis/" target="_blank" rel="noopener">Read more &rarr;</a>
     </div>
   </article>
 </main>
 
 <section class="events-section">
-  <div class="events-header">
-    <span class="events-heading">What&#8217;s On</span>
-    <span class="events-sub">Next 3 days &middot; Co. Meath</span>
+  <div class="section-header">
+    <span class="section-heading">What&#8217;s On</span>
+    <span class="section-sub">Next 3 days &middot; Co. Meath</span>
   </div>
   <div class="events-list">
   <div class="event-card">
-    <div class="event-when">Today &middot; 19:00</div>
+    <div class="event-when">Today</div>
     <div class="event-title"><a href="https://solsticeartscentre.ie/event/between-the-lines" target="_blank" rel="noopener">Between the Lines</a></div>
     <div class="event-venue">Solstice Arts Centre, Navan, Co. Meath</div>
-    <div class="event-desc">Join members of Bóann Writers' group for a reading immersed in the Boy Dancer exhibition and publication on display in the Foyer Gallery.</div>
+    <div class="event-desc">Join members of Bóann Writers' group for a reading and creative response immersed in the Boy Dancer exhibition and publication on display in the Foyer Gallery.</div>
     <a class="event-link" href="https://solsticeartscentre.ie/event/between-the-lines" target="_blank" rel="noopener">See more &rarr;</a>
   </div>
   <div class="event-card">
-    <div class="event-when">Tomorrow &middot; 20:00</div>
+    <div class="event-when">Tomorrow</div>
     <div class="event-title"><a href="https://solsticeartscentre.ie/event/the-irish-guitar-quartet" target="_blank" rel="noopener">The Irish Guitar Quartet</a></div>
     <div class="event-venue">Solstice Arts Centre, Navan, Co. Meath</div>
-    <div class="event-desc">The Irish Guitar Quartet — Jerry Creedon, David Keating, Aengus Kirakowski and Redmond O'Toole — perform a concert of classical guitar music.</div>
+    <div class="event-desc">An evening performance by the Irish Guitar Quartet, featuring Jerry Creedon, David Keating, Aengus Kirakowski and Redmond O'Toole.</div>
     <a class="event-link" href="https://solsticeartscentre.ie/event/the-irish-guitar-quartet" target="_blank" rel="noopener">See more &rarr;</a>
   </div>
   <div class="event-card">
@@ -498,21 +521,21 @@ body { font-family: var(--sans); background: var(--cream); color: var(--ink); -w
     <a class="event-link" href="https://www.eventbrite.ie/e/a-sound-healing-journey-through-the-chakras-tickets-1988329025640" target="_blank" rel="noopener">See more &rarr;</a>
   </div>
   <div class="event-card">
-    <div class="event-when">Saturday, May 9 &middot; 17:00</div>
+    <div class="event-when">Saturday, May 9</div>
     <div class="event-title"><a href="https://solsticeartscentre.ie/event/pravaham" target="_blank" rel="noopener">Pravāham: A Tale of Two Traditions</a></div>
     <div class="event-venue">Solstice Arts Centre, Navan, Co. Meath</div>
-    <div class="event-desc">Experience the lyrical grace of Mohiniyattam in a unique dance performance presenting two celebrated Indian classical traditions.</div>
+    <div class="event-desc">Experience the lyrical grace of Mohiniyattam in a unique dance performance that presents two celebrated traditions on one stage.</div>
     <a class="event-link" href="https://solsticeartscentre.ie/event/pravaham" target="_blank" rel="noopener">See more &rarr;</a>
   </div>
   <div class="event-card">
     <div class="event-when">Saturday, May 9</div>
     <div class="event-title"><a href="https://www.eventbrite.ie/e/biodiversity-matters-tickets-1988518219524" target="_blank" rel="noopener">Biodiversity Matters</a></div>
     <div class="event-venue">Ashbourne Library, Ashbourne</div>
-    <div class="event-desc">A community event empowering locals to enhance biodiversity in their area.</div>
+    <div class="event-desc">A community event empowering local residents to enhance biodiversity in their area.</div>
     <a class="event-link" href="https://www.eventbrite.ie/e/biodiversity-matters-tickets-1988518219524" target="_blank" rel="noopener">See more &rarr;</a>
   </div>
   <div class="event-card">
-    <div class="event-when">Sunday, May 10 &middot; 20:00</div>
+    <div class="event-when">Sunday, May 10</div>
     <div class="event-title"><a href="https://solsticeartscentre.ie/event/neil-delamere-reinventing-the-neil" target="_blank" rel="noopener">Neil Delamere: Reinventing the Neil</a></div>
     <div class="event-venue">Solstice Arts Centre, Navan, Co. Meath</div>
     <div class="event-desc">Comedian Neil Delamere returns with a brand-new stand-up show packed with tall tales and hilarious stories.</div>
