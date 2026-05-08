@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meath Morning Edition — 2026-05-08</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --green: #1A4731;
+  --gold:  #B8860B;
+  --cream: #FAF7F0;
+  --ink:   #1A1A1A;
+  --mid:   #555;
+  --light: #888;
+  --sans:  'Inter', system-ui, sans-serif;
+  --serif: 'Fraunces', Georgia, serif;
+}
+body { font-family: var(--sans); background: var(--cream); color: var(--ink); -webkit-font-smoothing: antialiased; }
+
+/* ── Masthead ── */
+.masthead {
+  background: var(--green);
+  color: #fff;
+  padding: 2.5rem 2rem 2rem;
+  text-align: center;
+  border-bottom: 4px solid var(--gold);
+}
+.masthead-kicker {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.75rem;
+}
+.masthead-title {
+  font-family: var(--serif);
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-weight: 900;
+  line-height: 1;
+  color: #fff;
+  margin-bottom: 0.3em;
+}
+.masthead-title em {
+  font-style: italic;
+  color: var(--gold);
+}
+.masthead-date {
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 1rem;
+}
+.key_story-count {
+  display: inline-block;
+  background: #C0392B;
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.3em 0.9em;
+  border-radius: 2px;
+  margin-bottom: 0.5rem;
+}
+
+/* ── Shared section heading ── */
+.section-header {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+  padding-top: 1.5rem;
+  border-top: 2px solid var(--green);
+}
+.section-heading {
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--green);
+}
+.section-sub {
+  font-size: 0.68rem;
+  color: var(--light);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* ── Weather bar ── */
+.weather-bar {
+  background: #fff;
+  border-bottom: 1px solid #e0dbd0;
+  padding: 0.5rem 2rem 0.85rem;
+}
+.weather-bar .section-header {
+  padding-top: 0.4rem;
+  border-top: none;
+  margin-bottom: 0.5rem;
+}
+.weather-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.4rem 1.25rem;
+}
+.weather-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.05rem;
+  font-size: 0.78rem;
+}
+.weather-place { font-weight: 600; color: var(--green); font-size: 0.78rem; }
+.weather-desc  { color: var(--mid); font-size: 0.73rem; }
+.weather-temps { font-weight: 500; }
+.weather-rain  { color: #2980b9; font-size: 0.73rem; }
+
+/* ── Events section ── */
+.events-section {
+  max-width: 860px;
+  margin: 0 auto 2rem;
+  padding: 0 1.5rem;
+}
+.events-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1rem;
+}
+.event-card {
+  background: #fff;
+  border: 1px solid #e0dbd0;
+  border-top: 3px solid var(--green);
+  padding: 0.9rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-height: 180px;
+}
+.event-when {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--green);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.2rem;
+}
+.event-title {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.25;
+}
+.event-title a { color: var(--ink); text-decoration: none; }
+.event-title a:hover { color: var(--green); }
+.event-venue {
+  font-size: 0.8rem;
+  color: var(--light);
+}
+.event-desc {
+  font-size: 0.88rem;
+  color: var(--mid);
+  line-height: 1.55;
+  margin-top: 0.25rem;
+  flex: 1;
+}
+.event-link {
+  display: inline-block;
+  margin-top: 0.75rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--green);
+  text-decoration: none;
+  border-bottom: 1px solid var(--green);
+  padding-bottom: 0.05em;
+  align-self: flex-start;
+}
+.event-link:hover { opacity: 0.7; }
+
+/* ── Story cards ── */
+.stories {
+  max-width: 860px;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+}
+.story-card {
+  display: flex;
+  gap: 1.5rem;
+  padding: 1.75rem 0;
+  border-bottom: 1px solid #e0dbd0;
+  align-items: flex-start;
+}
+.card-alt { background: transparent; }
+.card-rank {
+  font-family: var(--serif);
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: rgba(26,71,49,0.12);
+  min-width: 3rem;
+  text-align: right;
+  line-height: 1;
+  padding-top: 0.15em;
+  flex-shrink: 0;
+}
+.card-body { flex: 1; }
+.card-meta {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
+}
+.card-category {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  background: var(--green);
+  color: #fff;
+  padding: 0.25em 0.7em;
+  border-radius: 2px;
+}
+.card-source {
+  font-size: 0.72rem;
+  color: var(--light);
+  font-weight: 500;
+}
+.card-title {
+  font-family: var(--serif);
+  font-size: clamp(1.2rem, 3vw, 1.6rem);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 0.6rem;
+}
+.card-title a {
+  color: var(--ink);
+  text-decoration: none;
+}
+.card-title a:hover { color: var(--green); }
+.key_story-badge {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  border-left: 3px solid #C0392B;
+  padding: 0.4rem 0.8rem;
+  margin-bottom: 0.75rem;
+  background: #fdf0ee;
+}
+.key_story-label {
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #C0392B;
+}
+.key_story-reason {
+  font-size: 0.8rem;
+  color: #C0392B;
+  line-height: 1.4;
+}
+.card-teaser {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--mid);
+  margin-bottom: 0.75rem;
+}
+.card-link {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--green);
+  text-decoration: none;
+  border-bottom: 1px solid var(--green);
+  padding-bottom: 0.05em;
+}
+.card-link:hover { opacity: 0.7; }
+
+/* ── Footer ── */
+.footer {
+  text-align: center;
+  padding: 2.5rem 1rem;
+  font-size: 0.75rem;
+  color: var(--light);
+  border-top: 1px solid #e0dbd0;
+  margin-top: 1rem;
+}
+
+@media (max-width: 560px) {
+  .card-rank { display: none; }
+  .story-card { padding: 1.25rem 0; }
+}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-kicker">County Meath &nbsp;·&nbsp; Local Intelligence</div>
+  <h1 class="masthead-title">Meath <em>Morning</em><br>Edition</h1>
+  <div class="masthead-date">Friday, May 8, 2026</div>
+  <span class="key_story-count">&#9733; 2 key stories today</span>
+</header>
+
+<div class="weather-bar">
+  <div class="section-header">
+    <span class="section-heading">Weather</span>
+    <span class="section-sub">Today &middot; Co. Meath</span>
+  </div>
+  <div class="weather-grid">
+    <div class="weather-item">
+      <span class="weather-place">Navan</span>
+      <span class="weather-desc">Light drizzle</span>
+      <span class="weather-temps">9–13°C</span>
+      <span class="weather-rain">0.1mm</span>
+    </div>
+    <div class="weather-item">
+      <span class="weather-place">Trim</span>
+      <span class="weather-desc">Light drizzle</span>
+      <span class="weather-temps">8–12°C</span>
+      <span class="weather-rain">0.3mm</span>
+    </div>
+    <div class="weather-item">
+      <span class="weather-place">Kells</span>
+      <span class="weather-desc">Overcast</span>
+      <span class="weather-temps">8–13°C</span>
+      
+    </div>
+    <div class="weather-item">
+      <span class="weather-place">Oldcastle</span>
+      <span class="weather-desc">Drizzle</span>
+      <span class="weather-temps">7–13°C</span>
+      <span class="weather-rain">1.4mm</span>
+    </div>
+    <div class="weather-item">
+      <span class="weather-place">Enfield</span>
+      <span class="weather-desc">Drizzle</span>
+      <span class="weather-temps">6–12°C</span>
+      <span class="weather-rain">1.2mm</span>
+    </div>
+    <div class="weather-item">
+      <span class="weather-place">Dunshaughlin</span>
+      <span class="weather-desc">Light drizzle</span>
+      <span class="weather-temps">7–11°C</span>
+      <span class="weather-rain">0.8mm</span>
+    </div>
+  </div>
+</div>
+
+<main class="stories">
+  <div class="section-header">
+    <span class="section-heading">News</span>
+    <span class="section-sub">Today&rsquo;s edition</span>
+  </div>
+
+  <article class="story-card ">
+    <div class="card-rank">01</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Community & Events</span>
+        <span class="card-source">Meath Chronicle</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://www.meathchronicle.ie/2026/05/07/pressure-mounts-to-save-trim-outdoor-activity-centre/" target="_blank" rel="noopener">Pressure Mounts to Save Trim Outdoor Activity Centre</a>
+      </h2>
+      
+    <div class="key_story-badge">
+      <span class="key_story-label">&#9733; Key Story</span>
+      <span class="key_story-reason">An ongoing community campaign with potential lasting impact on a key local amenity in Trim.</span>
+    </div>
+      <p class="card-teaser">A campaign is growing to save Trim's outdoor activity centre from potential closure. The centre is a well-used local amenity, and community members and local representatives are pressing for action to secure its future.</p>
+      <a class="card-link" href="https://www.meathchronicle.ie/2026/05/07/pressure-mounts-to-save-trim-outdoor-activity-centre/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card card-alt">
+    <div class="card-rank">02</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Courts & Crime</span>
+        <span class="card-source">Meath Live</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://meathlive.net/2026/05/07/woman-suffered-eight-hour-ordeal-of-assault-and-abuse-court-told/" target="_blank" rel="noopener">Woman Suffered Eight-Hour Ordeal of Assault and Abuse, Court Told</a>
+      </h2>
+      
+      <p class="card-teaser">A Bettystown court heard that a woman endured a night of assault and abuse at the hands of her 33-year-old husband, Brian, in their family home. The victim was described as having been 'paralysed by fear' during the ordeal.</p>
+      <a class="card-link" href="https://meathlive.net/2026/05/07/woman-suffered-eight-hour-ordeal-of-assault-and-abuse-court-told/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card ">
+    <div class="card-rank">03</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Council & Politics</span>
+        <span class="card-source">Meath Chronicle</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://www.meathchronicle.ie/2026/05/07/cabinet-approval-secured-for-valeries-law/" target="_blank" rel="noopener">Cabinet Approval Secured for 'Valerie's Law'</a>
+      </h2>
+      
+    <div class="key_story-badge">
+      <span class="key_story-label">&#9733; Key Story</span>
+      <span class="key_story-reason">A Meath-connected legislative milestone with long-term implications for domestic violence protections.</span>
+    </div>
+      <p class="card-teaser">The government has given cabinet approval to progress 'Valerie's Law', a campaign with strong Meath roots aimed at strengthening protections for victims of domestic violence. The legislation now moves forward to the drafting stage.</p>
+      <a class="card-link" href="https://www.meathchronicle.ie/2026/05/07/cabinet-approval-secured-for-valeries-law/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card card-alt">
+    <div class="card-rank">04</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Local News</span>
+        <span class="card-source">Meath Live</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://meathlive.net/2026/05/07/benefit-of-free-schoolbooks-wiped-out-as-families-hit-with-e750-ipad-bills/" target="_blank" rel="noopener">Meath TD O'Rourke Slams €750 iPad Bills Wiping Out Free Schoolbooks</a>
+      </h2>
+      
+      <p class="card-teaser">Meath TD Darren O'Rourke has criticised the Minister for Education over the growing cost of mandatory digital devices in schools. He says families are being hit with iPad bills of up to €750, effectively cancelling out the benefit of the free schoolbooks scheme.</p>
+      <a class="card-link" href="https://meathlive.net/2026/05/07/benefit-of-free-schoolbooks-wiped-out-as-families-hit-with-e750-ipad-bills/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card ">
+    <div class="card-rank">05</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Courts & Crime</span>
+        <span class="card-source">Meath Live</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://meathlive.net/2026/05/07/unmuzzled-pitbull-attacks-dog-causing-bit-injuries-to-walkers/" target="_blank" rel="noopener">Unmuzzled Pitbull Attacks Dog, Causing Bite Injuries to Walkers in Navan</a>
+      </h2>
+      
+      <p class="card-teaser">Stephen Reilly of Beechmount Grove, Navan, appeared at Trim District Court after an unmuzzled pitbull he was walking attacked another dog. The walkers also suffered bite injuries during the incident.</p>
+      <a class="card-link" href="https://meathlive.net/2026/05/07/unmuzzled-pitbull-attacks-dog-causing-bit-injuries-to-walkers/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card card-alt">
+    <div class="card-rank">06</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Community & Events</span>
+        <span class="card-source">Meath Chronicle</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://www.meathchronicle.ie/2026/05/07/meath-hill-takes-home-regional-prize-at-green-schools-energy-award/" target="_blank" rel="noopener">Meath Hill School Wins Regional Prize at Green Schools Energy Awards</a>
+      </h2>
+      
+      <p class="card-teaser">Meath Hill National School has been recognised with a regional prize at the Green Schools Energy Awards. The award highlights the school's efforts in energy conservation and environmental education.</p>
+      <a class="card-link" href="https://www.meathchronicle.ie/2026/05/07/meath-hill-takes-home-regional-prize-at-green-schools-energy-award/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card ">
+    <div class="card-rank">07</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Community & Events</span>
+        <span class="card-source">Meath Live</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://meathlive.net/2026/05/07/meath-exhibitors-get-ready-to-bloom/" target="_blank" rel="noopener">Meath Exhibitors Prepare for Bloom Festival</a>
+      </h2>
+      
+      <p class="card-teaser">With three weeks to go, Bord Bia has announced the final line-up for this year's Bloom festival, which includes several Meath-based exhibitors. The event will feature new attractions, expert talks and immersive experiences.</p>
+      <a class="card-link" href="https://meathlive.net/2026/05/07/meath-exhibitors-get-ready-to-bloom/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card card-alt">
+    <div class="card-rank">08</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Community & Events</span>
+        <span class="card-source">Meath Chronicle</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://www.meathchronicle.ie/2026/05/07/martines-spanish-fundraising-walk-with-friends-to-give-back-to-clann-mor/" target="_blank" rel="noopener">Martine's Spanish Walk to Raise Funds for Clann Mór</a>
+      </h2>
+      
+      <p class="card-teaser">A local woman named Martine is undertaking a fundraising walk in Spain with friends to raise money for Clann Mór, a Meath-based community support organisation. The effort aims to give back to a service that has made a difference locally.</p>
+      <a class="card-link" href="https://www.meathchronicle.ie/2026/05/07/martines-spanish-fundraising-walk-with-friends-to-give-back-to-clann-mor/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+</main>
+
+<section class="events-section">
+  <div class="section-header">
+    <span class="section-heading">What&#8217;s On</span>
+    <span class="section-sub">Next 3 days &middot; Co. Meath</span>
+  </div>
+  <div class="events-list">
+  <div class="event-card">
+    <div class="event-when">Today</div>
+    <div class="event-title"><a href="https://solsticeartscentre.ie/event/the-irish-guitar-quartet" target="_blank" rel="noopener">The Irish Guitar Quartet</a></div>
+    <div class="event-venue">Solstice Arts Centre, Navan, Co. Meath</div>
+    <div class="event-desc">Jerry Creedon, David Keating, Aengus Kirakowski and Redmond O'Toole perform as The Irish Guitar Quartet at Solstice Arts Centre.</div>
+    <a class="event-link" href="https://solsticeartscentre.ie/event/the-irish-guitar-quartet" target="_blank" rel="noopener">See more &rarr;</a>
+  </div>
+  <div class="event-card">
+    <div class="event-when">Today</div>
+    <div class="event-title"><a href="https://www.eventbrite.ie/e/a-sound-healing-journey-through-the-chakras-tickets-1988329025640" target="_blank" rel="noopener">A Sound Healing Journey Through The Chakras</a></div>
+    <div class="event-venue">Julianstown St Mary, Julianstown</div>
+    <div class="event-desc">A deeply healing and rebalancing sound journey through the chakras, designed to bring more harmony into your life.</div>
+    <a class="event-link" href="https://www.eventbrite.ie/e/a-sound-healing-journey-through-the-chakras-tickets-1988329025640" target="_blank" rel="noopener">See more &rarr;</a>
+  </div>
+  <div class="event-card">
+    <div class="event-when">Tomorrow</div>
+    <div class="event-title"><a href="https://solsticeartscentre.ie/event/pravaham" target="_blank" rel="noopener">Pravāham: A Tale of Two Traditions</a></div>
+    <div class="event-venue">Solstice Arts Centre, Navan, Co. Meath</div>
+    <div class="event-desc">Experience the lyrical grace of Mohiniyattam in a unique performance presenting two celebrated dance traditions.</div>
+    <a class="event-link" href="https://solsticeartscentre.ie/event/pravaham" target="_blank" rel="noopener">See more &rarr;</a>
+  </div>
+  <div class="event-card">
+    <div class="event-when">Tomorrow</div>
+    <div class="event-title"><a href="https://www.eventbrite.ie/e/biodiversity-matters-tickets-1988518219524" target="_blank" rel="noopener">Biodiversity Matters</a></div>
+    <div class="event-venue">Ashbourne Library, Ashbourne</div>
+    <div class="event-desc">A community event at Ashbourne Library empowering locals to enhance biodiversity in their area.</div>
+    <a class="event-link" href="https://www.eventbrite.ie/e/biodiversity-matters-tickets-1988518219524" target="_blank" rel="noopener">See more &rarr;</a>
+  </div>
+  <div class="event-card">
+    <div class="event-when">Sunday, May 10</div>
+    <div class="event-title"><a href="https://solsticeartscentre.ie/event/neil-delamere-reinventing-the-neil" target="_blank" rel="noopener">Neil Delamere: Reinventing the Neil</a></div>
+    <div class="event-venue">Solstice Arts Centre, Navan, Co. Meath</div>
+    <div class="event-desc">Comedian Neil Delamere returns with a brand-new standup show packed with tall tales and hilarious stories.</div>
+    <a class="event-link" href="https://solsticeartscentre.ie/event/neil-delamere-reinventing-the-neil" target="_blank" rel="noopener">See more &rarr;</a>
+  </div>
+  <div class="event-card">
+    <div class="event-when">Sunday, May 10</div>
+    <div class="event-title"><a href="https://www.eventbrite.ie/e/lift-our-hearts-a-night-of-music-community-tickets-1987523287656" target="_blank" rel="noopener">Lift Our Hearts – A Night of Music & Community</a></div>
+    <div class="event-venue">St Mary's Convent Primary School, Trim</div>
+    <div class="event-desc">An uplifting evening of live music and community spirit in Trim, bringing people together through great tunes and good vibes.</div>
+    <a class="event-link" href="https://www.eventbrite.ie/e/lift-our-hearts-a-night-of-music-community-tickets-1987523287656" target="_blank" rel="noopener">See more &rarr;</a>
+  </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <p>Meath Morning Edition &nbsp;·&nbsp; 2026-05-08</p>
+  <p style="margin-top:0.4rem;">Sources: Meath Live &nbsp;·&nbsp; Meath Chronicle &nbsp;·&nbsp; Google Alert</p>
+</footer>
+
+</body>
+</html>
