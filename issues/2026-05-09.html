@@ -275,6 +275,34 @@ body { font-family: var(--sans); background: var(--cream); color: var(--ink); -w
 }
 .card-link:hover { opacity: 0.7; }
 
+/* ── On this day ── */
+.onthisday-bar {
+  max-width: 860px;
+  margin: 0 auto 0.5rem;
+  padding: 0.65rem 1.5rem;
+  background: var(--green);
+  color: rgba(255,255,255,0.92);
+  display: flex;
+  gap: 1rem;
+  align-items: baseline;
+  flex-wrap: wrap;
+  font-size: 0.82rem;
+}
+.onthisday-label {
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.onthisday-text {
+  font-family: var(--serif);
+  font-style: italic;
+  line-height: 1.4;
+}
+
 /* ── Footer ── */
 .footer {
   text-align: center;
@@ -297,7 +325,7 @@ body { font-family: var(--sans); background: var(--cream); color: var(--ink); -w
   <div class="masthead-kicker">County Meath &nbsp;·&nbsp; Local Intelligence</div>
   <h1 class="masthead-title">Meath <em>Morning</em><br>Edition</h1>
   <div class="masthead-date">Saturday, May 9, 2026</div>
-  <span class="key_story-count">&#9733; 2 key stories today</span>
+  <span class="key_story-count">&#9733; 4 key stories today</span>
 </header>
 
 <div class="weather-bar">
@@ -309,7 +337,7 @@ body { font-family: var(--sans); background: var(--cream); color: var(--ink); -w
     <div class="weather-item">
       <span class="weather-place">Navan</span>
       <span class="weather-desc">Overcast</span>
-      <span class="weather-temps">7–14°C</span>
+      <span class="weather-temps">6–15°C</span>
       
     </div>
     <div class="weather-item">
@@ -321,7 +349,7 @@ body { font-family: var(--sans); background: var(--cream); color: var(--ink); -w
     <div class="weather-item">
       <span class="weather-place">Kells</span>
       <span class="weather-desc">Overcast</span>
-      <span class="weather-temps">6–13°C</span>
+      <span class="weather-temps">6–14°C</span>
       
     </div>
     <div class="weather-item">
@@ -339,147 +367,11 @@ body { font-family: var(--sans); background: var(--cream); color: var(--ink); -w
     <div class="weather-item">
       <span class="weather-place">Dunshaughlin</span>
       <span class="weather-desc">Overcast</span>
-      <span class="weather-temps">6–13°C</span>
+      <span class="weather-temps">6–14°C</span>
       
     </div>
   </div>
 </div>
-
-<main class="stories">
-  <div class="section-header">
-    <span class="section-heading">News</span>
-    <span class="section-sub">Today&rsquo;s edition</span>
-  </div>
-
-  <article class="story-card ">
-    <div class="card-rank">01</div>
-    <div class="card-body">
-      <div class="card-meta">
-        <span class="card-category">Local News</span>
-        <span class="card-source">Meath Chronicle</span>
-      </div>
-      <h2 class="card-title">
-        <a href="https://www.meathchronicle.ie/2026/05/08/garda-commissioner-has-approved-the-long-awaited-cctv-scheme-for-navan-and-103-cameras-operating-in-33-locations-in-the-town/" target="_blank" rel="noopener">Garda Commissioner Approves 103-Camera CCTV Scheme for Navan</a>
-      </h2>
-      
-    <div class="key_story-badge">
-      <span class="key_story-label">&#9733; Key Story</span>
-      <span class="key_story-reason">Major new policing infrastructure for Navan that will affect public safety and surveillance long-term.</span>
-    </div>
-      <p class="card-teaser">The Garda Commissioner has given the green light to the long-awaited CCTV scheme for Navan, with 103 cameras set to operate across 33 locations in the town. The scheme has been in the pipeline for some time and represents a significant investment in community safety for the county town.</p>
-      <a class="card-link" href="https://www.meathchronicle.ie/2026/05/08/garda-commissioner-has-approved-the-long-awaited-cctv-scheme-for-navan-and-103-cameras-operating-in-33-locations-in-the-town/" target="_blank" rel="noopener">Read more &rarr;</a>
-    </div>
-  </article>
-  <article class="story-card card-alt">
-    <div class="card-rank">02</div>
-    <div class="card-body">
-      <div class="card-meta">
-        <span class="card-category">Planning & Development</span>
-        <span class="card-source">Meath Chronicle</span>
-      </div>
-      <h2 class="card-title">
-        <a href="https://www.meathchronicle.ie/2026/05/08/400-new-build-social-homes-in-the-delivery-pipeline-for-meath/" target="_blank" rel="noopener">400 New Social Homes in Delivery Pipeline for County Meath</a>
-      </h2>
-      
-    <div class="key_story-badge">
-      <span class="key_story-label">&#9733; Key Story</span>
-      <span class="key_story-reason">A major social housing commitment that will shape Meath's housing supply for years to come.</span>
-    </div>
-      <p class="card-teaser">Some 400 new-build social homes are now in the delivery pipeline for County Meath. The housing programme will significantly boost social housing stock in the county, which has faced sustained pressure from population growth and rising demand.</p>
-      <a class="card-link" href="https://www.meathchronicle.ie/2026/05/08/400-new-build-social-homes-in-the-delivery-pipeline-for-meath/" target="_blank" rel="noopener">Read more &rarr;</a>
-    </div>
-  </article>
-  <article class="story-card ">
-    <div class="card-rank">03</div>
-    <div class="card-body">
-      <div class="card-meta">
-        <span class="card-category">Courts & Crime</span>
-        <span class="card-source">Meath Chronicle</span>
-      </div>
-      <h2 class="card-title">
-        <a href="https://www.meathchronicle.ie/2026/05/08/gardai-appeal-for-witnesses-after-injured-man-discovered-in-navan/" target="_blank" rel="noopener">Gardaí Appeal for Witnesses After Injured Man Found in Navan</a>
-      </h2>
-      
-      <p class="card-teaser">Gardaí are appealing for witnesses after a man was discovered with injuries in Navan. Anyone with information about the incident is urged to come forward as the investigation continues.</p>
-      <a class="card-link" href="https://www.meathchronicle.ie/2026/05/08/gardai-appeal-for-witnesses-after-injured-man-discovered-in-navan/" target="_blank" rel="noopener">Read more &rarr;</a>
-    </div>
-  </article>
-  <article class="story-card card-alt">
-    <div class="card-rank">04</div>
-    <div class="card-body">
-      <div class="card-meta">
-        <span class="card-category">Community & Events</span>
-        <span class="card-source">Meath Chronicle</span>
-      </div>
-      <h2 class="card-title">
-        <a href="https://www.meathchronicle.ie/2026/05/08/meath-county-council-celebrates-outstanding-community-achievements-at-2026-municipal-district-awards/" target="_blank" rel="noopener">Meath Council Celebrates Community Achievements at Municipal Awards</a>
-      </h2>
-      
-      <p class="card-teaser">Meath County Council has honoured outstanding community achievements at the 2026 Municipal District Awards. The ceremony recognised individuals and groups across the county's municipal districts for their contributions to local life.</p>
-      <a class="card-link" href="https://www.meathchronicle.ie/2026/05/08/meath-county-council-celebrates-outstanding-community-achievements-at-2026-municipal-district-awards/" target="_blank" rel="noopener">Read more &rarr;</a>
-    </div>
-  </article>
-  <article class="story-card ">
-    <div class="card-rank">05</div>
-    <div class="card-body">
-      <div class="card-meta">
-        <span class="card-category">Courts & Crime</span>
-        <span class="card-source">Meath Live</span>
-      </div>
-      <h2 class="card-title">
-        <a href="https://meathlive.net/2026/05/07/made-stupid-decision-to-get-involved-in-drugs/" target="_blank" rel="noopener">Man Tells Trim Court He Made 'Stupid Decision' to Deal Drugs</a>
-      </h2>
-      
-      <p class="card-teaser">A 23-year-old Brazilian national appeared at Trim District Court after being found with over €700 worth of cannabis along with cash. His solicitor told the court his client had made a "stupid decision" to get involved in drugs.</p>
-      <a class="card-link" href="https://meathlive.net/2026/05/07/made-stupid-decision-to-get-involved-in-drugs/" target="_blank" rel="noopener">Read more &rarr;</a>
-    </div>
-  </article>
-  <article class="story-card card-alt">
-    <div class="card-rank">06</div>
-    <div class="card-body">
-      <div class="card-meta">
-        <span class="card-category">Courts & Crime</span>
-        <span class="card-source">Meath Live</span>
-      </div>
-      <h2 class="card-title">
-        <a href="https://meathlive.net/2026/05/07/sex-assault-case-put-back-for-book-of-evidence/" target="_blank" rel="noopener">Sexual Assault Case Adjourned at Trim Court for Book of Evidence</a>
-      </h2>
-      
-      <p class="card-teaser">Judge Eirinn McKiernan has adjourned the case of a 60-year-old man accused of sexual assault to allow for the preparation and service of the book of evidence. The case was heard at Trim District Criminal Court.</p>
-      <a class="card-link" href="https://meathlive.net/2026/05/07/sex-assault-case-put-back-for-book-of-evidence/" target="_blank" rel="noopener">Read more &rarr;</a>
-    </div>
-  </article>
-  <article class="story-card ">
-    <div class="card-rank">07</div>
-    <div class="card-body">
-      <div class="card-meta">
-        <span class="card-category">Sport</span>
-        <span class="card-source">Meath Chronicle</span>
-      </div>
-      <h2 class="card-title">
-        <a href="https://www.meathchronicle.ie/2026/05/08/oreilly-and-gash-gear-up-for-isle-of-man-races/" target="_blank" rel="noopener">O'Reilly and Gash Gear Up for Isle of Man Races</a>
-      </h2>
-      
-      <p class="card-teaser">Local driver O'Reilly, along with co-driver Gash, is preparing for the prestigious Isle of Man races. The Meath competitors will be flying the flag for the county at one of motorsport's most iconic events.</p>
-      <a class="card-link" href="https://www.meathchronicle.ie/2026/05/08/oreilly-and-gash-gear-up-for-isle-of-man-races/" target="_blank" rel="noopener">Read more &rarr;</a>
-    </div>
-  </article>
-  <article class="story-card card-alt">
-    <div class="card-rank">08</div>
-    <div class="card-body">
-      <div class="card-meta">
-        <span class="card-category">Business & Jobs</span>
-        <span class="card-source">Meath Live</span>
-      </div>
-      <h2 class="card-title">
-        <a href="https://meathlive.net/2026/05/07/auctioneers-predict-modest-rise-in-land-prices-this-year/" target="_blank" rel="noopener">Auctioneers Predict 4% Rise in Agricultural Land Prices in 2026</a>
-      </h2>
-      
-      <p class="card-teaser">SCSI auctioneers and valuers are forecasting modest growth in agricultural land prices and rental rates for 2026, with both expected to increase by around 4% on average. The projections are relevant to Meath's significant farming community.</p>
-      <a class="card-link" href="https://meathlive.net/2026/05/07/auctioneers-predict-modest-rise-in-land-prices-this-year/" target="_blank" rel="noopener">Read more &rarr;</a>
-    </div>
-  </article>
-</main>
 
 <section class="events-section">
   <div class="section-header">
@@ -489,17 +381,17 @@ body { font-family: var(--sans); background: var(--cream); color: var(--ink); -w
   <div class="events-list">
   <div class="event-card">
     <div class="event-when">Today</div>
-    <div class="event-title"><a href="https://solsticeartscentre.ie/event/pravaham" target="_blank" rel="noopener">Pravāham: A Tale of Two Traditions</a></div>
+    <div class="event-title"><a href="https://solsticeartscentre.ie/event/pravaham" target="_blank" rel="noopener">Pravāham</a></div>
     <div class="event-venue">Solstice Arts Centre, Navan, Co. Meath</div>
-    <div class="event-desc">Experience the lyrical grace of Mohiniyattam in a unique performance presenting two celebrated Indian dance traditions at Solstice Arts Centre.</div>
+    <div class="event-desc">A unique dance performance showcasing the lyrical grace of Mohiniyattam, presenting two celebrated traditions in one evening.</div>
     <a class="event-link" href="https://solsticeartscentre.ie/event/pravaham" target="_blank" rel="noopener">See more &rarr;</a>
   </div>
   <div class="event-card">
     <div class="event-when">Today</div>
-    <div class="event-title"><a href="https://www.eventbrite.ie/e/biodiversity-matters-tickets-1988518219524" target="_blank" rel="noopener">Biodiversity Matters</a></div>
-    <div class="event-venue">Ashbourne Library, Ashbourne</div>
-    <div class="event-desc">A community event at Ashbourne Library focused on empowering locals to enhance biodiversity in County Meath.</div>
-    <a class="event-link" href="https://www.eventbrite.ie/e/biodiversity-matters-tickets-1988518219524" target="_blank" rel="noopener">See more &rarr;</a>
+    <div class="event-title"><a href="https://swiftculturalcentre.ie/event/vladimir-jablokov-up-close" target="_blank" rel="noopener">Vladimir Jablokov: Up Close</a></div>
+    <div class="event-venue">Swift Cultural Centre, Trim, Co. Meath</div>
+    <div class="event-desc">Internationally acclaimed violinist Vladimir Jablokov returns to Trim following last year's sold-out performance for an intimate concert.</div>
+    <a class="event-link" href="https://swiftculturalcentre.ie/event/vladimir-jablokov-up-close" target="_blank" rel="noopener">See more &rarr;</a>
   </div>
   <div class="event-card">
     <div class="event-when">Tomorrow</div>
@@ -511,26 +403,175 @@ body { font-family: var(--sans); background: var(--cream); color: var(--ink); -w
   <div class="event-card">
     <div class="event-when">Tomorrow</div>
     <div class="event-title"><a href="https://www.eventbrite.ie/e/lift-our-hearts-a-night-of-music-community-tickets-1987523287656" target="_blank" rel="noopener">Lift Our Hearts – A Night of Music & Community</a></div>
-    <div class="event-venue">St Mary's Convent Primary School, Trim</div>
-    <div class="event-desc">An uplifting evening of live music and good vibes bringing the Trim community together.</div>
+    <div class="event-venue">St Mary's Convent Primary School, Trim, Co. Meath</div>
+    <div class="event-desc">An uplifting community evening filled with great tunes and good vibes in Trim.</div>
     <a class="event-link" href="https://www.eventbrite.ie/e/lift-our-hearts-a-night-of-music-community-tickets-1987523287656" target="_blank" rel="noopener">See more &rarr;</a>
   </div>
   <div class="event-card">
     <div class="event-when">Tomorrow</div>
-    <div class="event-title"><a href="https://www.eventbrite.ie/e/ocean-reset-tickets-1986893079687" target="_blank" rel="noopener">Ocean Reset – Breathwork, Swim & Sauna</a></div>
-    <div class="event-venue">Laytown Beach, Laytown</div>
-    <div class="event-desc">A wellness event at Laytown Beach combining breathwork, open-water swimming, and sauna.</div>
-    <a class="event-link" href="https://www.eventbrite.ie/e/ocean-reset-tickets-1986893079687" target="_blank" rel="noopener">See more &rarr;</a>
+    <div class="event-title"><a href="https://www.eventbrite.ie/e/navan-bike-week-2026-family-cycle-tickets-1987400937704" target="_blank" rel="noopener">Navan Bike Week 2026 Family Cycle</a></div>
+    <div class="event-venue">Fair Green Car Park, Navan, Co. Meath</div>
+    <div class="event-desc">A family-friendly cycle for all ages and abilities as part of Navan Bike Week, with a lap of the town and free refreshments.</div>
+    <a class="event-link" href="https://www.eventbrite.ie/e/navan-bike-week-2026-family-cycle-tickets-1987400937704" target="_blank" rel="noopener">See more &rarr;</a>
   </div>
   <div class="event-card">
     <div class="event-when">Tomorrow</div>
-    <div class="event-title"><a href="https://www.eventbrite.ie/e/the-toy-library-swapplay-in-navan-co-meath-tickets-1987674383588" target="_blank" rel="noopener">The Toy Library Swap & Play in Navan</a></div>
-    <div class="event-venue">Simonstown Gaels, Navan</div>
-    <div class="event-desc">A family-friendly event where children can swap and donate pre-loved toys, enjoy play activities, and learn about sustainable consumption.</div>
-    <a class="event-link" href="https://www.eventbrite.ie/e/the-toy-library-swapplay-in-navan-co-meath-tickets-1987674383588" target="_blank" rel="noopener">See more &rarr;</a>
+    <div class="event-title"><a href="https://www.eventbrite.ie/e/ocean-reset-tickets-1986893079687" target="_blank" rel="noopener">Ocean Reset</a></div>
+    <div class="event-venue">Laytown Beach, Laytown, Co. Meath</div>
+    <div class="event-desc">A wellness event at Laytown Beach combining breathwork, sea swimming and sauna.</div>
+    <a class="event-link" href="https://www.eventbrite.ie/e/ocean-reset-tickets-1986893079687" target="_blank" rel="noopener">See more &rarr;</a>
   </div>
   </div>
 </section>
+
+<main class="stories">
+  <div class="section-header">
+    <span class="section-heading">News</span>
+    <span class="section-sub">Today&rsquo;s edition</span>
+  </div>
+
+  <article class="story-card ">
+    <div class="card-rank">01</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Planning & Development</span>
+        <span class="card-source">Meath Chronicle</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://www.meathchronicle.ie/2026/05/08/400-new-build-social-homes-in-the-delivery-pipeline-for-meath/" target="_blank" rel="noopener">400 New Social Homes in the Delivery Pipeline for County Meath</a>
+      </h2>
+      
+    <div class="key_story-badge">
+      <span class="key_story-label">&#9733; Key Story</span>
+      <span class="key_story-reason">Major social housing pipeline affecting housing supply and planning across the county for years ahead.</span>
+    </div>
+      <p class="card-teaser">Some 400 new-build social homes are now in the delivery pipeline for County Meath. The significant housing commitment addresses ongoing demand for social housing across the county and will impact several communities as construction progresses.</p>
+      <a class="card-link" href="https://www.meathchronicle.ie/2026/05/08/400-new-build-social-homes-in-the-delivery-pipeline-for-meath/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card card-alt">
+    <div class="card-rank">02</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Local News</span>
+        <span class="card-source">Meath Chronicle</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://www.meathchronicle.ie/2026/05/08/garda-commissioner-has-approved-the-long-awaited-cctv-scheme-for-navan-and-103-cameras-operating-in-33-locations-in-the-town/" target="_blank" rel="noopener">103-Camera CCTV Scheme for Navan Approved by Garda Commissioner</a>
+      </h2>
+      
+    <div class="key_story-badge">
+      <span class="key_story-label">&#9733; Key Story</span>
+      <span class="key_story-reason">Major new public safety infrastructure for Navan with lasting impact on the town centre.</span>
+    </div>
+      <p class="card-teaser">The Garda Commissioner has approved the long-awaited CCTV scheme for Navan, with 103 cameras set to operate across 33 locations in the town. The rollout marks a significant step for community safety in the county town after years of campaigning.</p>
+      <a class="card-link" href="https://www.meathchronicle.ie/2026/05/08/garda-commissioner-has-approved-the-long-awaited-cctv-scheme-for-navan-and-103-cameras-operating-in-33-locations-in-the-town/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card ">
+    <div class="card-rank">03</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Community & Events</span>
+        <span class="card-source">Meath Chronicle</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://www.meathchronicle.ie/2026/05/08/meath-county-council-celebrates-outstanding-community-achievements-at-2026-municipal-district-awards/" target="_blank" rel="noopener">Meath County Council Celebrates 2026 Municipal District Awards</a>
+      </h2>
+      
+      <p class="card-teaser">Meath County Council has honoured outstanding community achievements at the 2026 Municipal District Awards. The ceremony recognised individuals and groups across all municipal districts for their contributions to local life.</p>
+      <a class="card-link" href="https://www.meathchronicle.ie/2026/05/08/meath-county-council-celebrates-outstanding-community-achievements-at-2026-municipal-district-awards/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card card-alt">
+    <div class="card-rank">04</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Sport</span>
+        <span class="card-source">Meath Live</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://meathlive.net/2026/05/09/navan-rfc-appoint-ex-springbok-dan-van-zyl-as-mens-head-coach/" target="_blank" rel="noopener">Navan RFC Appoint Ex-Springbok Dan Van Zyl as Men's Head Coach</a>
+      </h2>
+      
+      <p class="card-teaser">Navan Rugby Football Club has announced the appointment of former South African international Dan Van Zyl as Head Coach of their Senior and J1 Men's teams with immediate effect. Van Zyl brings a wealth of top-level experience to Balreask Old.</p>
+      <a class="card-link" href="https://meathlive.net/2026/05/09/navan-rfc-appoint-ex-springbok-dan-van-zyl-as-mens-head-coach/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card ">
+    <div class="card-rank">05</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Community & Events</span>
+        <span class="card-source">Meath Chronicle</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://www.meathchronicle.ie/2026/05/07/pressure-mounts-to-save-trim-outdoor-activity-centre/" target="_blank" rel="noopener">Pressure Mounts to Save Trim Outdoor Activity Centre</a>
+      </h2>
+      
+    <div class="key_story-badge">
+      <span class="key_story-label">&#9733; Key Story</span>
+      <span class="key_story-reason">Ongoing community campaign with potential loss of a widely used local facility.</span>
+    </div>
+      <p class="card-teaser">A campaign is growing to save the outdoor activity centre in Trim, with local representatives and community groups voicing concern about its future. The facility is valued by schools, youth groups, and families across the region.</p>
+      <a class="card-link" href="https://www.meathchronicle.ie/2026/05/07/pressure-mounts-to-save-trim-outdoor-activity-centre/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card card-alt">
+    <div class="card-rank">06</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Community & Events</span>
+        <span class="card-source">Meath Chronicle</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://www.meathchronicle.ie/2026/05/07/meath-hill-takes-home-regional-prize-at-green-schools-energy-award/" target="_blank" rel="noopener">Meath Hill School Wins Regional Prize at Green Schools Energy Awards</a>
+      </h2>
+      
+      <p class="card-teaser">Meath Hill National School has taken home a regional prize at the Green Schools Energy Awards. The achievement recognises the school's commitment to energy awareness and sustainability education among its pupils.</p>
+      <a class="card-link" href="https://www.meathchronicle.ie/2026/05/07/meath-hill-takes-home-regional-prize-at-green-schools-energy-award/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card ">
+    <div class="card-rank">07</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Local News</span>
+        <span class="card-source">Meath Live</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://meathlive.net/2026/05/07/benefit-of-free-schoolbooks-wiped-out-as-families-hit-with-e750-ipad-bills/" target="_blank" rel="noopener">Families Hit with €750 iPad Bills Despite Free Schoolbooks Scheme</a>
+      </h2>
+      
+      <p class="card-teaser">Meath TD Darren O'Rourke has criticised the Minister for Education over mandatory digital device costs in schools, saying families face bills of up to €750 for iPads that wipe out the benefit of the free schoolbooks scheme. The issue is affecting families across the county.</p>
+      <a class="card-link" href="https://meathlive.net/2026/05/07/benefit-of-free-schoolbooks-wiped-out-as-families-hit-with-e750-ipad-bills/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card card-alt">
+    <div class="card-rank">08</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Transport & Infrastructure</span>
+        <span class="card-source">Meath Chronicle</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://www.meathchronicle.ie/2026/05/05/cllrs-hear-plan-for-new-footpath-across-fields-in-kells-would-eliminate-a-2km-drive-through-the-town-for-many-schoolgoers/" target="_blank" rel="noopener">New Footpath Plan in Kells Could Replace 2km School Drive for Families</a>
+      </h2>
+      
+    <div class="key_story-badge">
+      <span class="key_story-label">&#9733; Key Story</span>
+      <span class="key_story-reason">Infrastructure proposal that could reshape school-run traffic and pedestrian access in Kells.</span>
+    </div>
+      <p class="card-teaser">Councillors have heard proposals for a new footpath across fields in Kells that would eliminate a 2km car journey through the town for many schoolchildren. The plan could ease traffic congestion and improve safety for young pedestrians and cyclists.</p>
+      <a class="card-link" href="https://www.meathchronicle.ie/2026/05/05/cllrs-hear-plan-for-new-footpath-across-fields-in-kells-would-eliminate-a-2km-drive-through-the-town-for-many-schoolgoers/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+</main>
+
+<div class="onthisday-bar">
+  <span class="onthisday-label">On this day &middot; 1921</span>
+  <span class="onthisday-text">The IRA's Meath Brigade raided Navan Post Office, seizing telegraph and telephone equipment during the War of Independence.</span>
+</div>
 
 <footer class="footer">
   <p>Meath Morning Edition &nbsp;·&nbsp; 2026-05-09</p>
