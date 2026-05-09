@@ -1,0 +1,198 @@
+[
+    {
+        "date": "01-16",
+        "year": 1177,
+        "event": "John de Courcy departs from Trim with 22 knights and 300 foot soldiers to begin the invasion of Ulster.",
+        "location": "Trim",
+        "category": "Medieval History"
+    },
+    {
+        "date": "01-30",
+        "year": 1921,
+        "event": "Meath Brigade IRA volunteers successfully ambush an RIC patrol at Trim during the War of Independence.",
+        "location": "Trim",
+        "category": "War of Independence"
+    },
+    {
+        "date": "02-14",
+        "year": 1403,
+        "event": "King Henry IV issues a royal decree ordering the urgent repair of the town walls of Trim due to damage from Gaelic forces.",
+        "location": "Trim",
+        "category": "Medieval History"
+    },
+    {
+        "date": "02-27",
+        "year": 1326,
+        "event": "The town of Kells receives its first Royal Murage Grant, allowing for the construction of defensive stone walls.",
+        "location": "Kells",
+        "category": "Medieval History"
+    },
+    {
+        "date": "03-10",
+        "year": 1899,
+        "event": "The Dean Cogan branch of the Irish National Foresters is established as a key local benefit society.",
+        "location": "Navan",
+        "category": "Social History"
+    },
+    {
+        "date": "04-12",
+        "year": 1875,
+        "event": "Charles Stewart Parnell is selected as the Home Rule candidate at a massive county rally, launching his political career.",
+        "location": "Navan",
+        "category": "Politics"
+    },
+    {
+        "date": "04-28",
+        "year": 1916,
+        "event": "The Battle of Ashbourne: Thomas Ashe and Richard Mulcahy lead the 5th Fingal Battalion to a major victory over the RIC during the Easter Rising.",
+        "location": "Ashbourne",
+        "category": "Easter Rising"
+    },
+    {
+        "date": "05-09",
+        "year": 1921,
+        "event": "The IRA's Meath Brigade executes a raid on the telegraph and telephone equipment at the Navan Post Office.",
+        "location": "Navan",
+        "category": "War of Independence"
+    },
+    {
+        "date": "05-23",
+        "year": 1798,
+        "event": "The 1798 Rebellion officially begins in County Meath with the uprising of United Irishmen.",
+        "location": "Countywide",
+        "category": "1798 Rebellion"
+    },
+    {
+        "date": "05-24",
+        "year": 1487,
+        "event": "Lambert Simnel, supported by Meath nobility, is crowned 'King Edward VI' in a challenge to the English throne.",
+        "location": "Trim/Region",
+        "category": "Medieval History"
+    },
+    {
+        "date": "05-26",
+        "year": 1798,
+        "event": "The Battle of Tara Hill: A decisive defeat for the United Irishmen at the hands of the Reay Fencibles and Yeomanry.",
+        "location": "Hill of Tara",
+        "category": "1798 Rebellion"
+    },
+    {
+        "date": "06-14",
+        "year": 1690,
+        "event": "King William III lands at Carrickfergus and begins his march toward the River Boyne in Meath.",
+        "location": "Boyne Valley",
+        "category": "Williamite War"
+    },
+    {
+        "date": "06-29",
+        "year": 1690,
+        "event": "Williamite forces reach the north bank of the River Boyne near Oldbridge to face the Jacobite army.",
+        "location": "Oldbridge",
+        "category": "Williamite War"
+    },
+    {
+        "date": "07-01",
+        "year": 1690,
+        "event": "The Battle of the Boyne takes place (Julian Calendar date), the most significant battle in modern Irish history.",
+        "location": "Oldbridge",
+        "category": "Williamite War"
+    },
+    {
+        "date": "07-11",
+        "year": 1921,
+        "event": "The Truce in the War of Independence comes into effect, halting major IRA operations in Meath.",
+        "location": "Countywide",
+        "category": "War of Independence"
+    },
+    {
+        "date": "07-12",
+        "year": 1690,
+        "event": "The Gregorian anniversary of the Battle of the Boyne, marking the Jacobite retreat from Donore.",
+        "location": "Donore/Oldbridge",
+        "category": "Williamite War"
+    },
+    {
+        "date": "07-26",
+        "year": 1848,
+        "event": "A massive tenant protest is held in Kells during the Great Famine, demanding security of tenure and fair rent.",
+        "location": "Kells",
+        "category": "Social History"
+    },
+    {
+        "date": "08-01",
+        "year": 1168,
+        "event": "The last recorded ancient Tailteann Games are held at Teltown under the patronage of High King Rory O'Connor.",
+        "location": "Teltown",
+        "category": "Ancient History"
+    },
+    {
+        "date": "08-15",
+        "year": 1843,
+        "event": "Daniel O'Connell's 'Monster Meeting' at the Hill of Tara attracts hundreds of thousands to demand the Repeal of the Union.",
+        "location": "Hill of Tara",
+        "category": "Politics"
+    },
+    {
+        "date": "09-13",
+        "year": 1903,
+        "event": "Record numbers of visitors arrive via excursion trains for the Meath Agricultural Show.",
+        "location": "Navan",
+        "category": "Social History"
+    },
+    {
+        "date": "09-14",
+        "year": 1850,
+        "event": "The Drogheda to Navan railway line officially opens for passenger traffic.",
+        "location": "Navan",
+        "category": "Industrial History"
+    },
+    {
+        "date": "10-27",
+        "year": 1920,
+        "event": "An RIC sergeant is shot dead in an ambush by the IRA at Grangegeeth, Slane.",
+        "location": "Slane",
+        "category": "War of Independence"
+    },
+    {
+        "date": "11-21",
+        "year": 1641,
+        "event": "Irish rebel forces begin the Siege of Drogheda, sparking conflict across the Meath borderlands.",
+        "location": "Drogheda/Meath Border",
+        "category": "1641 Rebellion"
+    },
+    {
+        "date": "11-27",
+        "year": 1641,
+        "event": "The Battle of Julianstown: Catholic rebels defeat a government force in a significant early victory of the 1641 Rebellion.",
+        "location": "Julianstown",
+        "category": "1641 Rebellion"
+    },
+    {
+        "date": "11-30",
+        "year": 1920,
+        "event": "The Trim RIC Barracks is destroyed by fire during a daring raid by the IRA.",
+        "location": "Trim",
+        "category": "War of Independence"
+    },
+    {
+        "date": "12-06",
+        "year": 1315,
+        "event": "The Battle of Kells: Edward Bruce and his Scots-Irish army defeat Roger Mortimer, resulting in the sacking of the town.",
+        "location": "Kells",
+        "category": "Medieval History"
+    },
+    {
+        "date": "12-06",
+        "year": 1847,
+        "event": "The Midland Great Western Railway opens the Hill of Down station.",
+        "location": "Hill of Down",
+        "category": "Industrial History"
+    },
+    {
+        "date": "12-21",
+        "year": -3200,
+        "event": "Winter Solstice: The sunrise illuminates the inner chamber of Newgrange, a precise astronomical event occurring for over 50 centuries.",
+        "location": "Newgrange",
+        "category": "Ancient History"
+    }
+]

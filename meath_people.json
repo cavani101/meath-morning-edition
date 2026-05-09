@@ -1,0 +1,54 @@
+[
+  {
+    "name": "CMAT",
+    "full_name": "Ciara Mary-Alice Thompson",
+    "town": "Dunboyne",
+    "field": "Music",
+    "notes": "Singer-songwriter. Mercury Prize nominated. Critically acclaimed internationally — WaPo, NME, Pitchfork coverage. Her articles almost never mention Meath.",
+    "search_term": "CMAT"
+  },
+  {
+    "name": "Tommy Tiernan",
+    "town": "Navan",
+    "field": "Comedy / Television",
+    "notes": "Stand-up comedian and chat show host (Tommy Tiernan Show, RTÉ). Regular Netflix specials.",
+    "search_term": "Tommy Tiernan"
+  },
+  {
+    "name": "Rory O'Connor",
+    "known_as": "Rory's Stories",
+    "town": "Co. Meath",
+    "field": "Comedy / Content Creation",
+    "notes": "Hugely popular social media comedian, now touring live shows.",
+    "search_term": "\"Rory's Stories\""
+  },
+  {
+    "name": "Pierce Brosnan",
+    "town": "Navan (raised)",
+    "field": "Film",
+    "notes": "Born Drogheda, grew up Navan. James Bond. Still active in film and press.",
+    "search_term": "Pierce Brosnan"
+  },
+  {
+    "name": "Seán Boylan",
+    "town": "Dunboyne",
+    "field": "GAA / Herbalism / Public Life",
+    "notes": "Legendary Meath GAA manager turned herbalist. Still active in media and public life. Worth tracking.",
+    "search_term": "Seán Boylan"
+  },
+  {
+    "name": "Colm O'Rourke",
+    "town": "Skryne",
+    "field": "Media / Sport",
+    "notes": "RTÉ Sunday Game analyst. Still very prominent as a pundit — comments make national news.",
+    "search_term": "Colm O'Rourke"
+  },
+  {
+    "name": "Francis Ledwidge",
+    "town": "Slane",
+    "field": "Poetry",
+    "notes": "WWI poet (1887–1917). Occasional cultural features, anniversaries, museum events. Low frequency.",
+    "search_term": "Francis Ledwidge",
+    "historical": true
+  }
+]

@@ -318,19 +318,18 @@ def _parse_json_ld_events(soup, fallback_url: str, source: str) -> list[dict]:
     return events
 
 
-def scrape_solstice_events() -> list[dict]:
-    """Scrape upcoming events from Solstice Arts Centre, Navan.
+def _scrape_solstice_style(url: str, venue_name: str, location: str) -> list[dict]:
+    """Scrape a site using the Solstice/Swift eventlistblock structure.
 
-    Each card is <section class="eventlistblock"> containing a .toplink anchor
-    with an <h3> title, <span class="date"> (single date or date range), and <p> blurb.
-    Date ranges cover exhibitions; single dates are performances/events.
+    Solstice: date in <span class="date"> inside the .toplink anchor.
+    Swift:    no date span — date is embedded in the <p> alongside description.
+    Both:     section.eventlistblock > a.toplink > h3 (title) + p (blurb).
     """
-    url = "https://solsticeartscentre.ie/whats-on/"
     try:
         r = requests.get(url, headers=HEADERS, timeout=20)
         r.raise_for_status()
     except Exception as e:
-        print(f"  [!] Solstice events: {e}")
+        print(f"  [!] {venue_name} events: {e}")
         return []
 
     soup = BeautifulSoup(r.text, "lxml")
@@ -347,22 +346,46 @@ def scrape_solstice_events() -> list[dict]:
         href = link["href"]
         if not href.startswith("http"):
             href = urljoin(url, href)
+
         date_span = link.find("span", class_="date")
-        date_raw = " ".join(date_span.get_text().split()) if date_span else ""
         p = link.find("p")
-        desc = p.get_text(strip=True)[:250] if p else ""
+        p_text = " ".join(p.get_text().split())[:300] if p else ""
+
+        if date_span:
+            # Solstice style: dedicated date span
+            date_raw = " ".join(date_span.get_text().split())
+            desc = p_text[:250]
+        else:
+            # Swift style: date embedded in paragraph alongside description
+            date_raw = p_text          # Claude will extract the date from this
+            desc = p_text[:250]
+
         events.append({
             "title": title,
             "date_raw": date_raw,
-            "venue": "Solstice Arts Centre",
-            "location": "Navan, Co. Meath",
+            "venue": venue_name,
+            "location": location,
             "url": href,
             "description": desc,
-            "source": "Solstice Arts Centre",
+            "source": venue_name,
         })
 
-    print(f"  [ok] Solstice Arts Centre: {len(events)} events found")
+    print(f"  [ok] {venue_name}: {len(events)} events found")
     return events[:25]
+
+
+def scrape_solstice_events() -> list[dict]:
+    return _scrape_solstice_style(
+        "https://solsticeartscentre.ie/whats-on/",
+        "Solstice Arts Centre", "Navan, Co. Meath"
+    )
+
+
+def scrape_swift_events() -> list[dict]:
+    return _scrape_solstice_style(
+        "https://swiftculturalcentre.ie/whats-on/",
+        "Swift Cultural Centre", "Trim, Co. Meath"
+    )
 
 
 def scrape_eventbrite_events() -> list[dict]:
@@ -421,6 +444,7 @@ def fetch_all_events() -> list[dict]:
     print("Fetching events...")
     events = []
     events.extend(scrape_solstice_events())
+    events.extend(scrape_swift_events())
     events.extend(scrape_eventbrite_events())
     print(f"  Total raw events: {len(events)}\n")
     return events
@@ -433,16 +457,27 @@ covering County Meath, Ireland. The newsletter is delivered at 7am each morning.
 
 Your reader is a general local audience — residents, business owners, commuters, and community members.
 
+EDITORIAL TONE — this is a community newsletter, not a crime digest. Lead with what makes
+Meath a good place to live, work, and belong. The tone should be warm, curious, and proud
+of the county.
+
 Content filter:
-INCLUDE: local news, planning applications and decisions, council announcements, business openings
-  and closures, jobs, community events, local sport, crime (court reports), infrastructure,
-  transport, schools, health services, local politics, notable appointments.
-SKIP: national news with no Meath angle, celebrity gossip, clickbait, sponsored content,
-  generic lifestyle pieces, obituaries.
+PRIORITISE: community achievements and awards, business openings and local enterprise,
+  planning decisions that improve the county, arts and culture, sport and local clubs,
+  schools and education, health services, local appointments and promotions, infrastructure
+  improvements, Meath people doing well (in any field — sport, music, business, public life).
+INCLUDE (selectively): planning applications, council politics, transport news.
+INCLUDE SPARINGLY: crime and court reports — only when the story has genuine ongoing
+  public interest (e.g. a significant verdict, a safety issue). Routine district court
+  lists, minor road incidents, and overnight crime reports should be skipped in favour
+  of more constructive stories unless there is nothing else.
+SKIP: national news with no clear Meath angle, celebrity gossip, clickbait, sponsored
+  content, generic lifestyle pieces, obituaries, stories that are purely distressing
+  with no actionable local angle.
 
 SOURCE DIVERSITY: No more than 3 stories from any single source. If Meath Chronicle
-dominates the candidate pool, be selective — prefer Chronicle stories that cover
-events not already reported by other sources, and prioritise variety.
+dominates the candidate pool, be selective — prefer stories that cover events not
+already reported by other sources, and prioritise variety.
 
 KEY STORY FLAG: Mark a story as key_story=true only if it describes something with
 ongoing practical importance that residents will still need to know at 7am tomorrow —
@@ -710,7 +745,8 @@ def build_events_section_html(events: list[dict]) -> str:
 
 
 def build_html(stories: list[dict], date_str: str, weather: list[dict],
-               events: list[dict] | None = None) -> str:
+               events: list[dict] | None = None,
+               onthisday: dict | None = None) -> str:
     today = datetime.date.fromisoformat(date_str)
     try:
         day_long = today.strftime("%A, %B %-d, %Y")
@@ -774,7 +810,8 @@ def build_html(stories: list[dict], date_str: str, weather: list[dict],
     </div>
   </article>"""
 
-    events_html = build_events_section_html(events or [])
+    events_html    = build_events_section_html(events or [])
+    onthisday_html = build_onthisday_html(onthisday)
 
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -1053,6 +1090,34 @@ body {{ font-family: var(--sans); background: var(--cream); color: var(--ink); -
 }}
 .card-link:hover {{ opacity: 0.7; }}
 
+/* ── On this day ── */
+.onthisday-bar {{
+  max-width: 860px;
+  margin: 0 auto 0.5rem;
+  padding: 0.65rem 1.5rem;
+  background: var(--green);
+  color: rgba(255,255,255,0.92);
+  display: flex;
+  gap: 1rem;
+  align-items: baseline;
+  flex-wrap: wrap;
+  font-size: 0.82rem;
+}}
+.onthisday-label {{
+  font-size: 0.64rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  white-space: nowrap;
+  flex-shrink: 0;
+}}
+.onthisday-text {{
+  font-family: var(--serif);
+  font-style: italic;
+  line-height: 1.4;
+}}
+
 /* ── Footer ── */
 .footer {{
   text-align: center;
@@ -1080,6 +1145,8 @@ body {{ font-family: var(--sans); background: var(--cream); color: var(--ink); -
 
 {weather_html}
 
+{events_html}
+
 <main class="stories">
   <div class="section-header">
     <span class="section-heading">News</span>
@@ -1088,7 +1155,7 @@ body {{ font-family: var(--sans); background: var(--cream); color: var(--ink); -
 {cards_html}
 </main>
 
-{events_html}
+{onthisday_html}
 
 <footer class="footer">
   <p>Meath Morning Edition &nbsp;·&nbsp; {date_str}</p>
@@ -1169,6 +1236,132 @@ def build_copypaste_html(stories: list[dict], date_str: str, weather: list[dict]
     lines.append('<p style="font-size:11px;color:#aaa;font-family:sans-serif;">Sources: Meath Live · Meath Chronicle · Google Alert</p>')
 
     return "\n".join(lines)
+
+
+# ── On This Day ───────────────────────────────────────────────────────────────
+
+MEATH_HISTORY_FILE = Path(__file__).parent / "meath_history.json"
+
+ON_THIS_DAY_PROMPT = """Today is {day_long}.
+
+You are writing a short "On this day" note for Meath Morning Edition, a local newsletter for County Meath, Ireland.
+
+{meath_section}Wikipedia events/births/deaths for this date:
+{wiki_text}
+
+Pick the single most interesting item for a Meath audience. Preference order:
+1. Anything from the LOCAL MEATH HISTORY list above (always prefer these)
+2. Anything connected to Ireland, Irish history, or Irish people
+3. A globally significant event that any curious reader would appreciate
+
+Return a single JSON object:
+{{"year": 1690, "text": "One punchy sentence (max 25 words).", "category": "event"|"birth"|"death"}}
+
+If absolutely nothing worthwhile exists for today, return: {{"skip": true}}
+Return ONLY the JSON object — no markdown, no commentary."""
+
+
+def _fetch_wikipedia_onthisday(month: int, day: int) -> dict:
+    try:
+        url = (f"https://en.wikipedia.org/api/rest_v1/feed/onthisday/all"
+               f"/{month:02d}/{day:02d}")
+        r = requests.get(url, headers={"User-Agent": "MeathMorningEdition/1.0"},
+                         timeout=15)
+        r.raise_for_status()
+        return r.json()
+    except Exception as e:
+        print(f"  [!] Wikipedia onthisday: {e}")
+        return {}
+
+
+def _load_meath_history(date: datetime.date) -> list[dict]:
+    """Load local Meath-specific history entries for this month/day.
+
+    Supports two formats:
+      Array:  [{"date": "MM-DD", "year": 1690, "event": "...", "location": "..."}]
+      Dict:   {"MM-DD": [{"year": 1690, "text": "..."}]}
+    """
+    if not MEATH_HISTORY_FILE.exists():
+        return []
+    try:
+        data = json.loads(MEATH_HISTORY_FILE.read_text(encoding="utf-8"))
+        key = f"{date.month:02d}-{date.day:02d}"
+        if isinstance(data, list):
+            return [item for item in data if item.get("date") == key]
+        return data.get(key, [])
+    except Exception:
+        return []
+
+
+def get_on_this_day(date: datetime.date) -> dict | None:
+    """Return a curated 'on this day' item, or None if nothing suitable."""
+    wiki   = _fetch_wikipedia_onthisday(date.month, date.day)
+    meath  = _load_meath_history(date)
+
+    # Build text for Claude
+    meath_section = ""
+    if meath:
+        lines = "\n".join(
+            f"  - {m.get('year','')}: {m.get('event', m.get('text',''))}"
+            + (f" ({m['location']})" if m.get('location') else "")
+            for m in meath
+        )
+        meath_section = f"LOCAL MEATH HISTORY for this date (highest priority):\n{lines}\n\n"
+
+    wiki_lines = []
+    for category in ("selected", "events", "births", "deaths"):
+        for item in wiki.get(category, [])[:8]:
+            year = item.get("year", "?")
+            text = item.get("text", "")
+            if text:
+                wiki_lines.append(f"[{category.upper()} {year}] {text[:120]}")
+
+    if not meath_section and not wiki_lines:
+        return None
+
+    try:
+        day_long = date.strftime("%A, %B %-d, %Y")
+    except ValueError:
+        day_long = date.strftime("%A, %B %d, %Y").replace(" 0", " ")
+
+    api_key = os.environ.get("ANTHROPIC_API_KEY")
+    if not api_key:
+        return None
+    try:
+        client = anthropic.Anthropic(api_key=api_key)
+        response = client.messages.create(
+            model="claude-opus-4-6",
+            max_tokens=300,
+            messages=[{"role": "user", "content": ON_THIS_DAY_PROMPT.format(
+                day_long=day_long,
+                meath_section=meath_section,
+                wiki_text="\n".join(wiki_lines),
+            )}],
+        )
+        text = next((b.text for b in response.content if b.type == "text"), "")
+        text = re.sub(r"```(?:json)?\s*", "", text).strip().rstrip("`").strip()
+        result = json.loads(text)
+        if result.get("skip"):
+            print("  [ok] On this day: nothing suitable today")
+            return None
+        print(f"  [ok] On this day: {result.get('year')} — {result.get('text','')[:70]}")
+        return result
+    except Exception as e:
+        print(f"  [!] On this day: {e}")
+        return None
+
+
+def build_onthisday_html(item: dict | None) -> str:
+    if not item:
+        return ""
+    year     = item.get("year", "")
+    text     = item.get("text", "")
+    category = item.get("category", "event")
+    label    = {"birth": "Born on this day", "death": "Died on this day"}.get(category, "On this day")
+    return f"""<div class="onthisday-bar">
+  <span class="onthisday-label">{label} &middot; {year}</span>
+  <span class="onthisday-text">{text}</span>
+</div>"""
 
 
 # ── RSS feed ──────────────────────────────────────────────────────────────────
@@ -1292,7 +1485,8 @@ def publish_to_github(html: str, date_str: str, rss_path: Path | None = None) ->
 
 # ── Email delivery ────────────────────────────────────────────────────────────
 
-def send_email(date_str: str, pages_url: str | None, output_path: Path):
+def send_email(date_str: str, pages_url: str | None, output_path: Path,
+               stories: list[dict] | None = None, events: list[dict] | None = None):
     gmail_user = os.environ.get("GMAIL_ADDRESS")
     gmail_pass = os.environ.get("GMAIL_APP_PASSWORD")
     if not gmail_user or not gmail_pass:
@@ -1305,21 +1499,60 @@ def send_email(date_str: str, pages_url: str | None, output_path: Path):
     except ValueError:
         day_long = today.strftime("%A, %B %d, %Y").replace(" 0", " ")
 
+    # Build "Inside today" teaser bullets
+    # Prioritise key stories, then top-ranked stories, then a first event
+    teasers = []
+    if stories:
+        key = [s for s in stories if s.get("key_story")]
+        others = [s for s in stories if not s.get("key_story")]
+        picks = (key + others)[:3]
+        for s in picks:
+            teasers.append(s.get("title", ""))
+    if events and len(teasers) < 4:
+        ev = events[0]
+        ev_title = ev.get("title", "")
+        ev_date  = ev.get("date", "")
+        when = ""
+        if ev_date:
+            try:
+                when = _fmt_day(datetime.date.fromisoformat(ev_date)) + ": "
+            except ValueError:
+                pass
+        teasers.append(f"{when}{ev_title}")
+
+    teaser_html = ""
+    if teasers:
+        bullets = "".join(
+            f'<li style="margin:0.4rem 0;font-size:0.95rem;color:#333;">{t}</li>'
+            for t in teasers
+        )
+        teaser_html = f"""
+      <p style="font-size:0.75rem;font-family:sans-serif;font-weight:700;
+                letter-spacing:0.12em;text-transform:uppercase;color:#1A4731;
+                margin:1.5rem 0 0.5rem;">Inside today</p>
+      <ul style="margin:0 0 1.5rem;padding-left:1.25rem;font-family:Georgia,serif;">
+        {bullets}
+      </ul>"""
+
     link = pages_url or f"file:///{output_path.as_posix()}"
     body_html = f"""
     <div style="font-family:Georgia,serif;max-width:600px;margin:0 auto;padding:2rem;">
-      <p style="font-size:0.8rem;color:#888;letter-spacing:0.1em;text-transform:uppercase;">
+      <p style="font-size:0.8rem;color:#888;letter-spacing:0.1em;text-transform:uppercase;
+                font-family:sans-serif;">
         Meath Morning Edition
       </p>
-      <h1 style="font-size:2rem;margin:0.5rem 0 1rem;color:#1A4731;">Your Meath briefing is ready</h1>
-      <p style="font-size:1rem;color:#555;">{day_long}</p>
+      <h1 style="font-size:2rem;margin:0.5rem 0 0.25rem;color:#1A4731;">
+        Your Meath briefing is ready
+      </h1>
+      <p style="font-size:1rem;color:#888;margin:0 0 0.5rem;font-family:sans-serif;">{day_long}</p>
+      {teaser_html}
       <a href="{link}"
-         style="display:inline-block;margin:1.5rem 0;padding:0.85rem 2rem;
+         style="display:inline-block;margin:0.5rem 0 1.5rem;padding:0.85rem 2rem;
                 background:#1A4731;color:#fff;text-decoration:none;
                 font-family:sans-serif;font-size:0.9rem;letter-spacing:0.05em;">
         Read Meath Morning Edition &rarr;
       </a>
-      <p style="font-size:0.8rem;color:#aaa;">
+      <p style="font-size:0.8rem;color:#aaa;font-family:sans-serif;">
         Curated from Meath Live, Meath Chronicle &amp; Google Alert.
       </p>
     </div>"""
@@ -1379,7 +1612,9 @@ def main():
     raw_events = fetch_all_events()
     events = curate_events_with_claude(raw_events)
 
-    html          = build_html(stories, date_str, weather, events)
+    onthisday = get_on_this_day(datetime.date.today())
+
+    html          = build_html(stories, date_str, weather, events, onthisday)
     copypaste_html = build_copypaste_html(stories, date_str, weather, events)
 
     output_path.write_text(html, encoding="utf-8")
@@ -1395,7 +1630,7 @@ def main():
         # Push RSS after page is live
         pass  # already pushed inside publish_to_github
 
-    send_email(date_str, pages_url, output_path)
+    send_email(date_str, pages_url, output_path, stories=stories, events=events)
 
     if pages_url:
         print(f"   URL:  {pages_url}")

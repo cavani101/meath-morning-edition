@@ -31,9 +31,32 @@
 - [ ] **Events — Meetup.com**
   - Meetup increasingly requires login for search results; skip for now
   - Revisit if a public Meath group URL can be accessed without auth
-  
-- [ ] **Fix Copypaste - what's on still appearing on top**
-  - Change copypaste export so that what's on content appears at the bottom like the web version
+
+- [ ] **Notable Meath People — dedicated session needed**
+  - First draft list at `meath_people.json` (30 names across sport, music, comedy, politics, literature)
+  - Needs community review + expansion to 50+ names; flag `"verify": true` entries especially
+  - Implementation plan: dedicated Google Alert (`"CMAT" OR "Tommy Tiernan" OR ...` from the JSON)
+    feeding into a separate Gmail label; script fetches it alongside the main Meath alert
+  - Claude curation prompt gets a hint: "if any article features a person from MEATH_PEOPLE,
+    treat this as a strong positive signal even if the article doesn't mention Meath"
+  - Needs dedicated session to scope fully end-to-end
+
+- [ ] **Community Notice Board — dedicated session needed**
+  - Intake: Google Form → Google Sheet (reader submits a notice)
+  - Moderation: "approved" column in Sheet; script only surfaces approved items
+  - Processing: Claude categorises and writes a short summary line
+  - Display: separate "Community Notices" section at bottom of newsletter
+  - Needs dedicated session to scope storage, moderation workflow, and spam prevention
+
+- [ ] **Planning Decisions weekly digest (Friday)**
+  - URL investigation done: Meath Council site has SSL cert issues; ePlanning.ie requires
+    form submission (not directly scrapeable via requests)
+  - Weekly decisions listed at (needs SSL bypass or alternative):
+    https://www.meath.ie/council/council-services/planning-and-building/planning-permission/view-or-search-planning-applications/weekly-planning-permissions-list
+  - Fallback: extend Google Alert to catch "Meath planning" decisions via news sources
+  - Friday-only section; Claude selects 3–5 notable decisions (commercial, large residential,
+    refusals) from the week's list
+  - Needs further investigation of scraping approach before implementation
 
 - [ ] **Meath Chronicle — improve scraping**
   - Currently scraping HTML; consider RSS builder (Feedity/PolitePol ~$5-10/mo)
@@ -59,6 +82,17 @@
   - Feed into events curation so they surface in the right week each year
 
 ## Nice to Have
+
+- [ ] **"On this day in Meath" — local history file**
+  - Feature is live and pulls from Wikipedia (Irish/global filter via Claude)
+  - User building `meath_history.json` separately — upload to repo root when ready
+  - Format: `{"MM-DD": [{"year": 1690, "text": "Battle of the Boyne fought..."}]}`
+  - Meath entries always take priority over Wikipedia results
+
+- [ ] **"On this day" — tone refinement**
+  - Currently picks "most interesting" event globally when nothing Irish exists
+  - Consider adding a minimum relevance bar (Irish/European only, skip US/Asia events)
+  - Review after a week of real editions to calibrate
 
 - [ ] **Events — time display**
   - Currently omitted due to inconsistency across sources (Solstice has times,
@@ -93,3 +127,8 @@
 - [x] Multi-town weather bar — Navan, Trim, Kells, Oldcastle, Enfield, Dunshaughlin
 - [x] Events section — Solstice Arts Centre + Eventbrite, curated by Claude
 - [x] Events — section headings (Weather / News / What's On) consistent across newsletter
+- [x] What's On moved above News section
+- [x] Editorial tone — good news bias, hard news deprioritised in Claude prompt
+- [x] Email teasers — "Inside today" bullet points from top stories + first event
+- [x] On this day — Wikipedia API + local meath_history.json hook (file to be uploaded)
+- [x] Notable Meath People — first draft list at meath_people.json (30 names, needs expansion)
