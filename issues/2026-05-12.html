@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meath Morning Edition — 2026-05-12</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --green: #1A4731;
+  --gold:  #B8860B;
+  --cream: #FAF7F0;
+  --ink:   #1A1A1A;
+  --mid:   #555;
+  --light: #888;
+  --sans:  'Inter', system-ui, sans-serif;
+  --serif: 'Fraunces', Georgia, serif;
+}
+body { font-family: var(--sans); background: var(--cream); color: var(--ink); -webkit-font-smoothing: antialiased; }
+
+/* ── Masthead ── */
+.masthead {
+  background: var(--green);
+  color: #fff;
+  padding: 2.5rem 2rem 2rem;
+  text-align: center;
+  border-bottom: 4px solid var(--gold);
+}
+.masthead-kicker {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.75rem;
+}
+.masthead-title {
+  font-family: var(--serif);
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-weight: 900;
+  line-height: 1;
+  color: #fff;
+  margin-bottom: 0.3em;
+}
+.masthead-title em {
+  font-style: italic;
+  color: var(--gold);
+}
+.masthead-date {
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 1rem;
+}
+.key_story-count {
+  display: inline-block;
+  background: #C0392B;
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.3em 0.9em;
+  border-radius: 2px;
+  margin-bottom: 0.5rem;
+}
+
+/* ── Shared section heading ── */
+.section-header {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+  padding-top: 1.5rem;
+  border-top: 2px solid var(--green);
+}
+.section-heading {
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--green);
+}
+.section-sub {
+  font-size: 0.68rem;
+  color: var(--light);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* ── Weather bar ── */
+.weather-bar {
+  background: #fff;
+  border-bottom: 1px solid #e0dbd0;
+  padding: 0.5rem 2rem 0.85rem;
+}
+.weather-bar .section-header {
+  padding-top: 0.4rem;
+  border-top: none;
+  margin-bottom: 0.5rem;
+}
+.weather-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.4rem 1.25rem;
+}
+.weather-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.05rem;
+  font-size: 0.78rem;
+}
+.weather-place { font-weight: 600; color: var(--green); font-size: 0.78rem; }
+.weather-desc  { color: var(--mid); font-size: 0.73rem; }
+.weather-temps { font-weight: 500; }
+.weather-rain  { color: #2980b9; font-size: 0.73rem; }
+
+/* ── Events section ── */
+.events-section {
+  max-width: 860px;
+  margin: 0 auto 2rem;
+  padding: 0 1.5rem;
+}
+.events-section .section-header {
+  padding-top: 0.4rem;
+  border-top: none;
+}
+.events-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1rem;
+}
+.event-card {
+  background: #fff;
+  border: 1px solid #e0dbd0;
+  border-top: 3px solid var(--green);
+  padding: 0.9rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-height: 180px;
+}
+.event-when {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--green);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.2rem;
+}
+.event-title {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.25;
+}
+.event-title a { color: var(--ink); text-decoration: none; }
+.event-title a:hover { color: var(--green); }
+.event-venue {
+  font-size: 0.8rem;
+  color: var(--light);
+}
+.event-desc {
+  font-size: 0.88rem;
+  color: var(--mid);
+  line-height: 1.55;
+  margin-top: 0.25rem;
+  flex: 1;
+}
+.event-link {
+  display: inline-block;
+  margin-top: 0.75rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--green);
+  text-decoration: none;
+  border-bottom: 1px solid var(--green);
+  padding-bottom: 0.05em;
+  align-self: flex-start;
+}
+.event-link:hover { opacity: 0.7; }
+
+/* ── Story cards ── */
+.stories {
+  max-width: 860px;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+}
+.story-card {
+  display: flex;
+  gap: 1.5rem;
+  padding: 1.75rem 0;
+  border-bottom: 1px solid #e0dbd0;
+  align-items: flex-start;
+}
+.card-alt { background: transparent; }
+.card-rank {
+  font-family: var(--serif);
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: rgba(26,71,49,0.12);
+  min-width: 3rem;
+  text-align: right;
+  line-height: 1;
+  padding-top: 0.15em;
+  flex-shrink: 0;
+}
+.card-body { flex: 1; }
+.card-meta {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
+}
+.card-category {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  background: var(--green);
+  color: #fff;
+  padding: 0.25em 0.7em;
+  border-radius: 2px;
+}
+.card-source {
+  font-size: 0.72rem;
+  color: var(--light);
+  font-weight: 500;
+}
+.card-title {
+  font-family: var(--serif);
+  font-size: clamp(1.2rem, 3vw, 1.6rem);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 0.6rem;
+}
+.card-title a {
+  color: var(--ink);
+  text-decoration: none;
+}
+.card-title a:hover { color: var(--green); }
+.key_story-badge {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  border-left: 3px solid #C0392B;
+  padding: 0.4rem 0.8rem;
+  margin-bottom: 0.75rem;
+  background: #fdf0ee;
+}
+.key_story-label {
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #C0392B;
+}
+.key_story-reason {
+  font-size: 0.8rem;
+  color: #C0392B;
+  line-height: 1.4;
+}
+.card-teaser {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--mid);
+  margin-bottom: 0.75rem;
+}
+.card-link {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--green);
+  text-decoration: none;
+  border-bottom: 1px solid var(--green);
+  padding-bottom: 0.05em;
+}
+.card-link:hover { opacity: 0.7; }
+
+/* ── On this day ── */
+.onthisday-bar {
+  max-width: 860px;
+  margin: 2rem auto 0.5rem;
+  padding: 2rem 2.5rem;
+  background: var(--green);
+  color: rgba(255,255,255,0.92);
+  text-align: center;
+}
+.onthisday-label {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.75rem;
+}
+.onthisday-text {
+  display: block;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+
+/* ── Footer ── */
+.footer {
+  text-align: center;
+  padding: 2.5rem 1rem;
+  font-size: 0.75rem;
+  color: var(--light);
+  border-top: 1px solid #e0dbd0;
+  margin-top: 1rem;
+}
+
+@media (max-width: 560px) {
+  .card-rank { display: none; }
+  .story-card { padding: 1.25rem 0; }
+}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-kicker">County Meath &nbsp;·&nbsp; Local Intelligence</div>
+  <h1 class="masthead-title">Meath <em>Morning</em><br>Edition</h1>
+  <div class="masthead-date">Tuesday, May 12, 2026</div>
+  <span class="key_story-count">&#9733; 3 key stories today</span>
+</header>
+
+<div class="weather-bar">
+  <div class="section-header">
+    <span class="section-heading">Weather</span>
+    <span class="section-sub">Today &middot; Co. Meath</span>
+  </div>
+  <div class="weather-grid">
+    <div class="weather-item">
+      <span class="weather-place">Navan</span>
+      <span class="weather-desc">Light drizzle</span>
+      <span class="weather-temps">7–15°C</span>
+      <span class="weather-rain">0.1mm</span>
+    </div>
+    <div class="weather-item">
+      <span class="weather-place">Trim</span>
+      <span class="weather-desc">Light drizzle</span>
+      <span class="weather-temps">6–14°C</span>
+      <span class="weather-rain">0.1mm</span>
+    </div>
+    <div class="weather-item">
+      <span class="weather-place">Kells</span>
+      <span class="weather-desc">Light drizzle</span>
+      <span class="weather-temps">7–14°C</span>
+      <span class="weather-rain">0.1mm</span>
+    </div>
+    <div class="weather-item">
+      <span class="weather-place">Oldcastle</span>
+      <span class="weather-desc">Light drizzle</span>
+      <span class="weather-temps">7–13°C</span>
+      <span class="weather-rain">0.1mm</span>
+    </div>
+    <div class="weather-item">
+      <span class="weather-place">Enfield</span>
+      <span class="weather-desc">Light drizzle</span>
+      <span class="weather-temps">5–14°C</span>
+      <span class="weather-rain">0.1mm</span>
+    </div>
+    <div class="weather-item">
+      <span class="weather-place">Dunshaughlin</span>
+      <span class="weather-desc">Overcast</span>
+      <span class="weather-temps">4–14°C</span>
+      
+    </div>
+  </div>
+</div>
+
+<section class="events-section">
+  <div class="section-header">
+    <span class="section-heading">What&#8217;s On</span>
+    <span class="section-sub">Next 3 days &middot; Co. Meath</span>
+  </div>
+  <div class="events-list">
+  <div class="event-card">
+    <div class="event-when">Tomorrow</div>
+    <div class="event-title"><a href="https://solsticeartscentre.ie/event/hamnet" target="_blank" rel="noopener">Hamnet</a></div>
+    <div class="event-venue">Solstice Arts Centre, Navan, Co. Meath</div>
+    <div class="event-desc">A screening of Chloé Zhao's 2025 film Hamnet (126 mins, Cert 12A). Individual tickets €8 or available as part of a season bundle.</div>
+    <a class="event-link" href="https://solsticeartscentre.ie/event/hamnet" target="_blank" rel="noopener">See more &rarr;</a>
+  </div>
+  <div class="event-card">
+    <div class="event-when">Tomorrow</div>
+    <div class="event-title"><a href="https://solsticeartscentre.ie/event/silver-swans-ballet-classes-for-the-over-55s" target="_blank" rel="noopener">Silver Swans Ballet Classes for the Over 55's</a></div>
+    <div class="event-venue">Solstice Arts Centre, Navan, Co. Meath</div>
+    <div class="event-desc">A new six-week series of ballet classes specially designed for older learners, helping improve mobility and wellbeing.</div>
+    <a class="event-link" href="https://solsticeartscentre.ie/event/silver-swans-ballet-classes-for-the-over-55s" target="_blank" rel="noopener">See more &rarr;</a>
+  </div>
+  <div class="event-card">
+    <div class="event-when">Tomorrow</div>
+    <div class="event-title"><a href="https://www.eventbrite.ie/e/the-leon-stax-equation-acoustic-set-and-listening-party-tickets-1988482436496" target="_blank" rel="noopener">The Leon Stax Equation: Acoustic Set and Listening Party</a></div>
+    <div class="event-venue">Swift Cultural Centre, Trim, Co. Meath</div>
+    <div class="event-desc">An intimate acoustic set and listening party with The Leon Stax Equation at Swift Cultural Centre in Trim.</div>
+    <a class="event-link" href="https://www.eventbrite.ie/e/the-leon-stax-equation-acoustic-set-and-listening-party-tickets-1988482436496" target="_blank" rel="noopener">See more &rarr;</a>
+  </div>
+  <div class="event-card">
+    <div class="event-when">Friday, May 15</div>
+    <div class="event-title"><a href="https://solsticeartscentre.ie/event/the-highwaymen-reincarnated" target="_blank" rel="noopener">The Highwaymen Reincarnated</a></div>
+    <div class="event-venue">Solstice Arts Centre, Navan, Co. Meath</div>
+    <div class="event-desc">A powerful tribute to country legends Johnny Cash, Waylon Jennings, Willie Nelson and Kris Kristofferson.</div>
+    <a class="event-link" href="https://solsticeartscentre.ie/event/the-highwaymen-reincarnated" target="_blank" rel="noopener">See more &rarr;</a>
+  </div>
+  </div>
+</section>
+
+<main class="stories">
+  <div class="section-header">
+    <span class="section-heading">Latest Local News</span>
+  </div>
+
+  <article class="story-card ">
+    <div class="card-rank">01</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Local News</span>
+        <span class="card-source">Meath Chronicle</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://www.meathchronicle.ie/2026/05/11/dunshaughlin-parents-to-take-their-campaign-for-additional-gaelscoil-places-to-the-dail/" target="_blank" rel="noopener">Dunshaughlin Parents Take Campaign for More Gaelscoil Places to the Dáil</a>
+      </h2>
+      
+    <div class="key_story-badge">
+      <span class="key_story-label">&#9733; Key Story</span>
+      <span class="key_story-reason">Ongoing education capacity issue affecting Dunshaughlin families with potential policy implications.</span>
+    </div>
+      <p class="card-teaser">Parents in Dunshaughlin are escalating their campaign for additional places at the local gaelscoil, bringing the issue directly to the Dáil. The push highlights growing demand for Irish-medium education in south Meath and the pressure on school places in the expanding commuter town.</p>
+      <a class="card-link" href="https://www.meathchronicle.ie/2026/05/11/dunshaughlin-parents-to-take-their-campaign-for-additional-gaelscoil-places-to-the-dail/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card card-alt">
+    <div class="card-rank">02</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Local News</span>
+        <span class="card-source">Meath Chronicle</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://www.meathchronicle.ie/2026/05/11/pickets-on-navan-ambulance-hq-tomorrow/" target="_blank" rel="noopener">Pickets Planned at Navan Ambulance HQ Tomorrow</a>
+      </h2>
+      
+    <div class="key_story-badge">
+      <span class="key_story-label">&#9733; Key Story</span>
+      <span class="key_story-reason">Imminent industrial action at ambulance HQ with potential impact on emergency services in Meath.</span>
+    </div>
+      <p class="card-teaser">Industrial action is set to hit the National Ambulance Service headquarters in Navan, with pickets planned for tomorrow. The dispute could affect ambulance operations in the county and is one for residents to be aware of.</p>
+      <a class="card-link" href="https://www.meathchronicle.ie/2026/05/11/pickets-on-navan-ambulance-hq-tomorrow/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card ">
+    <div class="card-rank">03</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Community & Events</span>
+        <span class="card-source">Meath Chronicle</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://www.meathchronicle.ie/2026/05/11/free-heart-health-checks-in-meath-this-week/" target="_blank" rel="noopener">Free Heart Health Checks Available in Meath This Week</a>
+      </h2>
+      
+    <div class="key_story-badge">
+      <span class="key_story-label">&#9733; Key Story</span>
+      <span class="key_story-reason">Time-sensitive free health service available to Meath residents this week.</span>
+    </div>
+      <p class="card-teaser">Free heart health screenings are being offered in County Meath this week. The checks are a practical opportunity for residents to get an early assessment of their cardiovascular health at no cost.</p>
+      <a class="card-link" href="https://www.meathchronicle.ie/2026/05/11/free-heart-health-checks-in-meath-this-week/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card card-alt">
+    <div class="card-rank">04</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Sport</span>
+        <span class="card-source">Meath Chronicle</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://www.meathchronicle.ie/2026/05/11/sean-cox-presents-st-peters-dunboyne-gaa-jersey-to-mo-salah/" target="_blank" rel="noopener">Seán Cox Presents Dunboyne GAA Jersey to Mo Salah</a>
+      </h2>
+      
+      <p class="card-teaser">Dunboyne's Seán Cox, who suffered life-changing brain injuries in an attack before a Liverpool match in 2018, has presented a St Peter's Dunboyne GAA jersey to Liverpool star Mo Salah. The heartwarming moment is a proud one for the Meath club and the Cox family.</p>
+      <a class="card-link" href="https://www.meathchronicle.ie/2026/05/11/sean-cox-presents-st-peters-dunboyne-gaa-jersey-to-mo-salah/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card ">
+    <div class="card-rank">05</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Council & Politics</span>
+        <span class="card-source">Meath Live</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://meathlive.net/2026/05/11/byrne-bangs-the-drum-for-navy-base-at-drogheda/" target="_blank" rel="noopener">Thomas Byrne Makes Case for Naval Base at Drogheda</a>
+      </h2>
+      
+      <p class="card-teaser">Minister of State Thomas Byrne has called for a new naval base to be located at Drogheda, speaking at the inaugural Summer School organised by Drogheda Civic Trust. The proposal could have significant implications for jobs and development in the wider Meath–Louth border area.</p>
+      <a class="card-link" href="https://meathlive.net/2026/05/11/byrne-bangs-the-drum-for-navy-base-at-drogheda/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card card-alt">
+    <div class="card-rank">06</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Community & Events</span>
+        <span class="card-source">Meath Live</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://meathlive.net/2026/05/11/meath-couple-elaine-dixon-and-chris-rooney-join-tik-tok-star-noone-on-humanitarian-mission/" target="_blank" rel="noopener">Dunshaughlin Couple Join Garron Noone on Aid Convoy to Uganda</a>
+      </h2>
+      
+      <p class="card-teaser">Chris Rooney and Elaine Dixon from Dunshaughlin are joining TikTok personality Garron Noone and over 20 volunteers on a humanitarian mission to deliver ambulances from Ireland to Uganda. The convoy aims to support healthcare infrastructure in the east African country.</p>
+      <a class="card-link" href="https://meathlive.net/2026/05/11/meath-couple-elaine-dixon-and-chris-rooney-join-tik-tok-star-noone-on-humanitarian-mission/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card ">
+    <div class="card-rank">07</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Local News</span>
+        <span class="card-source">Meath Live</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://meathlive.net/2026/05/11/success-of-new-drugs-court-highlighted-by-judge/" target="_blank" rel="noopener">Judge Highlights Success of New Drugs Court in Diverting Young People</a>
+      </h2>
+      
+      <p class="card-teaser">Judge Eirinn McKiernan has praised the newly established Drugs Court for its success in diverting young people away from drug abuse and criminality. The judge highlighted the progress of participants as she introduced two graduates of the programme.</p>
+      <a class="card-link" href="https://meathlive.net/2026/05/11/success-of-new-drugs-court-highlighted-by-judge/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card card-alt">
+    <div class="card-rank">08</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Business & Jobs</span>
+        <span class="card-source">Meath Chronicle</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://www.meathchronicle.ie/2026/05/11/an-garda-siochana-launch-a-new-recruitment-drive/" target="_blank" rel="noopener">An Garda Síochána Launch New Recruitment Drive</a>
+      </h2>
+      
+      <p class="card-teaser">An Garda Síochána has opened a new recruitment drive, offering an opportunity for Meath residents considering a career in policing. Details of how to apply and eligibility criteria are expected to be available through the Garda website.</p>
+      <a class="card-link" href="https://www.meathchronicle.ie/2026/05/11/an-garda-siochana-launch-a-new-recruitment-drive/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+</main>
+
+<div class="onthisday-bar">
+  <span class="onthisday-label">On this day &middot; 2022</span>
+  <span class="onthisday-text">The Event Horizon Telescope released the first-ever image of Sagittarius A*, the supermassive black hole at the centre of our galaxy.</span>
+</div>
+
+<footer class="footer">
+  <p>Meath Morning Edition &nbsp;·&nbsp; May 12th, 2026</p>
+</footer>
+
+</body>
+</html>
