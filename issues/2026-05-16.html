@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meath Morning Edition — 2026-05-16</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --green: #1A4731;
+  --gold:  #B8860B;
+  --cream: #FAF7F0;
+  --ink:   #1A1A1A;
+  --mid:   #555;
+  --light: #888;
+  --sans:  'Inter', system-ui, sans-serif;
+  --serif: 'Fraunces', Georgia, serif;
+}
+body { font-family: var(--sans); background: var(--cream); color: var(--ink); -webkit-font-smoothing: antialiased; }
+
+/* ── Masthead ── */
+.masthead {
+  background: var(--green);
+  color: #fff;
+  padding: 2.5rem 2rem 2rem;
+  text-align: center;
+  border-bottom: 4px solid var(--gold);
+}
+.masthead-kicker {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.75rem;
+}
+.masthead-title {
+  font-family: var(--serif);
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-weight: 900;
+  line-height: 1;
+  color: #fff;
+  margin-bottom: 0.3em;
+}
+.masthead-title em {
+  font-style: italic;
+  color: var(--gold);
+}
+.masthead-date {
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 1rem;
+}
+.key_story-count {
+  display: inline-block;
+  background: #C0392B;
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.3em 0.9em;
+  border-radius: 2px;
+  margin-bottom: 0.5rem;
+}
+
+/* ── Shared section heading ── */
+.section-header {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+  padding-top: 1.5rem;
+  border-top: 2px solid var(--green);
+}
+.section-heading {
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--green);
+}
+.section-sub {
+  font-size: 0.68rem;
+  color: var(--light);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* ── Weather bar ── */
+.weather-bar {
+  background: #fff;
+  border-bottom: 1px solid #e0dbd0;
+  padding: 0.5rem 2rem 0.85rem;
+}
+.weather-bar .section-header {
+  padding-top: 0.4rem;
+  border-top: none;
+  margin-bottom: 0.5rem;
+}
+.weather-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.4rem 1.25rem;
+}
+.weather-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.05rem;
+  font-size: 0.78rem;
+}
+.weather-place { font-weight: 600; color: var(--green); font-size: 0.78rem; }
+.weather-desc  { color: var(--mid); font-size: 0.73rem; }
+.weather-temps { font-weight: 500; }
+.weather-rain  { color: #2980b9; font-size: 0.73rem; }
+
+/* ── Events section ── */
+.events-section {
+  max-width: 860px;
+  margin: 0 auto 2rem;
+  padding: 0 1.5rem;
+}
+.events-section .section-header {
+  padding-top: 0.4rem;
+  border-top: none;
+}
+.events-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1rem;
+}
+.event-card {
+  background: #fff;
+  border: 1px solid #e0dbd0;
+  border-top: 3px solid var(--green);
+  padding: 0.9rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-height: 180px;
+}
+.event-when {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--green);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.2rem;
+}
+.event-title {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.25;
+}
+.event-title a { color: var(--ink); text-decoration: none; }
+.event-title a:hover { color: var(--green); }
+.event-venue {
+  font-size: 0.8rem;
+  color: var(--light);
+}
+.event-desc {
+  font-size: 0.88rem;
+  color: var(--mid);
+  line-height: 1.55;
+  margin-top: 0.25rem;
+  flex: 1;
+}
+.event-link {
+  display: inline-block;
+  margin-top: 0.75rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--green);
+  text-decoration: none;
+  border-bottom: 1px solid var(--green);
+  padding-bottom: 0.05em;
+  align-self: flex-start;
+}
+.event-link:hover { opacity: 0.7; }
+
+/* ── Story cards ── */
+.stories {
+  max-width: 860px;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+}
+.story-card {
+  display: flex;
+  gap: 1.5rem;
+  padding: 1.75rem 0;
+  border-bottom: 1px solid #e0dbd0;
+  align-items: flex-start;
+}
+.card-alt { background: transparent; }
+.card-rank {
+  font-family: var(--serif);
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: rgba(26,71,49,0.12);
+  min-width: 3rem;
+  text-align: right;
+  line-height: 1;
+  padding-top: 0.15em;
+  flex-shrink: 0;
+}
+.card-body { flex: 1; }
+.card-meta {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
+}
+.card-category {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  background: var(--green);
+  color: #fff;
+  padding: 0.25em 0.7em;
+  border-radius: 2px;
+}
+.card-source {
+  font-size: 0.72rem;
+  color: var(--light);
+  font-weight: 500;
+}
+.card-title {
+  font-family: var(--serif);
+  font-size: clamp(1.2rem, 3vw, 1.6rem);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 0.6rem;
+}
+.card-title a {
+  color: var(--ink);
+  text-decoration: none;
+}
+.card-title a:hover { color: var(--green); }
+.key_story-badge {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  border-left: 3px solid #C0392B;
+  padding: 0.4rem 0.8rem;
+  margin-bottom: 0.75rem;
+  background: #fdf0ee;
+}
+.key_story-label {
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #C0392B;
+}
+.key_story-reason {
+  font-size: 0.8rem;
+  color: #C0392B;
+  line-height: 1.4;
+}
+.card-teaser {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--mid);
+  margin-bottom: 0.75rem;
+}
+.card-link {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--green);
+  text-decoration: none;
+  border-bottom: 1px solid var(--green);
+  padding-bottom: 0.05em;
+}
+.card-link:hover { opacity: 0.7; }
+
+/* ── On this day ── */
+.onthisday-bar {
+  max-width: 860px;
+  margin: 2rem auto 0.5rem;
+  padding: 2rem 2.5rem;
+  background: var(--green);
+  color: rgba(255,255,255,0.92);
+  text-align: center;
+}
+.onthisday-label {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.75rem;
+}
+.onthisday-text {
+  display: block;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+
+/* ── Footer ── */
+.footer {
+  text-align: center;
+  padding: 2.5rem 1rem;
+  font-size: 0.75rem;
+  color: var(--light);
+  border-top: 1px solid #e0dbd0;
+  margin-top: 1rem;
+}
+
+@media (max-width: 560px) {
+  .card-rank { display: none; }
+  .story-card { padding: 1.25rem 0; }
+}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-kicker">County Meath &nbsp;·&nbsp; Local Intelligence</div>
+  <h1 class="masthead-title">Meath <em>Morning</em><br>Edition</h1>
+  <div class="masthead-date">Saturday, May 16, 2026</div>
+  <span class="key_story-count">&#9733; 3 key stories today</span>
+</header>
+
+<div class="weather-bar">
+  <div class="section-header">
+    <span class="section-heading">Weather</span>
+    <span class="section-sub">Today &middot; Co. Meath</span>
+  </div>
+  <div class="weather-grid">
+    <div class="weather-item">
+      <span class="weather-place">Navan</span>
+      <span class="weather-desc">Drizzle</span>
+      <span class="weather-temps">8–14°C</span>
+      <span class="weather-rain">5.6mm</span>
+    </div>
+    <div class="weather-item">
+      <span class="weather-place">Trim</span>
+      <span class="weather-desc">Drizzle</span>
+      <span class="weather-temps">7–13°C</span>
+      <span class="weather-rain">5.1mm</span>
+    </div>
+    <div class="weather-item">
+      <span class="weather-place">Kells</span>
+      <span class="weather-desc">Heavy drizzle</span>
+      <span class="weather-temps">7–13°C</span>
+      <span class="weather-rain">5.5mm</span>
+    </div>
+    <div class="weather-item">
+      <span class="weather-place">Oldcastle</span>
+      <span class="weather-desc">Light rain</span>
+      <span class="weather-temps">6–12°C</span>
+      <span class="weather-rain">6.5mm</span>
+    </div>
+    <div class="weather-item">
+      <span class="weather-place">Enfield</span>
+      <span class="weather-desc">Drizzle</span>
+      <span class="weather-temps">7–13°C</span>
+      <span class="weather-rain">4.3mm</span>
+    </div>
+    <div class="weather-item">
+      <span class="weather-place">Dunshaughlin</span>
+      <span class="weather-desc">Heavy drizzle</span>
+      <span class="weather-temps">7–13°C</span>
+      <span class="weather-rain">6.2mm</span>
+    </div>
+  </div>
+</div>
+
+<section class="events-section">
+  <div class="section-header">
+    <span class="section-heading">What&#8217;s On</span>
+    <span class="section-sub">Next 3 days &middot; Co. Meath</span>
+  </div>
+  <div class="events-list">
+  <div class="event-card">
+    <div class="event-when">Today</div>
+    <div class="event-title"><a href="https://solsticeartscentre.ie/event/celine-byrne-songs-of-inspiration-and-hope" target="_blank" rel="noopener">Celine Byrne - Songs of Inspiration & Hope</a></div>
+    <div class="event-venue">Solstice Arts Centre, Navan, Co. Meath</div>
+    <div class="event-desc">Soprano Celine Byrne performs at Solstice Arts Centre for the first time, accompanied by David Munro on piano and Nicole Hudson on violin.</div>
+    <a class="event-link" href="https://solsticeartscentre.ie/event/celine-byrne-songs-of-inspiration-and-hope" target="_blank" rel="noopener">See more &rarr;</a>
+  </div>
+  <div class="event-card">
+    <div class="event-when">Today</div>
+    <div class="event-title"><a href="https://swiftculturalcentre.ie/event/shirley-valentine" target="_blank" rel="noopener">Shirley Valentine</a></div>
+    <div class="event-venue">Swift Cultural Centre, Trim, Co. Meath</div>
+    <div class="event-desc">Norma Sheahan stars in this one-woman show full of laughter, triumph, and a hilarious journey of rediscovery at Swift Cultural Centre in Trim.</div>
+    <a class="event-link" href="https://swiftculturalcentre.ie/event/shirley-valentine" target="_blank" rel="noopener">See more &rarr;</a>
+  </div>
+  <div class="event-card">
+    <div class="event-when">Today</div>
+    <div class="event-title"><a href="https://solsticeartscentre.ie/event/take-me-to-the-river-2026" target="_blank" rel="noopener">Take Me to the River 2026</a></div>
+    <div class="event-venue">Solstice Arts Centre, Navan, Co. Meath</div>
+    <div class="event-desc">A collaborative visual and sensory exhibition responding to the waterways and landscapes of Meath, opening at Solstice Arts Centre and running until August.</div>
+    <a class="event-link" href="https://solsticeartscentre.ie/event/take-me-to-the-river-2026" target="_blank" rel="noopener">See more &rarr;</a>
+  </div>
+  <div class="event-card">
+    <div class="event-when">Tomorrow</div>
+    <div class="event-title"><a href="https://www.eventbrite.com/e/comedy-night-with-joe-irish-rapunzel-show-3-bucks-left-tickets-1986545023642" target="_blank" rel="noopener">Comedy Night With Joe Irish & 3 Bucks Left</a></div>
+    <div class="event-venue">The Village Hotel, Bettystown, Co. Meath</div>
+    <div class="event-desc">A comedy night featuring Joe Irish with special guests from 3 Bucks Left, Martin Maloney (aka Eddie Durkin) and Stephen Cowboy Kelly.</div>
+    <a class="event-link" href="https://www.eventbrite.com/e/comedy-night-with-joe-irish-rapunzel-show-3-bucks-left-tickets-1986545023642" target="_blank" rel="noopener">See more &rarr;</a>
+  </div>
+  <div class="event-card">
+    <div class="event-when">Tomorrow</div>
+    <div class="event-title"><a href="https://www.eventbrite.ie/e/navan-bike-week-2026-social-cycle-tickets-1987402155346" target="_blank" rel="noopener">Navan Bike Week 2026 Social Cycle</a></div>
+    <div class="event-venue">Blackwater Park Car Park, Navan, Co. Meath</div>
+    <div class="event-desc">A 20km leisure cycle on open roads from Navan out to the historic Teltown House as part of National Bike Week.</div>
+    <a class="event-link" href="https://www.eventbrite.ie/e/navan-bike-week-2026-social-cycle-tickets-1987402155346" target="_blank" rel="noopener">See more &rarr;</a>
+  </div>
+  <div class="event-card">
+    <div class="event-when">Tomorrow</div>
+    <div class="event-title"><a href="https://www.eventbrite.ie/e/the-toy-library-swapplay-in-ashbourne-co-meath-tickets-1988576568046" target="_blank" rel="noopener">The Toy Library Swap & Play in Ashbourne</a></div>
+    <div class="event-venue">Donaghmore Ashbourne GAA Club, Ashbourne, Co. Meath</div>
+    <div class="event-desc">A family-friendly event where children can take and donate pre-loved toys, engage in play, and learn about sustainable consumption.</div>
+    <a class="event-link" href="https://www.eventbrite.ie/e/the-toy-library-swapplay-in-ashbourne-co-meath-tickets-1988576568046" target="_blank" rel="noopener">See more &rarr;</a>
+  </div>
+  </div>
+</section>
+
+<main class="stories">
+  <div class="section-header">
+    <span class="section-heading">Latest Local News</span>
+  </div>
+
+  <article class="story-card ">
+    <div class="card-rank">01</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Community & Events</span>
+        <span class="card-source">Meath Chronicle</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://www.meathchronicle.ie/2026/05/15/blue-flag-success-for-bettystown-beach-again/" target="_blank" rel="noopener">Blue Flag Success for Bettystown Beach Again</a>
+      </h2>
+      
+    <div class="key_story-badge">
+      <span class="key_story-label">&#9733; Key Story</span>
+      <span class="key_story-reason">Blue Flag status is a seasonal distinction that affects beach-goers, tourism and local businesses throughout the summer.</span>
+    </div>
+      <p class="card-teaser">Bettystown Beach has once again been awarded the prestigious Blue Flag, recognising its high standards of water quality, safety, and environmental management. The award is a boost for the East Meath coast ahead of the summer season.</p>
+      <a class="card-link" href="https://www.meathchronicle.ie/2026/05/15/blue-flag-success-for-bettystown-beach-again/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card card-alt">
+    <div class="card-rank">02</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Community & Events</span>
+        <span class="card-source">Meath Live</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://meathlive.net/2026/05/15/kells-lively-citizens-enjoy-memorable-visit-to-leinster-house/" target="_blank" rel="noopener">Kells Lively Citizens Enjoy Memorable Visit to Leinster House</a>
+      </h2>
+      
+      <p class="card-teaser">Members of the Kells Lively Citizens group visited Leinster House this week, learning about its political life and architectural history. The active retirement group enjoyed an educational day out in one of Ireland's most significant buildings.</p>
+      <a class="card-link" href="https://meathlive.net/2026/05/15/kells-lively-citizens-enjoy-memorable-visit-to-leinster-house/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card ">
+    <div class="card-rank">03</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Community & Events</span>
+        <span class="card-source">Meath Chronicle</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://www.meathchronicle.ie/2026/05/14/appeal-to-support-navan-man-seriously-injured-in-assault-2/" target="_blank" rel="noopener">Appeal Launched to Support Navan Man Seriously Injured in Assault</a>
+      </h2>
+      
+      <p class="card-teaser">A community appeal has been launched to support a Navan man who was seriously injured in an assault. Locals are rallying around the man and his family as he faces a significant recovery period.</p>
+      <a class="card-link" href="https://www.meathchronicle.ie/2026/05/14/appeal-to-support-navan-man-seriously-injured-in-assault-2/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card card-alt">
+    <div class="card-rank">04</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Council & Politics</span>
+        <span class="card-source">Meath Live</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://meathlive.net/2026/05/15/everard-again-raises-queries-about-gis-mapping-accuracy/" target="_blank" rel="noopener">Councillor Everard Questions Accuracy of County GIS Mapping System</a>
+      </h2>
+      
+    <div class="key_story-badge">
+      <span class="key_story-label">&#9733; Key Story</span>
+      <span class="key_story-reason">GIS accuracy affects planning applications, zoning, and property records — an ongoing council governance issue.</span>
+    </div>
+      <p class="card-teaser">Independent councillor Everard has again raised concerns at Meath County Council about the accuracy of the GIS mapping system used for planning and land management. Inaccuracies in the system could affect planning decisions and property boundaries across the county.</p>
+      <a class="card-link" href="https://meathlive.net/2026/05/15/everard-again-raises-queries-about-gis-mapping-accuracy/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card ">
+    <div class="card-rank">05</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Sport</span>
+        <span class="card-source">Meath Chronicle</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://www.meathchronicle.ie/2026/05/14/coyle-making-his-mark-in-batterstown/" target="_blank" rel="noopener">Coyle Making His Mark in Batterstown</a>
+      </h2>
+      
+      <p class="card-teaser">A profile of Coyle's growing impact at Batterstown, highlighting his contributions to the local club. The piece shines a light on grassroots sport and the talent emerging from Meath's GAA heartland.</p>
+      <a class="card-link" href="https://www.meathchronicle.ie/2026/05/14/coyle-making-his-mark-in-batterstown/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card card-alt">
+    <div class="card-rank">06</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Community & Events</span>
+        <span class="card-source">Meath Chronicle</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://www.meathchronicle.ie/2026/05/13/gallery-absolutely-fabulous-ladies-lunch-in-support-of-special-hands-activity-group/" target="_blank" rel="noopener">Fabulous Ladies Lunch Raises Funds for Special Hands Activity Group</a>
+      </h2>
+      
+      <p class="card-teaser">A glamorous ladies lunch event has raised funds and awareness for the Special Hands Activity Group, which supports people with disabilities. The well-attended event brought the community together for an important local cause.</p>
+      <a class="card-link" href="https://www.meathchronicle.ie/2026/05/13/gallery-absolutely-fabulous-ladies-lunch-in-support-of-special-hands-activity-group/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card ">
+    <div class="card-rank">07</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Local News</span>
+        <span class="card-source">Meath Live</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://meathlive.net/2026/05/15/missing-person-sam-mcdonagh-17-ashbourne/" target="_blank" rel="noopener">Gardaí Seek Public Help Tracing Missing Ashbourne Teen Sam McDonagh</a>
+      </h2>
+      
+    <div class="key_story-badge">
+      <span class="key_story-label">&#9733; Key Story</span>
+      <span class="key_story-reason">An active missing person appeal — residents need to remain aware and vigilant.</span>
+    </div>
+      <p class="card-teaser">Gardaí are appealing for the public's assistance in locating 17-year-old Sam McDonagh, reported missing from Ashbourne since 30 April. Anyone with information is asked to contact their local Garda station.</p>
+      <a class="card-link" href="https://meathlive.net/2026/05/15/missing-person-sam-mcdonagh-17-ashbourne/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card card-alt">
+    <div class="card-rank">08</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Courts & Crime</span>
+        <span class="card-source">Meath Live</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://meathlive.net/2026/05/15/man-19-jailed-over-phishing-incident-becoming-all-too-frequent-says-judge/" target="_blank" rel="noopener">Judge Jails Ashbourne Teen Over 'Phishing' Money Laundering Scam</a>
+      </h2>
+      
+      <p class="card-teaser">A 19-year-old Ashbourne man has been jailed after €3,200 was fraudulently transferred to his bank account as part of a phishing operation. The judge warned that such money laundering cases are becoming all too frequent, highlighting an ongoing scam risk for local residents.</p>
+      <a class="card-link" href="https://meathlive.net/2026/05/15/man-19-jailed-over-phishing-incident-becoming-all-too-frequent-says-judge/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+</main>
+
+<div class="onthisday-bar">
+  <span class="onthisday-label">On this day &middot; 1975</span>
+  <span class="onthisday-text">Japanese climber Junko Tabei became the first woman to reach the summit of Mount Everest, blazing a trail for women in mountaineering.</span>
+</div>
+
+<footer class="footer">
+  <p>Meath Morning Edition &nbsp;·&nbsp; May 16th, 2026</p>
+</footer>
+
+</body>
+</html>
