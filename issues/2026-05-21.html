@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meath Morning Edition — 2026-05-21</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --green: #1A4731;
+  --gold:  #B8860B;
+  --cream: #FAF7F0;
+  --ink:   #1A1A1A;
+  --mid:   #555;
+  --light: #888;
+  --sans:  'Inter', system-ui, sans-serif;
+  --serif: 'Fraunces', Georgia, serif;
+}
+body { font-family: var(--sans); background: var(--cream); color: var(--ink); -webkit-font-smoothing: antialiased; }
+
+/* ── Masthead ── */
+.masthead {
+  background: var(--green);
+  color: #fff;
+  padding: 2.5rem 2rem 2rem;
+  text-align: center;
+  border-bottom: 4px solid var(--gold);
+}
+.masthead-kicker {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.75rem;
+}
+.masthead-title {
+  font-family: var(--serif);
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-weight: 900;
+  line-height: 1;
+  color: #fff;
+  margin-bottom: 0.3em;
+}
+.masthead-title em {
+  font-style: italic;
+  color: var(--gold);
+}
+.masthead-date {
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 1rem;
+}
+.key_story-count {
+  display: inline-block;
+  background: #C0392B;
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.3em 0.9em;
+  border-radius: 2px;
+  margin-bottom: 0.5rem;
+}
+
+/* ── Shared section heading ── */
+.section-header {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+  padding-top: 1.5rem;
+  border-top: 2px solid var(--green);
+}
+.section-heading {
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--green);
+}
+.section-sub {
+  font-size: 0.68rem;
+  color: var(--light);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* ── Weather bar ── */
+.weather-bar {
+  background: #fff;
+  border-bottom: 1px solid #e0dbd0;
+  padding: 0.5rem 2rem 0.85rem;
+}
+.weather-bar .section-header {
+  padding-top: 0.4rem;
+  border-top: none;
+  margin-bottom: 0.5rem;
+}
+.weather-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.4rem 1.25rem;
+}
+.weather-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.05rem;
+  font-size: 0.78rem;
+}
+.weather-place { font-weight: 600; color: var(--green); font-size: 0.78rem; }
+.weather-desc  { color: var(--mid); font-size: 0.73rem; }
+.weather-temps { font-weight: 500; }
+.weather-rain  { color: #2980b9; font-size: 0.73rem; }
+
+/* ── Events section ── */
+.events-section {
+  max-width: 860px;
+  margin: 0 auto 2rem;
+  padding: 0 1.5rem;
+}
+.events-section .section-header {
+  padding-top: 0.4rem;
+  border-top: none;
+}
+.events-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1rem;
+}
+.event-card {
+  background: #fff;
+  border: 1px solid #e0dbd0;
+  border-top: 3px solid var(--green);
+  padding: 0.9rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-height: 180px;
+}
+.event-when {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--green);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.2rem;
+}
+.event-title {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.25;
+}
+.event-title a { color: var(--ink); text-decoration: none; }
+.event-title a:hover { color: var(--green); }
+.event-venue {
+  font-size: 0.8rem;
+  color: var(--light);
+}
+.event-desc {
+  font-size: 0.88rem;
+  color: var(--mid);
+  line-height: 1.55;
+  margin-top: 0.25rem;
+  flex: 1;
+}
+.event-link {
+  display: inline-block;
+  margin-top: 0.75rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--green);
+  text-decoration: none;
+  border-bottom: 1px solid var(--green);
+  padding-bottom: 0.05em;
+  align-self: flex-start;
+}
+.event-link:hover { opacity: 0.7; }
+
+/* ── Story cards ── */
+.stories {
+  max-width: 860px;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+}
+.story-card {
+  display: flex;
+  gap: 1.5rem;
+  padding: 1.75rem 0;
+  border-bottom: 1px solid #e0dbd0;
+  align-items: flex-start;
+}
+.card-alt { background: transparent; }
+.card-rank {
+  font-family: var(--serif);
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: rgba(26,71,49,0.12);
+  min-width: 3rem;
+  text-align: right;
+  line-height: 1;
+  padding-top: 0.15em;
+  flex-shrink: 0;
+}
+.card-body { flex: 1; }
+.card-meta {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
+}
+.card-category {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  background: var(--green);
+  color: #fff;
+  padding: 0.25em 0.7em;
+  border-radius: 2px;
+}
+.card-source {
+  font-size: 0.72rem;
+  color: var(--light);
+  font-weight: 500;
+}
+.card-title {
+  font-family: var(--serif);
+  font-size: clamp(1.2rem, 3vw, 1.6rem);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 0.6rem;
+}
+.card-title a {
+  color: var(--ink);
+  text-decoration: none;
+}
+.card-title a:hover { color: var(--green); }
+.key_story-badge {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  border-left: 3px solid #C0392B;
+  padding: 0.4rem 0.8rem;
+  margin-bottom: 0.75rem;
+  background: #fdf0ee;
+}
+.key_story-label {
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #C0392B;
+}
+.key_story-reason {
+  font-size: 0.8rem;
+  color: #C0392B;
+  line-height: 1.4;
+}
+.card-teaser {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--mid);
+  margin-bottom: 0.75rem;
+}
+.card-link {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--green);
+  text-decoration: none;
+  border-bottom: 1px solid var(--green);
+  padding-bottom: 0.05em;
+}
+.card-link:hover { opacity: 0.7; }
+
+/* ── On this day ── */
+.onthisday-bar {
+  max-width: 860px;
+  margin: 2rem auto 0.5rem;
+  padding: 2rem 2.5rem;
+  background: var(--green);
+  color: rgba(255,255,255,0.92);
+  text-align: center;
+}
+.onthisday-label {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.75rem;
+}
+.onthisday-text {
+  display: block;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+
+/* ── Footer ── */
+.footer {
+  text-align: center;
+  padding: 2.5rem 1rem;
+  font-size: 0.75rem;
+  color: var(--light);
+  border-top: 1px solid #e0dbd0;
+  margin-top: 1rem;
+}
+
+@media (max-width: 560px) {
+  .card-rank { display: none; }
+  .story-card { padding: 1.25rem 0; }
+}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-kicker">County Meath &nbsp;·&nbsp; Local Intelligence</div>
+  <h1 class="masthead-title">Meath <em>Morning</em><br>Edition</h1>
+  <div class="masthead-date">Thursday, May 21, 2026</div>
+  <span class="key_story-count">&#9733; 3 key stories today</span>
+</header>
+
+<div class="weather-bar">
+  <div class="section-header">
+    <span class="section-heading">Weather</span>
+    <span class="section-sub">Today &middot; Co. Meath</span>
+  </div>
+  <div class="weather-grid">
+    <div class="weather-item">
+      <span class="weather-place">Navan</span>
+      <span class="weather-desc">Drizzle</span>
+      <span class="weather-temps">13–18°C</span>
+      <span class="weather-rain">3.6mm</span>
+    </div>
+    <div class="weather-item">
+      <span class="weather-place">Trim</span>
+      <span class="weather-desc">Drizzle</span>
+      <span class="weather-temps">12–18°C</span>
+      <span class="weather-rain">3.8mm</span>
+    </div>
+    <div class="weather-item">
+      <span class="weather-place">Kells</span>
+      <span class="weather-desc">Drizzle</span>
+      <span class="weather-temps">12–18°C</span>
+      <span class="weather-rain">4.4mm</span>
+    </div>
+    <div class="weather-item">
+      <span class="weather-place">Oldcastle</span>
+      <span class="weather-desc">Heavy drizzle</span>
+      <span class="weather-temps">12–17°C</span>
+      <span class="weather-rain">4.9mm</span>
+    </div>
+    <div class="weather-item">
+      <span class="weather-place">Enfield</span>
+      <span class="weather-desc">Heavy drizzle</span>
+      <span class="weather-temps">12–16°C</span>
+      <span class="weather-rain">4.5mm</span>
+    </div>
+    <div class="weather-item">
+      <span class="weather-place">Dunshaughlin</span>
+      <span class="weather-desc">Drizzle</span>
+      <span class="weather-temps">12–17°C</span>
+      <span class="weather-rain">3.4mm</span>
+    </div>
+  </div>
+</div>
+
+<section class="events-section">
+  <div class="section-header">
+    <span class="section-heading">What&#8217;s On</span>
+    <span class="section-sub">Next 3 days &middot; Co. Meath</span>
+  </div>
+  <div class="events-list">
+  <div class="event-card">
+    <div class="event-when">Today</div>
+    <div class="event-title"><a href="https://swiftculturalcentre.ie/event/protecting-what-matters-a-live-chat-with-padraic-fogarty" target="_blank" rel="noopener">Protecting What Matters: A Live Chat with Pádraic Fogarty</a></div>
+    <div class="event-venue">Swift Cultural Centre, Trim, Co. Meath</div>
+    <div class="event-desc">Meath County Council's Biodiversity Officer hosts a conversation with ecologist and author Pádraic Fogarty on protecting Ireland's natural heritage.</div>
+    <a class="event-link" href="https://swiftculturalcentre.ie/event/protecting-what-matters-a-live-chat-with-padraic-fogarty" target="_blank" rel="noopener">See more &rarr;</a>
+  </div>
+  <div class="event-card">
+    <div class="event-when">Tomorrow</div>
+    <div class="event-title"><a href="https://www.eventbrite.ie/e/pressed-flower-floral-art-workshop-tickets-1988829167578" target="_blank" rel="noopener">Pressed Flower Floral Art Workshop</a></div>
+    <div class="event-venue">Gibstown Hall Community Centre, Gibstown, Co. Meath</div>
+    <div class="event-desc">A relaxing and creative evening working with pressed flowers at Gibstown Hall Community Centre.</div>
+    <a class="event-link" href="https://www.eventbrite.ie/e/pressed-flower-floral-art-workshop-tickets-1988829167578" target="_blank" rel="noopener">See more &rarr;</a>
+  </div>
+  <div class="event-card">
+    <div class="event-when">Tomorrow</div>
+    <div class="event-title"><a href="https://solsticeartscentre.ie/event/the-song-cycle-q-and-a" target="_blank" rel="noopener">The Song Cycle + Q&A</a></div>
+    <div class="event-venue">Solstice Arts Centre, Navan, Co. Meath</div>
+    <div class="event-desc">Screening of the Irish documentary The Song Cycle (2024, Cert 12A, 85 mins, dir. Nick Kelly) followed by a Q&A session.</div>
+    <a class="event-link" href="https://solsticeartscentre.ie/event/the-song-cycle-q-and-a" target="_blank" rel="noopener">See more &rarr;</a>
+  </div>
+  <div class="event-card">
+    <div class="event-when">Saturday, May 23</div>
+    <div class="event-title"><a href="https://swiftculturalcentre.ie/event/the-love-hungry-farmer" target="_blank" rel="noopener">The Love Hungry Farmer</a></div>
+    <div class="event-venue">Swift Cultural Centre, Trim, Co. Meath</div>
+    <div class="event-desc">A stage comedy about John Bosco McLane, a man who has never lain down with a woman but has had romantic blood pulsing through his veins all his life.</div>
+    <a class="event-link" href="https://swiftculturalcentre.ie/event/the-love-hungry-farmer" target="_blank" rel="noopener">See more &rarr;</a>
+  </div>
+  <div class="event-card">
+    <div class="event-when">Saturday, May 23</div>
+    <div class="event-title"><a href="https://www.eventbrite.ie/e/shindig-in-the-shed-tickets-1984179208425" target="_blank" rel="noopener">Shindig in the Shed</a></div>
+    <div class="event-venue">Meade Farm, Lobinstown, Co. Meath</div>
+    <div class="event-desc">A lively evening packed with live music, great company and plenty of craic at Meade Farm in Lobinstown.</div>
+    <a class="event-link" href="https://www.eventbrite.ie/e/shindig-in-the-shed-tickets-1984179208425" target="_blank" rel="noopener">See more &rarr;</a>
+  </div>
+  <div class="event-card">
+    <div class="event-when">Sunday, May 24</div>
+    <div class="event-title"><a href="https://www.eventbrite.com/e/youre-navan-a-laugh-featuring-3-bucks-left-tickets-1987938995048" target="_blank" rel="noopener">You're Navan A Laugh – Featuring 3 Bucks Left</a></div>
+    <div class="event-venue">The Lantern, Navan, Co. Meath</div>
+    <div class="event-desc">A Sunday comedy night at The Lantern in Navan featuring the popular comedy act 3 Bucks Left.</div>
+    <a class="event-link" href="https://www.eventbrite.com/e/youre-navan-a-laugh-featuring-3-bucks-left-tickets-1987938995048" target="_blank" rel="noopener">See more &rarr;</a>
+  </div>
+  </div>
+</section>
+
+<main class="stories">
+  <div class="section-header">
+    <span class="section-heading">Latest Local News</span>
+  </div>
+
+  <article class="story-card ">
+    <div class="card-rank">01</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Transport & Infrastructure</span>
+        <span class="card-source">Meath Live</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://meathlive.net/2026/05/20/plans-for-new-navan-railway-announced-today/" target="_blank" rel="noopener">Preferred Route for New Navan Railway Line Announced by Iarnród Éireann</a>
+      </h2>
+      
+    <div class="key_story-badge">
+      <span class="key_story-label">&#9733; Key Story</span>
+      <span class="key_story-reason">A major infrastructure decision that will shape Meath's transport future; public consultation is open and residents need to engage.</span>
+    </div>
+      <p class="card-teaser">Iarnród Éireann has published the Emerging Preferred Route for the new Navan Railway, which would provide direct DART services between Dublin City Centre and Navan — the largest town in Ireland without a rail connection. A public consultation is now open for residents to have their say on the route.</p>
+      <a class="card-link" href="https://meathlive.net/2026/05/20/plans-for-new-navan-railway-announced-today/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card card-alt">
+    <div class="card-rank">02</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Community & Events</span>
+        <span class="card-source">Meath Live</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://meathlive.net/2026/05/20/public-invited-to-have-their-say-on-community-safety-in-meath/" target="_blank" rel="noopener">Public Invited to Shape Meath's New Community Safety Plan</a>
+      </h2>
+      
+    <div class="key_story-badge">
+      <span class="key_story-label">&#9733; Key Story</span>
+      <span class="key_story-reason">An active public consultation that residents can participate in to influence local community safety policy.</span>
+    </div>
+      <p class="card-teaser">Meath residents are being encouraged to share their views as part of the development of the county's Local Community Safety Plan. A public consultation has been launched, giving people across the county a chance to highlight safety concerns and priorities in their areas.</p>
+      <a class="card-link" href="https://meathlive.net/2026/05/20/public-invited-to-have-their-say-on-community-safety-in-meath/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card ">
+    <div class="card-rank">03</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Council & Politics</span>
+        <span class="card-source">Meath Live</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://meathlive.net/2026/05/20/toibin-shock-over-115-vacant-commercial-premises-in-navan/" target="_blank" rel="noopener">Councillor Expresses 'Shock' at 115 Vacant Commercial Premises in Navan</a>
+      </h2>
+      
+    <div class="key_story-badge">
+      <span class="key_story-label">&#9733; Key Story</span>
+      <span class="key_story-reason">Highlights a significant economic challenge for Navan's town centre that will inform ongoing council policy and business decisions.</span>
+    </div>
+      <p class="card-teaser">Aontú councillor Emer Tóibín has expressed her 'absolute shock' after learning that 115 commercial premises in Navan are currently vacant. The figure emerged following a question she submitted to Meath County Council, raising concerns about the vitality of the county town's business landscape.</p>
+      <a class="card-link" href="https://meathlive.net/2026/05/20/toibin-shock-over-115-vacant-commercial-premises-in-navan/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card card-alt">
+    <div class="card-rank">04</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Business & Jobs</span>
+        <span class="card-source">Meath Live</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://meathlive.net/2026/05/20/lidl-reveals-two-meath-suppliers-selected-for-milestone-10th-anniversary/" target="_blank" rel="noopener">Two Meath Suppliers Selected for Lidl's Kickstart Programme</a>
+      </h2>
+      
+      <p class="card-teaser">Two County Meath food suppliers have been chosen to take part in Lidl Ireland's 2026 Kickstart Supplier Development Programme, which celebrates its 10th anniversary this year. The programme supports small Irish producers in scaling up and getting their products onto supermarket shelves.</p>
+      <a class="card-link" href="https://meathlive.net/2026/05/20/lidl-reveals-two-meath-suppliers-selected-for-milestone-10th-anniversary/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card ">
+    <div class="card-rank">05</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Sport</span>
+        <span class="card-source">Meath Chronicle</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://www.meathchronicle.ie/2026/05/20/royal-camogs-secure-land-for-new-pitch/" target="_blank" rel="noopener">Royal Meath Camogs Secure Land for New Pitches</a>
+      </h2>
+      
+      <p class="card-teaser">Meath Camogie has secured land for a new pitch, with their 'Your Plastic is Our Pitch' fundraiser playing a key role in making the project possible. The development marks a significant milestone for camogie in the county and the growth of women's sport in Meath.</p>
+      <a class="card-link" href="https://www.meathchronicle.ie/2026/05/20/royal-camogs-secure-land-for-new-pitch/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card card-alt">
+    <div class="card-rank">06</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Transport & Infrastructure</span>
+        <span class="card-source">Meath Chronicle</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://www.meathchronicle.ie/2026/05/20/change-here-for-trim-and-athboy/" target="_blank" rel="noopener">Navan Rail Line Route Would Follow Historic Great Western Line</a>
+      </h2>
+      
+      <p class="card-teaser">The proposed Navan rail route is set to follow the path of the old Great Western railway line, evoking memories of a time when Trim and Athboy also had rail connections. The Chronicle explores how the new line's alignment reflects the county's rich railway heritage.</p>
+      <a class="card-link" href="https://www.meathchronicle.ie/2026/05/20/change-here-for-trim-and-athboy/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card ">
+    <div class="card-rank">07</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Community & Events</span>
+        <span class="card-source">Meath Chronicle</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://www.meathchronicle.ie/2026/05/20/meath-chronicle-community-sports-awards-young-sports-person-of-the-year/" target="_blank" rel="noopener">Meath Chronicle Community & Sports Awards: Nominees Revealed</a>
+      </h2>
+      
+      <p class="card-teaser">The Meath Chronicle has announced nominees across several categories in its annual Community & Sports Awards, including Young Sports Person of the Year, Sports Volunteer, Community Volunteer, Community Group, Carer of the Year, and Green Project of the Year. The awards celebrate the people and groups making a difference across the county.</p>
+      <a class="card-link" href="https://www.meathchronicle.ie/2026/05/20/meath-chronicle-community-sports-awards-young-sports-person-of-the-year/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card card-alt">
+    <div class="card-rank">08</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Transport & Infrastructure</span>
+        <span class="card-source">Meath Live</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://meathlive.net/2026/05/20/kells-cycleway-walkway-issue-raised-at-md/" target="_blank" rel="noopener">Kells Cycleway-Walkway Extension Design Progress Queried at MD Meeting</a>
+      </h2>
+      
+      <p class="card-teaser">Fine Gael Cllr Sarah Reilly raised the issue of the Kells cycleway-walkway extension at the Kells Municipal District meeting, asking whether a design has been completed. She noted that a notice of motion on the matter was submitted last December, and is seeking an update on progress.</p>
+      <a class="card-link" href="https://meathlive.net/2026/05/20/kells-cycleway-walkway-issue-raised-at-md/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+</main>
+
+<div class="onthisday-bar">
+  <span class="onthisday-label">On this day &middot; 1927</span>
+  <span class="onthisday-text">Charles Lindbergh completed the first solo non-stop transatlantic flight aboard the Spirit of St. Louis, landing in Paris.</span>
+</div>
+
+<footer class="footer">
+  <p>Meath Morning Edition &nbsp;·&nbsp; May 21st, 2026</p>
+</footer>
+
+</body>
+</html>
