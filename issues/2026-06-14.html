@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meath Morning Edition — 2026-06-14</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --green: #1A4731;
+  --gold:  #B8860B;
+  --cream: #FAF7F0;
+  --ink:   #1A1A1A;
+  --mid:   #555;
+  --light: #888;
+  --sans:  'Inter', system-ui, sans-serif;
+  --serif: 'Fraunces', Georgia, serif;
+}
+body { font-family: var(--sans); background: var(--cream); color: var(--ink); -webkit-font-smoothing: antialiased; }
+
+/* ── Masthead ── */
+.masthead {
+  background: var(--green);
+  color: #fff;
+  padding: 2.5rem 2rem 2rem;
+  text-align: center;
+  border-bottom: 4px solid var(--gold);
+}
+.masthead-kicker {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.75rem;
+}
+.masthead-title {
+  font-family: var(--serif);
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-weight: 900;
+  line-height: 1;
+  color: #fff;
+  margin-bottom: 0.3em;
+}
+.masthead-title em {
+  font-style: italic;
+  color: var(--gold);
+}
+.masthead-date {
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 1rem;
+}
+.key_story-count {
+  display: inline-block;
+  background: #C0392B;
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.3em 0.9em;
+  border-radius: 2px;
+  margin-bottom: 0.5rem;
+}
+
+/* ── Shared section heading ── */
+.section-header {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+  padding-top: 1.5rem;
+  border-top: 2px solid var(--green);
+}
+.section-heading {
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--green);
+}
+.section-sub {
+  font-size: 0.68rem;
+  color: var(--light);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* ── Weather bar ── */
+.weather-bar {
+  background: #fff;
+  border-bottom: 1px solid #e0dbd0;
+  padding: 0.5rem 2rem 0.85rem;
+}
+.weather-bar .section-header {
+  padding-top: 0.4rem;
+  border-top: none;
+  margin-bottom: 0.5rem;
+}
+.weather-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.4rem 1.25rem;
+}
+.weather-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.05rem;
+  font-size: 0.78rem;
+}
+.weather-place { font-weight: 600; color: var(--green); font-size: 0.78rem; }
+.weather-desc  { color: var(--mid); font-size: 0.73rem; }
+.weather-temps { font-weight: 500; }
+.weather-rain  { color: #2980b9; font-size: 0.73rem; }
+
+/* ── Events section ── */
+.events-section {
+  max-width: 860px;
+  margin: 0 auto 2rem;
+  padding: 0 1.5rem;
+}
+.events-section .section-header {
+  padding-top: 0.4rem;
+  border-top: none;
+}
+.events-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1rem;
+}
+.event-card {
+  background: #fff;
+  border: 1px solid #e0dbd0;
+  border-top: 3px solid var(--green);
+  padding: 0.9rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-height: 180px;
+}
+.event-when {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--green);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.2rem;
+}
+.event-title {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.25;
+}
+.event-title a { color: var(--ink); text-decoration: none; }
+.event-title a:hover { color: var(--green); }
+.event-venue {
+  font-size: 0.8rem;
+  color: var(--light);
+}
+.event-desc {
+  font-size: 0.88rem;
+  color: var(--mid);
+  line-height: 1.55;
+  margin-top: 0.25rem;
+  flex: 1;
+}
+.event-link {
+  display: inline-block;
+  margin-top: 0.75rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--green);
+  text-decoration: none;
+  border-bottom: 1px solid var(--green);
+  padding-bottom: 0.05em;
+  align-self: flex-start;
+}
+.event-link:hover { opacity: 0.7; }
+
+/* ── Story cards ── */
+.stories {
+  max-width: 860px;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+}
+.story-card {
+  display: flex;
+  gap: 1.5rem;
+  padding: 1.75rem 0;
+  border-bottom: 1px solid #e0dbd0;
+  align-items: flex-start;
+}
+.card-alt { background: transparent; }
+.card-rank {
+  font-family: var(--serif);
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: rgba(26,71,49,0.12);
+  min-width: 3rem;
+  text-align: right;
+  line-height: 1;
+  padding-top: 0.15em;
+  flex-shrink: 0;
+}
+.card-body { flex: 1; }
+.card-meta {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
+}
+.card-category {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  background: var(--green);
+  color: #fff;
+  padding: 0.25em 0.7em;
+  border-radius: 2px;
+}
+.card-source {
+  font-size: 0.72rem;
+  color: var(--light);
+  font-weight: 500;
+}
+.card-title {
+  font-family: var(--serif);
+  font-size: clamp(1.2rem, 3vw, 1.6rem);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 0.6rem;
+}
+.card-title a {
+  color: var(--ink);
+  text-decoration: none;
+}
+.card-title a:hover { color: var(--green); }
+.key_story-badge {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  border-left: 3px solid #C0392B;
+  padding: 0.4rem 0.8rem;
+  margin-bottom: 0.75rem;
+  background: #fdf0ee;
+}
+.key_story-label {
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #C0392B;
+}
+.key_story-reason {
+  font-size: 0.8rem;
+  color: #C0392B;
+  line-height: 1.4;
+}
+.card-teaser {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--mid);
+  margin-bottom: 0.75rem;
+}
+.card-link {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--green);
+  text-decoration: none;
+  border-bottom: 1px solid var(--green);
+  padding-bottom: 0.05em;
+}
+.card-link:hover { opacity: 0.7; }
+
+/* ── On this day ── */
+.onthisday-bar {
+  max-width: 860px;
+  margin: 2rem auto 0.5rem;
+  padding: 2rem 2.5rem;
+  background: var(--green);
+  color: rgba(255,255,255,0.92);
+  text-align: center;
+}
+.onthisday-label {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.75rem;
+}
+.onthisday-text {
+  display: block;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+
+/* ── Footer ── */
+.footer {
+  text-align: center;
+  padding: 2.5rem 1rem;
+  font-size: 0.75rem;
+  color: var(--light);
+  border-top: 1px solid #e0dbd0;
+  margin-top: 1rem;
+}
+
+@media (max-width: 560px) {
+  .card-rank { display: none; }
+  .story-card { padding: 1.25rem 0; }
+}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-kicker">County Meath &nbsp;·&nbsp; Local Intelligence</div>
+  <h1 class="masthead-title">Meath <em>Morning</em><br>Edition</h1>
+  <div class="masthead-date">Sunday, June 14, 2026</div>
+  <span class="key_story-count">&#9733; 4 key stories today</span>
+</header>
+
+<div class="weather-bar">
+  <div class="section-header">
+    <span class="section-heading">Weather</span>
+    <span class="section-sub">Today &middot; Co. Meath</span>
+  </div>
+  <div class="weather-grid">
+    <div class="weather-item">
+      <span class="weather-place">Navan</span>
+      <span class="weather-desc">Overcast</span>
+      <span class="weather-temps">10–18°C</span>
+      
+    </div>
+    <div class="weather-item">
+      <span class="weather-place">Trim</span>
+      <span class="weather-desc">Light drizzle</span>
+      <span class="weather-temps">9–18°C</span>
+      <span class="weather-rain">0.2mm</span>
+    </div>
+    <div class="weather-item">
+      <span class="weather-place">Kells</span>
+      <span class="weather-desc">Light drizzle</span>
+      <span class="weather-temps">9–18°C</span>
+      <span class="weather-rain">0.2mm</span>
+    </div>
+    <div class="weather-item">
+      <span class="weather-place">Oldcastle</span>
+      <span class="weather-desc">Light drizzle</span>
+      <span class="weather-temps">8–18°C</span>
+      <span class="weather-rain">0.3mm</span>
+    </div>
+    <div class="weather-item">
+      <span class="weather-place">Enfield</span>
+      <span class="weather-desc">Overcast</span>
+      <span class="weather-temps">9–18°C</span>
+      
+    </div>
+    <div class="weather-item">
+      <span class="weather-place">Dunshaughlin</span>
+      <span class="weather-desc">Light drizzle</span>
+      <span class="weather-temps">8–17°C</span>
+      <span class="weather-rain">0.4mm</span>
+    </div>
+  </div>
+</div>
+
+<section class="events-section">
+  <div class="section-header">
+    <span class="section-heading">What&#8217;s On</span>
+    <span class="section-sub">Next 3 days &middot; Co. Meath</span>
+  </div>
+  <div class="events-list">
+  <div class="event-card">
+    <div class="event-when">Today</div>
+    <div class="event-title"><a href="https://solsticeartscentre.ie/event/elite-all-that-jazz" target="_blank" rel="noopener">Elite: All That Jazz</a></div>
+    <div class="event-venue">Solstice Arts Centre, Navan, Co. Meath</div>
+    <div class="event-desc">Elite School of Performing Arts present their annual end-of-year show featuring segments from Chicago, Aladdin, Dear Evan Hansen and more. Shows at 1.30pm and 6.30pm.</div>
+    <a class="event-link" href="https://solsticeartscentre.ie/event/elite-all-that-jazz" target="_blank" rel="noopener">See more &rarr;</a>
+  </div>
+  <div class="event-card">
+    <div class="event-when">Today</div>
+    <div class="event-title"><a href="https://swiftculturalcentre.ie/event/the-ultimate-bubble-show" target="_blank" rel="noopener">The Ultimate Bubble Show</a></div>
+    <div class="event-venue">Swift Cultural Centre, Trim, Co. Meath</div>
+    <div class="event-desc">Guinness World Record-holding bubbleologist Ray Bubbles brings his spectacular bubble-making show to Trim for a fun family afternoon.</div>
+    <a class="event-link" href="https://swiftculturalcentre.ie/event/the-ultimate-bubble-show" target="_blank" rel="noopener">See more &rarr;</a>
+  </div>
+  <div class="event-card">
+    <div class="event-when">Today</div>
+    <div class="event-title"><a href="https://www.eventbrite.com/e/enfield-rathmolyon-parish-summer-experience-2026-tickets-1989542618529" target="_blank" rel="noopener">Enfield Rathmolyon Parish Summer Experience 2026</a></div>
+    <div class="event-venue">Parish Field, Enfield, Co. Meath</div>
+    <div class="event-desc">A community day featuring a live band, Nore Valley Pet Farm, glitter tattoos, field games and picnic fun at the Parish Field in Enfield.</div>
+    <a class="event-link" href="https://www.eventbrite.com/e/enfield-rathmolyon-parish-summer-experience-2026-tickets-1989542618529" target="_blank" rel="noopener">See more &rarr;</a>
+  </div>
+  <div class="event-card">
+    <div class="event-when">Today</div>
+    <div class="event-title"><a href="https://www.eventbrite.ie/e/the-toy-library-swapplay-in-trim-co-meath-tickets-1990310842307" target="_blank" rel="noopener">The Toy Library Swap & Play in Trim</a></div>
+    <div class="event-venue">Trim GAA, Trim, Co. Meath</div>
+    <div class="event-desc">A family-friendly event where children can take and donate pre-loved toys, engage in play, and learn about sustainable consumption.</div>
+    <a class="event-link" href="https://www.eventbrite.ie/e/the-toy-library-swapplay-in-trim-co-meath-tickets-1990310842307" target="_blank" rel="noopener">See more &rarr;</a>
+  </div>
+  <div class="event-card">
+    <div class="event-when">Tomorrow</div>
+    <div class="event-title"><a href="https://solsticeartscentre.ie/event/navan-pride-wicked-for-good" target="_blank" rel="noopener">Navan Pride: Wicked For Good</a></div>
+    <div class="event-venue">Solstice Arts Centre, Navan, Co. Meath</div>
+    <div class="event-desc">A screening of the 2025 film Wicked For Good (PG, 114 mins, dir. Jon M. Chu) as part of Navan Pride Festival.</div>
+    <a class="event-link" href="https://solsticeartscentre.ie/event/navan-pride-wicked-for-good" target="_blank" rel="noopener">See more &rarr;</a>
+  </div>
+  <div class="event-card">
+    <div class="event-when">Tuesday, June 16</div>
+    <div class="event-title"><a href="https://solsticeartscentre.ie/event/navan-pride-breaking-down-barriers" target="_blank" rel="noopener">Navan Pride: Breaking Down Barriers</a></div>
+    <div class="event-venue">Solstice Arts Centre, Navan, Co. Meath</div>
+    <div class="event-desc">A panel discussion on breaking down barriers, returning to Solstice as part of Navan Pride Festival.</div>
+    <a class="event-link" href="https://solsticeartscentre.ie/event/navan-pride-breaking-down-barriers" target="_blank" rel="noopener">See more &rarr;</a>
+  </div>
+  </div>
+</section>
+
+<main class="stories">
+  <div class="section-header">
+    <span class="section-heading">Latest Local News</span>
+  </div>
+
+  <article class="story-card ">
+    <div class="card-rank">01</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Transport & Infrastructure</span>
+        <span class="card-source">Meath Live</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://meathlive.net/2026/06/13/blackwater-river-pedestrian-and-cycle-bridge-officially-opened/" target="_blank" rel="noopener">New Blackwater River Pedestrian and Cycle Bridge Officially Opens in Navan</a>
+      </h2>
+      
+    <div class="key_story-badge">
+      <span class="key_story-label">&#9733; Key Story</span>
+      <span class="key_story-reason">New permanent infrastructure in the county town that changes how residents commute and move around Navan.</span>
+    </div>
+      <p class="card-teaser">Meath County Council, in partnership with the Fitzwilliam Group, officially opened the new Blackwater River Town Bridge and Cycleway in Navan on Friday. The new crossing provides a dedicated pedestrian and cycling route over the river, improving active travel connections in the county town.</p>
+      <a class="card-link" href="https://meathlive.net/2026/06/13/blackwater-river-pedestrian-and-cycle-bridge-officially-opened/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card card-alt">
+    <div class="card-rank">02</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Community & Events</span>
+        <span class="card-source">Meath Live</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://meathlive.net/2026/06/13/officially-opening-of-enfield-community-hall-following-e900000-refurbishment/" target="_blank" rel="noopener">Enfield Community Hall Reopens After €900,000 Refurbishment</a>
+      </h2>
+      
+    <div class="key_story-badge">
+      <span class="key_story-label">&#9733; Key Story</span>
+      <span class="key_story-reason">A major community facility is now available again for local groups and residents in Enfield and surrounding areas.</span>
+    </div>
+      <p class="card-teaser">Meath County Council celebrated the official reopening of Enfield Community Hall on Friday following a major €900,000 redevelopment. The refurbished hall is expected to serve as a renewed hub for community activities and events in the Enfield area.</p>
+      <a class="card-link" href="https://meathlive.net/2026/06/13/officially-opening-of-enfield-community-hall-following-e900000-refurbishment/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card ">
+    <div class="card-rank">03</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Local News</span>
+        <span class="card-source">Meath Chronicle</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://www.meathchronicle.ie/2026/06/11/300-tonnes-of-mine-waste-released-in-tailings-pond-pipeline-breach/" target="_blank" rel="noopener">300 Tonnes of Mine Waste Released in Tailings Pond Pipeline Breach</a>
+      </h2>
+      
+    <div class="key_story-badge">
+      <span class="key_story-label">&#9733; Key Story</span>
+      <span class="key_story-reason">A significant environmental incident with potential ongoing health and water quality implications for the local area.</span>
+    </div>
+      <p class="card-teaser">Some 300 tonnes of mine waste were released following a pipeline breach at a tailings pond in the county. The scale of the pond — reportedly the size of 200 Páirc Tailteann pitches — has raised environmental and safety concerns among residents and councillors.</p>
+      <a class="card-link" href="https://www.meathchronicle.ie/2026/06/11/300-tonnes-of-mine-waste-released-in-tailings-pond-pipeline-breach/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card card-alt">
+    <div class="card-rank">04</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Business & Jobs</span>
+        <span class="card-source">Google Alert</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://www.techcentral.ie/alltech-opens-expanded-eu-applications-laboratory-in-dunboyne/" target="_blank" rel="noopener">Alltech Opens Expanded EU Applications Laboratory in Dunboyne</a>
+      </h2>
+      
+      <p class="card-teaser">Global animal health and nutrition company Alltech has opened an expanded EU applications laboratory at its Dunboyne facility. The investment underlines Meath's growing role as a base for agri-tech research and development in Europe.</p>
+      <a class="card-link" href="https://www.techcentral.ie/alltech-opens-expanded-eu-applications-laboratory-in-dunboyne/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card ">
+    <div class="card-rank">05</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Sport</span>
+        <span class="card-source">Meath Chronicle</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://www.meathchronicle.ie/2026/06/13/meath-sing-sweet-song-in-the-derry-air/" target="_blank" rel="noopener">Meath Sing Sweet Song in the Derry Air — GAA Win Celebrated</a>
+      </h2>
+      
+      <p class="card-teaser">Meath delivered a convincing performance on the road, securing a notable GAA victory in Derry. The result boosts Meath's championship ambitions and will have supporters looking ahead with renewed optimism.</p>
+      <a class="card-link" href="https://www.meathchronicle.ie/2026/06/13/meath-sing-sweet-song-in-the-derry-air/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card card-alt">
+    <div class="card-rank">06</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Community & Events</span>
+        <span class="card-source">Meath Live</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://meathlive.net/2026/06/11/two-meath-schools-awarded-as-green-schools-water-schools-of-the-year/" target="_blank" rel="noopener">Two Meath Schools Named Green-Schools Water Schools of the Year</a>
+      </h2>
+      
+      <p class="card-teaser">Beaufort College and Dunshaughlin Community College were named regional Water Schools of the Year at the An Taisce Green-Schools awards in Dublin. Both schools were recognised for their environmental efforts around water conservation and awareness.</p>
+      <a class="card-link" href="https://meathlive.net/2026/06/11/two-meath-schools-awarded-as-green-schools-water-schools-of-the-year/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card ">
+    <div class="card-rank">07</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Local News</span>
+        <span class="card-source">Meath Chronicle</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://www.meathchronicle.ie/2026/06/14/end-of-an-era-special-thanksgiving-mass-held-for-trim-primary-school-communities-ahead-of-amalgamation/" target="_blank" rel="noopener">End of an Era as Trim Primary Schools Hold Mass Ahead of Amalgamation</a>
+      </h2>
+      
+    <div class="key_story-badge">
+      <span class="key_story-label">&#9733; Key Story</span>
+      <span class="key_story-reason">School amalgamation is a lasting structural change affecting families, enrolment, and the Trim community going forward.</span>
+    </div>
+      <p class="card-teaser">A special thanksgiving Mass was held for the Trim primary school communities as they prepare for amalgamation. The ceremony marked the end of separate school identities in what is a significant change for families in the heritage town.</p>
+      <a class="card-link" href="https://www.meathchronicle.ie/2026/06/14/end-of-an-era-special-thanksgiving-mass-held-for-trim-primary-school-communities-ahead-of-amalgamation/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card card-alt">
+    <div class="card-rank">08</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Local News</span>
+        <span class="card-source">Meath Chronicle</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://www.meathchronicle.ie/2026/06/10/closure-order-served-on-meath-supermarket/" target="_blank" rel="noopener">Closure Order Served on Meath Supermarket</a>
+      </h2>
+      
+      <p class="card-teaser">A closure order has been served on a supermarket in Meath following a food safety inspection. The order is a matter of public health interest for shoppers in the area.</p>
+      <a class="card-link" href="https://www.meathchronicle.ie/2026/06/10/closure-order-served-on-meath-supermarket/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+</main>
+
+<div class="onthisday-bar">
+  <span class="onthisday-label">On this day &middot; 1690</span>
+  <span class="onthisday-text">King William III landed at Carrickfergus and began his march south toward the River Boyne, setting the stage for Meath's most famous battle.</span>
+</div>
+
+<footer class="footer">
+  <p>Meath Morning Edition &nbsp;·&nbsp; June 14th, 2026</p>
+</footer>
+
+</body>
+</html>
