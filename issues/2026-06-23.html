@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Meath Morning Edition — 2026-06-23</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --green: #1A4731;
+  --gold:  #B8860B;
+  --cream: #FAF7F0;
+  --ink:   #1A1A1A;
+  --mid:   #555;
+  --light: #888;
+  --sans:  'Inter', system-ui, sans-serif;
+  --serif: 'Fraunces', Georgia, serif;
+}
+body { font-family: var(--sans); background: var(--cream); color: var(--ink); -webkit-font-smoothing: antialiased; }
+
+/* ── Masthead ── */
+.masthead {
+  background: var(--green);
+  color: #fff;
+  padding: 2.5rem 2rem 2rem;
+  text-align: center;
+  border-bottom: 4px solid var(--gold);
+}
+.masthead-kicker {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.75rem;
+}
+.masthead-title {
+  font-family: var(--serif);
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-weight: 900;
+  line-height: 1;
+  color: #fff;
+  margin-bottom: 0.3em;
+}
+.masthead-title em {
+  font-style: italic;
+  color: var(--gold);
+}
+.masthead-date {
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 1rem;
+}
+.key_story-count {
+  display: inline-block;
+  background: #C0392B;
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.3em 0.9em;
+  border-radius: 2px;
+  margin-bottom: 0.5rem;
+}
+
+/* ── Shared section heading ── */
+.section-header {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+  padding-top: 1.5rem;
+  border-top: 2px solid var(--green);
+}
+.section-heading {
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--green);
+}
+.section-sub {
+  font-size: 0.68rem;
+  color: var(--light);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* ── Weather bar ── */
+.weather-bar {
+  background: #fff;
+  border-bottom: 1px solid #e0dbd0;
+  padding: 0.5rem 2rem 0.85rem;
+}
+.weather-bar .section-header {
+  padding-top: 0.4rem;
+  border-top: none;
+  margin-bottom: 0.5rem;
+}
+.weather-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.4rem 1.25rem;
+}
+.weather-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.05rem;
+  font-size: 0.78rem;
+}
+.weather-place { font-weight: 600; color: var(--green); font-size: 0.78rem; }
+.weather-desc  { color: var(--mid); font-size: 0.73rem; }
+.weather-temps { font-weight: 500; }
+.weather-rain  { color: #2980b9; font-size: 0.73rem; }
+
+/* ── Events section ── */
+.events-section {
+  max-width: 860px;
+  margin: 0 auto 2rem;
+  padding: 0 1.5rem;
+}
+.events-section .section-header {
+  padding-top: 0.4rem;
+  border-top: none;
+}
+.events-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1rem;
+}
+.event-card {
+  background: #fff;
+  border: 1px solid #e0dbd0;
+  border-top: 3px solid var(--green);
+  padding: 0.9rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-height: 180px;
+}
+.event-when {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--green);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.2rem;
+}
+.event-title {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  line-height: 1.25;
+}
+.event-title a { color: var(--ink); text-decoration: none; }
+.event-title a:hover { color: var(--green); }
+.event-venue {
+  font-size: 0.8rem;
+  color: var(--light);
+}
+.event-desc {
+  font-size: 0.88rem;
+  color: var(--mid);
+  line-height: 1.55;
+  margin-top: 0.25rem;
+  flex: 1;
+}
+.event-link {
+  display: inline-block;
+  margin-top: 0.75rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--green);
+  text-decoration: none;
+  border-bottom: 1px solid var(--green);
+  padding-bottom: 0.05em;
+  align-self: flex-start;
+}
+.event-link:hover { opacity: 0.7; }
+
+/* ── Story cards ── */
+.stories {
+  max-width: 860px;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+}
+.story-card {
+  display: flex;
+  gap: 1.5rem;
+  padding: 1.75rem 0;
+  border-bottom: 1px solid #e0dbd0;
+  align-items: flex-start;
+}
+.card-alt { background: transparent; }
+.card-rank {
+  font-family: var(--serif);
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: rgba(26,71,49,0.12);
+  min-width: 3rem;
+  text-align: right;
+  line-height: 1;
+  padding-top: 0.15em;
+  flex-shrink: 0;
+}
+.card-body { flex: 1; }
+.card-meta {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
+}
+.card-category {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  background: var(--green);
+  color: #fff;
+  padding: 0.25em 0.7em;
+  border-radius: 2px;
+}
+.card-source {
+  font-size: 0.72rem;
+  color: var(--light);
+  font-weight: 500;
+}
+.card-title {
+  font-family: var(--serif);
+  font-size: clamp(1.2rem, 3vw, 1.6rem);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 0.6rem;
+}
+.card-title a {
+  color: var(--ink);
+  text-decoration: none;
+}
+.card-title a:hover { color: var(--green); }
+.key_story-badge {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  border-left: 3px solid #C0392B;
+  padding: 0.4rem 0.8rem;
+  margin-bottom: 0.75rem;
+  background: #fdf0ee;
+}
+.key_story-label {
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #C0392B;
+}
+.key_story-reason {
+  font-size: 0.8rem;
+  color: #C0392B;
+  line-height: 1.4;
+}
+.card-teaser {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--mid);
+  margin-bottom: 0.75rem;
+}
+.card-link {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--green);
+  text-decoration: none;
+  border-bottom: 1px solid var(--green);
+  padding-bottom: 0.05em;
+}
+.card-link:hover { opacity: 0.7; }
+
+/* ── On this day ── */
+.onthisday-bar {
+  max-width: 860px;
+  margin: 2rem auto 0.5rem;
+  padding: 2rem 2.5rem;
+  background: var(--green);
+  color: rgba(255,255,255,0.92);
+  text-align: center;
+}
+.onthisday-label {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.75rem;
+}
+.onthisday-text {
+  display: block;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+
+/* ── Footer ── */
+.footer {
+  text-align: center;
+  padding: 2.5rem 1rem;
+  font-size: 0.75rem;
+  color: var(--light);
+  border-top: 1px solid #e0dbd0;
+  margin-top: 1rem;
+}
+
+@media (max-width: 560px) {
+  .card-rank { display: none; }
+  .story-card { padding: 1.25rem 0; }
+}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="masthead-kicker">County Meath &nbsp;·&nbsp; Local Intelligence</div>
+  <h1 class="masthead-title">Meath <em>Morning</em><br>Edition</h1>
+  <div class="masthead-date">Tuesday, June 23, 2026</div>
+  <span class="key_story-count">&#9733; 3 key stories today</span>
+</header>
+
+<div class="weather-bar">
+  <div class="section-header">
+    <span class="section-heading">Weather</span>
+    <span class="section-sub">Today &middot; Co. Meath</span>
+  </div>
+  <div class="weather-grid">
+    <div class="weather-item">
+      <span class="weather-place">Navan</span>
+      <span class="weather-desc">Overcast</span>
+      <span class="weather-temps">15–27°C</span>
+      
+    </div>
+    <div class="weather-item">
+      <span class="weather-place">Trim</span>
+      <span class="weather-desc">Overcast</span>
+      <span class="weather-temps">14–26°C</span>
+      
+    </div>
+    <div class="weather-item">
+      <span class="weather-place">Kells</span>
+      <span class="weather-desc">Overcast</span>
+      <span class="weather-temps">14–26°C</span>
+      
+    </div>
+    <div class="weather-item">
+      <span class="weather-place">Oldcastle</span>
+      <span class="weather-desc">Overcast</span>
+      <span class="weather-temps">12–25°C</span>
+      
+    </div>
+    <div class="weather-item">
+      <span class="weather-place">Enfield</span>
+      <span class="weather-desc">Overcast</span>
+      <span class="weather-temps">13–26°C</span>
+      
+    </div>
+    <div class="weather-item">
+      <span class="weather-place">Dunshaughlin</span>
+      <span class="weather-desc">Overcast</span>
+      <span class="weather-temps">12–26°C</span>
+      
+    </div>
+  </div>
+</div>
+
+<section class="events-section">
+  <div class="section-header">
+    <span class="section-heading">What&#8217;s On</span>
+    <span class="section-sub">Next 3 days &middot; Co. Meath</span>
+  </div>
+  <div class="events-list">
+  <div class="event-card">
+    <div class="event-when">Tomorrow</div>
+    <div class="event-title"><a href="https://solsticeartscentre.ie/event/no-other-choice" target="_blank" rel="noopener">No Other Choice</a></div>
+    <div class="event-venue">Solstice Arts Centre, Navan, Co. Meath</div>
+    <div class="event-desc">A screening of Park Chan-wook's South Korean film (2025, 139 mins, Cert 15A) with English subtitles. Individual tickets €8.</div>
+    <a class="event-link" href="https://solsticeartscentre.ie/event/no-other-choice" target="_blank" rel="noopener">See more &rarr;</a>
+  </div>
+  <div class="event-card">
+    <div class="event-when">Tomorrow</div>
+    <div class="event-title"><a href="https://www.eventbrite.ie/e/in-their-shoes-tickets-1990468045506" target="_blank" rel="noopener">In Their Shoes</a></div>
+    <div class="event-venue">Ardboyne Hotel, Navan, Co. Meath</div>
+    <div class="event-desc">Zero Tolerance Meath hosts an experiential learning activity based on real experiences of domestic violence and abuse survivors.</div>
+    <a class="event-link" href="https://www.eventbrite.ie/e/in-their-shoes-tickets-1990468045506" target="_blank" rel="noopener">See more &rarr;</a>
+  </div>
+  <div class="event-card">
+    <div class="event-when">Friday, June 26</div>
+    <div class="event-title"><a href="https://www.eventbrite.ie/e/somatic-breathwork-experience-coming-home-to-yourself-a-mid-year-reset-tickets-1991687889091" target="_blank" rel="noopener">Somatic Breathwork Experience: Coming Home to Yourself</a></div>
+    <div class="event-venue">Dunmoe Cottage, Navan, Co. Meath</div>
+    <div class="event-desc">A grounding evening of somatic breathwork to release, reset and reconnect at the beautiful Dunmoe Cottage in Navan.</div>
+    <a class="event-link" href="https://www.eventbrite.ie/e/somatic-breathwork-experience-coming-home-to-yourself-a-mid-year-reset-tickets-1991687889091" target="_blank" rel="noopener">See more &rarr;</a>
+  </div>
+  <div class="event-card">
+    <div class="event-when">Friday, June 26</div>
+    <div class="event-title"><a href="https://www.eventbrite.ie/e/journey-within-peace-stillness-tickets-1991286415272" target="_blank" rel="noopener">Journey Within: Peace & Stillness</a></div>
+    <div class="event-venue">Julianstown St Mary, Julianstown, Co. Meath</div>
+    <div class="event-desc">An evening offering peace and stillness in a world that constantly asks us to do more and move faster.</div>
+    <a class="event-link" href="https://www.eventbrite.ie/e/journey-within-peace-stillness-tickets-1991286415272" target="_blank" rel="noopener">See more &rarr;</a>
+  </div>
+  <div class="event-card">
+    <div class="event-when">Thursday, June 25</div>
+    <div class="event-title"><a href="https://www.eventbrite.ie/e/exhibitor-registration-for-foodtech-packedge-events-2026-tickets-1986310790043" target="_blank" rel="noopener">Exhibitor Registration for FoodTech & Packedge Events 2026</a></div>
+    <div class="event-venue">The Johnstown Estate, Enfield, Co. Meath</div>
+    <div class="event-desc">Exhibitor employee registration for the FoodTech & Packedge Events 2026 at The Johnstown Estate in Enfield.</div>
+    <a class="event-link" href="https://www.eventbrite.ie/e/exhibitor-registration-for-foodtech-packedge-events-2026-tickets-1986310790043" target="_blank" rel="noopener">See more &rarr;</a>
+  </div>
+  </div>
+</section>
+
+<main class="stories">
+  <div class="section-header">
+    <span class="section-heading">Latest Local News</span>
+  </div>
+
+  <article class="story-card ">
+    <div class="card-rank">01</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Business & Jobs</span>
+        <span class="card-source">Meath Live</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://meathlive.net/2026/06/22/meaths-success-at-the-national-enterprise-awards/" target="_blank" rel="noopener">Meath's RYSE Chocolate Wins Best Start-Up at National Enterprise Awards</a>
+      </h2>
+      
+    <div class="key_story-badge">
+      <span class="key_story-label">&#9733; Key Story</span>
+      <span class="key_story-reason">Major national award for a Meath business — showcases local enterprise success and LEO support.</span>
+    </div>
+      <p class="card-teaser">RYSE Chocolate, founded by brothers-in-law Ian O'Rourke and David Stone and supported by Local Enterprise Office Meath, was named Best Start-Up at the 2026 National Enterprise Awards. A proud moment for Meath enterprise on the national stage.</p>
+      <a class="card-link" href="https://meathlive.net/2026/06/22/meaths-success-at-the-national-enterprise-awards/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card card-alt">
+    <div class="card-rank">02</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Council & Politics</span>
+        <span class="card-source">Meath Live</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://meathlive.net/2026/06/22/calls-for-limekiln-wood-estate-to-be-taken-in-charge/" target="_blank" rel="noopener">Calls Renewed for Meath Council to Take Limekiln Wood Estate in Charge</a>
+      </h2>
+      
+    <div class="key_story-badge">
+      <span class="key_story-label">&#9733; Key Story</span>
+      <span class="key_story-reason">Ongoing housing estate management issue affecting residents and setting a precedent for other estates awaiting taking-in-charge.</span>
+    </div>
+      <p class="card-teaser">Sinn Féin TD Johnny Guirke and Peace Commissioner Diego Keegan are pressing Meath County Council to take Limekiln Wood Estate in charge. The renewed call follows a recent announcement, with residents seeking council responsibility for roads, lighting, and public areas in the estate.</p>
+      <a class="card-link" href="https://meathlive.net/2026/06/22/calls-for-limekiln-wood-estate-to-be-taken-in-charge/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card ">
+    <div class="card-rank">03</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Local News</span>
+        <span class="card-source">Meath Chronicle</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://www.meathchronicle.ie/2026/06/22/gardai-appeal-for-information-on-missing-kells-woman/" target="_blank" rel="noopener">Gardaí Appeal for Information on Missing Kells Woman</a>
+      </h2>
+      
+    <div class="key_story-badge">
+      <span class="key_story-label">&#9733; Key Story</span>
+      <span class="key_story-reason">Active missing person appeal — residents may be able to assist with information.</span>
+    </div>
+      <p class="card-teaser">Gardaí have issued a public appeal for information on a woman missing from Kells. Anyone with information on her whereabouts is asked to contact local Gardaí. The appeal remains active and the public's help is needed.</p>
+      <a class="card-link" href="https://www.meathchronicle.ie/2026/06/22/gardai-appeal-for-information-on-missing-kells-woman/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card card-alt">
+    <div class="card-rank">04</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Community & Events</span>
+        <span class="card-source">Meath Chronicle</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://www.meathchronicle.ie/2026/06/22/chalk-talk-green-flag-and-special-guests-for-heronstown-ns/" target="_blank" rel="noopener">Green Flag and Special Guests Celebrate Heronstown National School</a>
+      </h2>
+      
+      <p class="card-teaser">Heronstown National School has been awarded a Green Flag for its environmental work, with special guests joining the celebration. The Green Flag programme recognises schools that promote sustainability and environmental awareness among pupils.</p>
+      <a class="card-link" href="https://www.meathchronicle.ie/2026/06/22/chalk-talk-green-flag-and-special-guests-for-heronstown-ns/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card ">
+    <div class="card-rank">05</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Courts & Crime</span>
+        <span class="card-source">Meath Chronicle</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://www.meathchronicle.ie/2026/06/22/gardai-appeal-for-witnesses-to-navan-assault/" target="_blank" rel="noopener">Gardaí Appeal for Witnesses to Assault in Navan</a>
+      </h2>
+      
+      <p class="card-teaser">Gardaí are seeking witnesses to an assault that took place in Navan. Anyone who may have been in the area or who has information is asked to come forward. Details of how to contact investigating officers are available through the appeal.</p>
+      <a class="card-link" href="https://www.meathchronicle.ie/2026/06/22/gardai-appeal-for-witnesses-to-navan-assault/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card card-alt">
+    <div class="card-rank">06</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Local News</span>
+        <span class="card-source">Meath Chronicle</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://www.meathchronicle.ie/2026/06/22/government-launch-invasive-species-week-2026/" target="_blank" rel="noopener">Government Launches Invasive Species Week 2026</a>
+      </h2>
+      
+      <p class="card-teaser">The Government has launched Invasive Species Week 2026, raising awareness of threats to native habitats across Ireland. The initiative is relevant to Meath's waterways and green spaces, where species such as Japanese knotweed and giant hogweed remain a concern for landowners and councils.</p>
+      <a class="card-link" href="https://www.meathchronicle.ie/2026/06/22/government-launch-invasive-species-week-2026/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card ">
+    <div class="card-rank">07</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Local News</span>
+        <span class="card-source">Meath Chronicle</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://www.meathchronicle.ie/2026/06/22/wholesale-prices-for-all-energy-fuels-rise-by-37-figures-show/" target="_blank" rel="noopener">Wholesale Energy Fuel Prices Rise by 37%, New Figures Show</a>
+      </h2>
+      
+      <p class="card-teaser">New figures show wholesale prices for all energy fuels have risen by 37%. The increase is likely to affect household and business energy costs in Meath and across the country in the coming months.</p>
+      <a class="card-link" href="https://www.meathchronicle.ie/2026/06/22/wholesale-prices-for-all-energy-fuels-rise-by-37-figures-show/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+  <article class="story-card card-alt">
+    <div class="card-rank">08</div>
+    <div class="card-body">
+      <div class="card-meta">
+        <span class="card-category">Courts & Crime</span>
+        <span class="card-source">Meath Live</span>
+      </div>
+      <h2 class="card-title">
+        <a href="https://meathlive.net/2026/06/22/tattoo-man-jailed-for-10-years-for-rape/" target="_blank" rel="noopener">Man Jailed for 10 Years for Violent Rape of Teenager in Co. Meath</a>
+      </h2>
+      
+      <p class="card-teaser">A 26-year-old man has been sentenced to 10 years in prison after pleading guilty to the violent rape of a teenage girl in a field in Co. Meath. The case has concluded with a significant custodial sentence.</p>
+      <a class="card-link" href="https://meathlive.net/2026/06/22/tattoo-man-jailed-for-10-years-for-rape/" target="_blank" rel="noopener">Read more &rarr;</a>
+    </div>
+  </article>
+</main>
+
+<div class="onthisday-bar">
+  <span class="onthisday-label">On this day &middot; 2016</span>
+  <span class="onthisday-text">Ten years ago today, the UK voted 52%–48% to leave the European Union — a seismic decision that reshaped Ireland's border question.</span>
+</div>
+
+<footer class="footer">
+  <p>Meath Morning Edition &nbsp;·&nbsp; June 23rd, 2026</p>
+</footer>
+
+</body>
+</html>
